@@ -1,7 +1,18 @@
+using El3edda.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add Db
+builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(
+    builder.Configuration.GetConnectionString("DbCN")));
+
+//Add Controllers Services
+
+
 
 var app = builder.Build();
 
