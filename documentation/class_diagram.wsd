@@ -1,0 +1,159 @@
+@startuml 3dity
+class Mobile
+{
+    int Id
+    srting Name
+    datetime Release Date
+    Manufacturer Manufacturer
+    double Price
+    string Description
+    Media Media[]
+    int warrentyPeriod
+    Specs Dpecs
+    int unitsInStock
+    int unitsSold
+}
+Specs *-- Mobile
+Manufacturer *-- Mobile
+Media o-- Mobile
+
+
+
+
+note left of Mobile::warrentyPeriod
+    warrentyPeriod is in monthes
+end note
+
+Class Manufacturer
+{
+    int id
+    string name
+    string Origin
+}
+
+' use bcl windows color '
+enum ColorEnum{
+    Red
+    Black
+    White
+    etc
+}
+
+Class Media{
+    Enum MediaType
+    string URL
+}
+
+' can be struct '
+class Dimension
+{
+    double Height
+    double Width
+    double Thickness
+}
+
+class Specs
+{
+    Mobile mobile
+    int mobileId
+    string CPU
+    ScreenENUM Screen
+    Dimension Dimension
+    double CameraMegaPixels
+    ColorEnum Color
+    string Weight
+    OSEnum OS
+    int batteryCapacity
+}
+Specs *-- ScreenENUM 
+Specs *-- OSEnum 
+Specs *-- ColorEnum 
+Specs *-- Dimension 
+
+enum ScreenENUM{
+    amoled, LCD
+}
+
+enum OSEnum{
+    android, IOS
+}
+
+
+class user {
+    string name
+    string email
+    string password
+    string phone
+}
+
+class admin implements user{
+
+}
+
+class Customer implements user{
+    Cart Cart
+    PaymentMethod[] PaymentMethods
+    Address sippingAddress
+    Order[] orders 
+}
+
+class Order{
+    int id
+    datetime date
+    OrderItem[] items
+    Customer customer
+    int customerId
+    orderState state
+}
+Order *-- orderState
+
+enum orderState {
+    Pending
+    Shipped
+    Delivered
+}
+
+note right of orderState
+    Pending - order is not shipped yet
+    Shipped - order is shipped
+    Delivered - order is delivered
+end note
+
+Customer *-- Cart
+Customer *--  PaymentMethod 
+Address *-- Customer
+
+class Cart {
+    int id
+    Mobile[] Mobile
+    int TotalPrice
+    Customer customer
+}
+Cart o-- Mobile
+
+
+interface PaymentMethod{
+    bool pay()
+}
+
+class CreditCard implements PaymentMethod{
+    string cardNumber
+    string cardHolderName
+    string expiryDate
+    string cvv
+}
+
+class Paybal implements PaymentMethod{
+    string paypalEmail
+}
+
+class Cash implements PaymentMethod{
+    Address billingAddress
+}
+
+class Address {
+    string street
+    string city
+    string governorate
+    string zipCode
+}
