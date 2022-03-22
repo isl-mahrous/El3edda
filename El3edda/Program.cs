@@ -1,4 +1,5 @@
 using El3edda.Data;
+using El3edda.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,12 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Add Db
-builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(
-    builder.Configuration.GetConnectionString("DbCN")));
+builder.Services.AddDbContext<AppDbContext>(
+    o => o.UseSqlServer(builder.Configuration.GetConnectionString("DbCN"))
+);
 
 //Add Controllers Services
-
-
+builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
 
 var app = builder.Build();
 
@@ -31,8 +32,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
