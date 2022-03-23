@@ -48,7 +48,7 @@ namespace El3edda.Models
 
         //Relatonships
         [Required]
-        public Specs? Specs { get; set; }
+        public Specs Specs { get; set; }
 
 
         //[Required]

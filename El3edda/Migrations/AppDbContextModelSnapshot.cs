@@ -129,7 +129,7 @@ namespace El3edda.Migrations
                     b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ManID")
+                    b.Property<int>("ManID");
                     b.Property<int>("ManufacturerId")
                         .HasColumnType("int");
 

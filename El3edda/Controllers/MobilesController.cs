@@ -34,10 +34,10 @@ namespace El3edda.Controllers
         // GET: Mobiles/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var mobile = await _service.GetByIdAsync(id);
 
@@ -51,10 +51,10 @@ namespace El3edda.Controllers
 
         public async Task<IActionResult> ViewSpecs(int id)
         {
-            if(id == null)
-            {
-                return NotFound();
-            }
+            //if(id == null)
+            //{
+            //    return NotFound();
+            //}
             var mobile = await _service.GetByIdAsync(id);
             
             if(mobile == null)
@@ -92,10 +92,10 @@ namespace El3edda.Controllers
         // GET: Mobiles/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var mobile = await _service.GetByIdAsync(id);
             if (mobile == null)
@@ -128,17 +128,17 @@ namespace El3edda.Controllers
             editedmobile.Description = mobile.Description;
             editedmobile.UnitsSold = mobile.UnitsSold;
             editedmobile.UnitsInStock = mobile.UnitsInStock;
-            editedmobile.ManID = mobile.ManID;
-            editedmobile.Img = mobile.Img;
+            editedmobile.ManufacturerId = mobile.ManufacturerId;
+            //editedmobile.Img = mobile.Img;
             editedmobile.ReleaseDate = mobile.ReleaseDate;
             editedmobile.WarrantyPeriod = mobile.WarrantyPeriod;
             editedmobile.Specs.CPU = mobile.Specs.CPU;
             editedmobile.Specs.OS = mobile.Specs.OS;
             editedmobile.Specs.Color = mobile.Specs.Color;
             editedmobile.Specs.BatteryCapacity = mobile.Specs.BatteryCapacity;
-            editedmobile.Specs.Dimensions.Height = mobile.Specs.Dimensions.Height;
-            editedmobile.Specs.Dimensions.Width = mobile.Specs.Dimensions.Width;
-            editedmobile.Specs.Dimensions.Thickness = mobile.Specs.Dimensions.Thickness;
+            editedmobile.Specs.Height = mobile.Specs.Height;
+            editedmobile.Specs.Width = mobile.Specs.Width;
+            editedmobile.Specs.Thickness = mobile.Specs.Thickness;
             editedmobile.Specs.CameraMegaPixels = mobile.Specs.CameraMegaPixels;
             editedmobile.Specs.Screen = mobile.Specs.Screen;
             editedmobile.Specs.Weight = mobile.Specs.Weight;
@@ -170,10 +170,10 @@ namespace El3edda.Controllers
         // GET: Mobiles/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var mobile = await _service.GetByIdAsync(id);
 
