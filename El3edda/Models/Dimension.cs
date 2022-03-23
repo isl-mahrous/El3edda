@@ -1,6 +1,10 @@
-﻿namespace El3edda.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace El3edda.Models
 {
-    public struct Dimension
+
+    [Owned]
+    public class Dimension
     {
         public double Height { get; set; }
         public double Width { get; set; }

@@ -1,5 +1,6 @@
 using El3edda.Data;
 using El3edda.Data.Services;
+using El3edda.Data.Services.MobileService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(
 
 //Add Controllers Services
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
+
+builder.Services.AddScoped<IMobileService, MobileService>();
+
+//builder.Services.AddScoped<IMobileService, ManufacturerService>();
 
 var app = builder.Build();
 

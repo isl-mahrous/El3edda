@@ -8,6 +8,7 @@ namespace El3edda.Models
     {
         [Required]
         public MediaType Type { get; set; }
+        
         [Required]
         public string URL { get; set; }
     }

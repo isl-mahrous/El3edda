@@ -17,5 +17,8 @@ namespace El3edda.Data
         }
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
+
+        public DbSet<El3edda.Models.Mobile> Mobile { get; set; }
+
     }
 }

@@ -1,0 +1,160 @@
+﻿@model El3edda.Models.Mobile
+
+
+@{
+    ViewData["Title"] = "Edit";
+    IEnumerable<El3edda.Models.Manufacturer> manufactures = 
+    (IEnumerable<El3edda.Models.Manufacturer>)ViewBag.Manufactures;
+}
+
+<h1>Edit</h1>
+
+<h4>Mobile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="@Model.Id"/>
+            <div class="form-group">
+                <label asp-for="Serial" class="control-label"></label>
+                <input asp-for="Serial" class="form-control" value="@Model.Serial"/>
+                <span asp-validation-for="Serial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value="@Model.Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" value="@Model.ReleaseDate"/>
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" value="@Model.Price"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" value="@Model.Description"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WarrantyPeriod" class="control-label"></label>
+                <input asp-for="WarrantyPeriod" class="form-control" value="@Model.WarrantyPeriod" />
+                <span asp-validation-for="WarrantyPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsInStock" class="control-label"></label>
+                <input asp-for="UnitsInStock" class="form-control" value="@Model.UnitsInStock"/>
+                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="UnitsInStock" class="control-label"></label>
+                <input asp-for="UnitsInStock" class="form-control" value="@Model.UnitsInStock"/>
+                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UnitsSold" class="control-label"></label>
+                <input asp-for="UnitsSold" class="form-control" value="@Model.UnitsSold"/>
+                <span asp-validation-for="UnitsSold" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
+                <input asp-for="Specs.BatteryCapacity" class="form-control" value="@Model.Specs.BatteryCapacity"/>
+                <span asp-validation-for="Specs.BatteryCapacity" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Specs.CameraMegaPixels" class="control-label"></label>
+                <input asp-for="Specs.CameraMegaPixels" class="form-control" value="@Model.Specs.CameraMegaPixels"/>
+                <span asp-validation-for="Specs.CameraMegaPixels" class="text-danger"></span>
+            </div>
+
+            
+             <div class="form-group">
+                <label asp-for="Specs.Color" class="control-label"></label>
+                <input asp-for="Specs.Color" class="form-control" value="@Model.Specs.Color"/>
+                <span asp-validation-for="Specs.Color" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Specs.CPU" class="control-label"></label>
+                <input asp-for="Specs.CPU" class="form-control" value="@Model.Specs.CPU"/>
+                <span asp-validation-for="Specs.CPU" class="text-danger"></span>
+            </div>
+
+             
+            <div class="form-group">
+                <label asp-for="Specs.Dimensions.Height" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Height" class="form-control" value="@Model.Specs.Dimensions.Height"/>
+                <span asp-validation-for="Specs.Dimensions.Height" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Specs.Dimensions.Width" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Width" class="form-control" value="@Model.Specs.Dimensions.Width"/>
+                <span asp-validation-for="Specs.Dimensions.Width" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Dimensions.Thickness" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Thickness" class="form-control" value="@Model.Specs.Dimensions.Thickness"/>
+                <span asp-validation-for="Specs.Dimensions.Thickness" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.OS" class="control-label"></label>
+                <input asp-for="Specs.OS" class="form-control" value="@Model.Specs.OS"/>
+                <span asp-validation-for="Specs.OS" class="text-danger"></span>
+            </div>
+
+            
+            <div class="form-group">
+                <label asp-for="Specs.Screen" class="control-label"></label>
+                <input asp-for="Specs.Screen" class="form-control" value="@Model.Specs.Screen"/>
+                <span asp-validation-for="Specs.Screen" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Weight" class="control-label"></label>
+                <input asp-for="Specs.Weight" class="form-control" value="@Model.Specs.Weight"/>
+                <span asp-validation-for="Specs.Weight" class="text-danger"></span>
+            </div>
+
+            <select class="form-group" name="ManID">
+
+                @foreach(var man in manufactures)
+                {
+                    if(man.Id == Model.Id)
+                    {
+                        <option value="@man.Id" selected>@man.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@man.Id">@man.Name</option>
+                    }
+                }
+
+            </select>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondry mt-3">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
