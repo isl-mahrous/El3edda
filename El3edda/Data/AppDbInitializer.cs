@@ -84,7 +84,7 @@ namespace El3edda.Data
                         new Manufacturer(){ Name = "OnePlus", Origin="China"},
                         new Manufacturer(){ Name = "Oppo", Origin="China"},
                         new Manufacturer(){ Name = "Vivo", Origin="China"},
-                        new Manufacturer(){ Name = "Other", Origin=""}
+                        new Manufacturer(){ Name = "Other", Origin="Unknown"}
                     });
                     context.SaveChanges();
                 }
