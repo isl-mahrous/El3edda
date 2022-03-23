@@ -25,8 +25,8 @@ namespace El3edda.Models
         
         
         [Required]
-        [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
+        [ForeignKey(nameof(ManufacturerId))]
         public virtual Manufacturer Manufacturer { get; set; }
         
         
