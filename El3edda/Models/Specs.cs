@@ -8,6 +8,7 @@ namespace El3edda.Models
     [Owned]
     public class Specs
     {
+        
         public string CPU { get; set; }
         public ScreenEnum Screen { get; set; }
         public double Height { get; set; }

@@ -48,7 +48,12 @@ namespace El3edda.Models
 
         //Relatonships
         [Required]
-        public Specs Specs { get; set; }
+        public Specs? Specs { get; set; }
+
+
+        //[Required]
+        //public ICollection<Media> Media { get; set; }
+
         [Required]
         public ICollection<Media> Media { get; set; }
 

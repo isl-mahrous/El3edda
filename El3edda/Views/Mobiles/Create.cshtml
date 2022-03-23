@@ -1,0 +1,179 @@
+﻿@model El3edda.Models.Mobile
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Mobile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Serial" class="control-label"></label>
+                <input asp-for="Serial" class="form-control" />
+                <span asp-validation-for="Serial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WarrantyPeriod" class="control-label"></label>
+                <input asp-for="WarrantyPeriod" class="form-control" />
+                <span asp-validation-for="WarrantyPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsInStock" class="control-label"></label>
+                <input asp-for="UnitsInStock" class="form-control" />
+                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsSold" class="control-label"></label>
+                <input asp-for="UnitsSold" class="form-control" />
+                <span asp-validation-for="UnitsSold" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
+                <input asp-for="Specs.BatteryCapacity" class="form-control" />
+                <span asp-validation-for="Specs.BatteryCapacity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.CameraMegaPixels" class="control-label"></label>
+                <input asp-for="Specs.CameraMegaPixels" class="form-control" />
+                <span asp-validation-for="Specs.CameraMegaPixels" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Specs.Color" class="control-label"></label>
+                <input asp-for="Specs.Color" class="form-control" />
+                <span asp-validation-for="Specs.Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.CPU" class="control-label"></label>
+                <input asp-for="Specs.CPU" class="form-control" />
+                <span asp-validation-for="Specs.CPU" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Dimensions.Height" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Height" class="form-control" />
+                <span asp-validation-for="Specs.Dimensions.Height" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Dimensions.Width" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Width" class="form-control" />
+                <span asp-validation-for="Specs.Dimensions.Width" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Dimensions.Thickness" class="control-label"></label>
+                <input asp-for="Specs.Dimensions.Thickness" class="form-control" />
+                <span asp-validation-for="Specs.Dimensions.Thickness" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.OS" class="control-label"></label>
+                <input asp-for="Specs.OS" class="form-control" />
+                <span asp-validation-for="Specs.OS" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Screen" class="control-label"></label>
+                <input asp-for="Specs.Screen" class="form-control" />
+                <span asp-validation-for="Specs.Screen" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specs.Weight" class="control-label"></label>
+                <input asp-for="Specs.Weight" class="form-control" />
+                <span asp-validation-for="Specs.Weight" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Manufacturer.Id" class="control-label"></label>
+                <input asp-for="Specs.Color" class="form-control" />
+                <span asp-validation-for="Specs.Color" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+}
+
+@*
+     <td>
+                @Html.DisplayFor(modelItem => item.Specs.BatteryCapacity)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.CameraMegaPixels)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specs.CPU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Height)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Width)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Thickness)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.OS)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.Screen)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Specs.Weight)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer.Origin)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Media)
+            </td>*@

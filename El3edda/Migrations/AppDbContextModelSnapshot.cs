@@ -126,6 +126,10 @@ namespace El3edda.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ManID")
                     b.Property<int>("ManufacturerId")
                         .HasColumnType("int");
 
@@ -154,6 +158,7 @@ namespace El3edda.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ManID");
                     b.HasIndex("ManufacturerId");
 
                     b.HasIndex("Serial")
@@ -338,6 +343,7 @@ namespace El3edda.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("CPU")
+                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
                             b1.Property<double>("CameraMegaPixels")
@@ -420,7 +426,7 @@ namespace El3edda.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
+                                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
@@ -428,8 +434,8 @@ namespace El3edda.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                                .IsRequired();
+                        });
 
             modelBuilder.Entity("El3edda.Models.Manufacturer", b =>
                 {
