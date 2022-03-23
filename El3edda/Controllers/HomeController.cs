@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace El3edda.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -76,8 +76,8 @@ namespace El3edda.Data
                     context.Manufacturers.AddRange(new List<Manufacturer>()
                     {
                         //Add Manufacturers Data
-                        new Manufacturer(){ Name = "Samsung", Origin="Korea"},
-                        new Manufacturer(){ Name = "Apple", Origin="USA"},
+                        new Manufacturer(){ Name = "Samsung", Origin="Korea"}, //ID=1
+                        new Manufacturer(){ Name = "Apple", Origin="USA"}, // ID=2
                         new Manufacturer(){ Name = "Xiaomi", Origin="China"},
                         new Manufacturer(){ Name = "Huawei", Origin="China"},
                         new Manufacturer(){ Name = "Nokia", Origin="Finland"},
@@ -95,7 +95,22 @@ namespace El3edda.Data
                     context.Mobiles.AddRange(new List<Mobile>() 
                     {
                         //Add Mobiles Data
-                        
+                        new Mobile()
+                        {
+
+                        },
+                        new Mobile()
+                        {
+
+                        },
+                        new Mobile()
+                        {
+
+                        },
+                        new Mobile()
+                        {
+
+                        }
 
                     });
                     context.SaveChanges();
