@@ -50,4 +50,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
+AppDbInitializer.SeedUsersAndRoles(app).Wait();
+
 app.Run();
