@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace El3edda.Migrations
 {
-    public partial class IdentityAdded : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -175,16 +175,15 @@ namespace El3edda.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Serial = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ManufacturerId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     WarrantyPeriod = table.Column<TimeSpan>(type: "time", nullable: false),
                     UnitsInStock = table.Column<int>(type: "int", nullable: false),
+                    MainPhotoURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitsSold = table.Column<int>(type: "int", nullable: false),
-                    Specs_CPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Specs_CPU = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Specs_Screen = table.Column<int>(type: "int", nullable: false),
                     Specs_Height = table.Column<double>(type: "float", nullable: false),
                     Specs_Width = table.Column<double>(type: "float", nullable: false),
@@ -193,7 +192,8 @@ namespace El3edda.Migrations
                     Specs_Color = table.Column<int>(type: "int", nullable: false),
                     Specs_Weight = table.Column<double>(type: "float", nullable: false),
                     Specs_OS = table.Column<byte>(type: "tinyint", nullable: false),
-                    Specs_BatteryCapacity = table.Column<int>(type: "int", nullable: false)
+                    Specs_BatteryCapacity = table.Column<int>(type: "int", nullable: false),
+                    ManufacturerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -210,15 +210,15 @@ namespace El3edda.Migrations
                 name: "Media",
                 columns: table => new
                 {
-                    MobileId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MobileId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Media", x => new { x.MobileId, x.Id });
+                    table.PrimaryKey("PK_Media", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Media_Mobiles_MobileId",
                         column: x => x.MobileId,
@@ -267,15 +267,14 @@ namespace El3edda.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Media_MobileId",
+                table: "Media",
+                column: "MobileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Mobiles_ManufacturerId",
                 table: "Mobiles",
                 column: "ManufacturerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Mobiles_Serial",
-                table: "Mobiles",
-                column: "Serial",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

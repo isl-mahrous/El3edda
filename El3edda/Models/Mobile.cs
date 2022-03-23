@@ -5,15 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace El3edda.Models
 {
-    [Index(nameof(Serial), IsUnique = true)]
+
     public class Mobile : IEntityBase
     {
         [Key]
         public int Id { get; set; }
         
         
-        [Required]
-        public int Serial { get; set; }
         [Required]
         [StringLength(maximumLength:50, ErrorMessage = "Phone name cannot be more than 50 characters.")]
         public string Name { get; set; }
@@ -25,36 +23,44 @@ namespace El3edda.Models
         
         
         [Required]
-        public int ManufacturerId { get; set; }
-        [ForeignKey(nameof(ManufacturerId))]
-        public virtual Manufacturer Manufacturer { get; set; }
-        
-        
-        [Required]
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
         
         [Required]
         [StringLength(maximumLength: 500, ErrorMessage = "Description is too long.")]
         public string Description { get; set; }
 
-        
+
         [DataType(DataType.Duration)]
+        [Display(Name= "Warranty Period")]
         public TimeSpan WarrantyPeriod { get; set; }
 
         [Required]
+        [Display(Name="Units In Stock")] 
         public int UnitsInStock { get; set; }
+        
         [Required]
+        [Display(Name = "Main Photo")]
+        [DataType(DataType.ImageUrl)]
+        public string MainPhotoURL { get; set; }
+
+        [Required]
+        [Display(Name = "Units Sold")]
         public int UnitsSold { get; set; }
+
+        [Required]
+        [Display(Name = "Specifications")]
+        public Specs Specs { get; set; }
+
+
 
         //Relatonships
         [Required]
-        public Specs? Specs { get; set; }
+        [ForeignKey("Manufacturer")]
+        public int ManufacturerId { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
 
 
-        //[Required]
-        //public ICollection<Media> Media { get; set; }
-
-        [Required]
         public ICollection<Media> Media { get; set; }
 
 

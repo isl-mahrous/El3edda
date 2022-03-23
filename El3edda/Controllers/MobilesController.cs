@@ -34,10 +34,6 @@ namespace El3edda.Controllers
         // GET: Mobiles/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var mobile = await _service.GetByIdAsync(id);
 
@@ -51,10 +47,7 @@ namespace El3edda.Controllers
 
         public async Task<IActionResult> ViewSpecs(int id)
         {
-            if(id == null)
-            {
-                return NotFound();
-            }
+
             var mobile = await _service.GetByIdAsync(id);
             
             if(mobile == null)
@@ -77,7 +70,7 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold,Img,ManID, Specs")] Mobile mobile)
+        public async Task<IActionResult> Create(Mobile mobile)
         {
             if (ModelState.IsValid)
             {
@@ -92,10 +85,6 @@ namespace El3edda.Controllers
         // GET: Mobiles/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var mobile = await _service.GetByIdAsync(id);
             if (mobile == null)
@@ -113,7 +102,7 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold,Img,ManID,Specs")] Mobile mobile)
+        public async Task<IActionResult> Edit(int id, Mobile mobile)
         {
             if (id != mobile.Id)
             {
@@ -122,23 +111,21 @@ namespace El3edda.Controllers
 
             var editedmobile = await _service.GetByIdAsync(id);
             
-            editedmobile.Serial = mobile.Serial;
             editedmobile.Name = mobile.Name;
             editedmobile.Price = mobile.Price;
             editedmobile.Description = mobile.Description;
             editedmobile.UnitsSold = mobile.UnitsSold;
             editedmobile.UnitsInStock = mobile.UnitsInStock;
-            editedmobile.ManID = mobile.ManID;
-            editedmobile.Img = mobile.Img;
+            editedmobile.ManufacturerId = mobile.ManufacturerId;
             editedmobile.ReleaseDate = mobile.ReleaseDate;
             editedmobile.WarrantyPeriod = mobile.WarrantyPeriod;
             editedmobile.Specs.CPU = mobile.Specs.CPU;
             editedmobile.Specs.OS = mobile.Specs.OS;
             editedmobile.Specs.Color = mobile.Specs.Color;
             editedmobile.Specs.BatteryCapacity = mobile.Specs.BatteryCapacity;
-            editedmobile.Specs.Dimensions.Height = mobile.Specs.Dimensions.Height;
-            editedmobile.Specs.Dimensions.Width = mobile.Specs.Dimensions.Width;
-            editedmobile.Specs.Dimensions.Thickness = mobile.Specs.Dimensions.Thickness;
+            editedmobile.Specs.Height = mobile.Specs.Height;
+            editedmobile.Specs.Width = mobile.Specs.Width;
+            editedmobile.Specs.Thickness = mobile.Specs.Thickness;
             editedmobile.Specs.CameraMegaPixels = mobile.Specs.CameraMegaPixels;
             editedmobile.Specs.Screen = mobile.Specs.Screen;
             editedmobile.Specs.Weight = mobile.Specs.Weight;
@@ -170,10 +157,7 @@ namespace El3edda.Controllers
         // GET: Mobiles/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+
 
             var mobile = await _service.GetByIdAsync(id);
 

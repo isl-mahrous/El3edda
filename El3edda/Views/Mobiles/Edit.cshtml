@@ -17,11 +17,6 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@Model.Id"/>
             <div class="form-group">
-                <label asp-for="Serial" class="control-label"></label>
-                <input asp-for="Serial" class="form-control" value="@Model.Serial"/>
-                <span asp-validation-for="Serial" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" value="@Model.Name"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -58,11 +53,11 @@
                 <span asp-validation-for="UnitsSold" class="text-danger"></span>
             </div>
 
-             <div class="form-group">
+             @*<div class="form-group">
                 <label asp-for="Img" class="control-label"></label>
                 <input asp-for="Img" class="form-control" value="@Model.Img"/>
                 <span asp-validation-for="Img" class="text-danger"></span>
-            </div>
+            </div>*@
 
 
             <div class="form-group">
@@ -80,7 +75,7 @@
             
              <div class="form-group">
                 <label asp-for="Specs.Color" class="control-label"></label>
-                <input asp-for="Specs.Color" class="form-control" value="@Model.Specs.Color"/>
+                <select asp-for="Specs.Color" asp-items="Html.GetEnumSelectList(typeof(Colors))" class="form-control" ></select>
                 <span asp-validation-for="Specs.Color" class="text-danger"></span>
             </div>
             
@@ -92,21 +87,21 @@
 
              
             <div class="form-group">
-                <label asp-for="Specs.Dimensions.Height" class="control-label"></label>
-                <input asp-for="Specs.Dimensions.Height" class="form-control" value="@Model.Specs.Dimensions.Height"/>
-                <span asp-validation-for="Specs.Dimensions.Height" class="text-danger"></span>
+                <label asp-for="Specs.Height" class="control-label"></label>
+                <input asp-for="Specs.Height" class="form-control" value="@Model.Specs.Height"/>
+                <span asp-validation-for="Specs.Height" class="text-danger"></span>
             </div>
 
              <div class="form-group">
-                <label asp-for="Specs.Dimensions.Width" class="control-label"></label>
-                <input asp-for="Specs.Dimensions.Width" class="form-control" value="@Model.Specs.Dimensions.Width"/>
-                <span asp-validation-for="Specs.Dimensions.Width" class="text-danger"></span>
+                <label asp-for="Specs.Width" class="control-label"></label>
+                <input asp-for="Specs.Width" class="form-control" value="@Model.Specs.Width"/>
+                <span asp-validation-for="Specs.Width" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Specs.Dimensions.Thickness" class="control-label"></label>
-                <input asp-for="Specs.Dimensions.Thickness" class="form-control" value="@Model.Specs.Dimensions.Thickness"/>
-                <span asp-validation-for="Specs.Dimensions.Thickness" class="text-danger"></span>
+                <label asp-for="Specs.Thickness" class="control-label"></label>
+                <input asp-for="Specs.Thickness" class="form-control" value="@Model.Specs.Thickness"/>
+                <span asp-validation-for="Specs.Thickness" class="text-danger"></span>
             </div>
 
             <div class="form-group">

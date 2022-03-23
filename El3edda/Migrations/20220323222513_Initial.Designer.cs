@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace El3edda.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220323174525_IdentityAdded")]
-    partial class IdentityAdded
+    [Migration("20220323222513_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,6 +115,31 @@ namespace El3edda.Migrations
                     b.ToTable("Manufacturers");
                 });
 
+            modelBuilder.Entity("El3edda.Models.Media", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("MobileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MobileId");
+
+                    b.ToTable("Media");
+                });
+
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
                 {
                     b.Property<int>("Id")
@@ -127,6 +152,10 @@ namespace El3edda.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MainPhotoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ManufacturerId")
                         .HasColumnType("int");
@@ -142,9 +171,6 @@ namespace El3edda.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Serial")
-                        .HasColumnType("int");
-
                     b.Property<int>("UnitsInStock")
                         .HasColumnType("int");
 
@@ -157,9 +183,6 @@ namespace El3edda.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ManufacturerId");
-
-                    b.HasIndex("Serial")
-                        .IsUnique();
 
                     b.ToTable("Mobiles");
                 });
@@ -297,6 +320,17 @@ namespace El3edda.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("El3edda.Models.Media", b =>
+                {
+                    b.HasOne("El3edda.Models.Mobile", "Mobile")
+                        .WithMany("Media")
+                        .HasForeignKey("MobileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mobile");
+                });
+
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
                 {
                     b.HasOne("El3edda.Models.Manufacturer", "Manufacturer")
@@ -304,32 +338,6 @@ namespace El3edda.Migrations
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.OwnsMany("El3edda.Models.Media", "Media", b1 =>
-                        {
-                            b1.Property<int>("MobileId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"), 1L, 1);
-
-                            b1.Property<int>("Type")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("URL")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("MobileId", "Id");
-
-                            b1.ToTable("Media");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MobileId");
-                        });
 
                     b.OwnsOne("El3edda.Models.Specs", "Specs", b1 =>
                         {
@@ -340,6 +348,7 @@ namespace El3edda.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("CPU")
+                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
                             b1.Property<double>("CameraMegaPixels")
@@ -375,8 +384,6 @@ namespace El3edda.Migrations
                         });
 
                     b.Navigation("Manufacturer");
-
-                    b.Navigation("Media");
 
                     b.Navigation("Specs")
                         .IsRequired();
@@ -436,6 +443,11 @@ namespace El3edda.Migrations
             modelBuilder.Entity("El3edda.Models.Manufacturer", b =>
                 {
                     b.Navigation("Mobiles");
+                });
+
+            modelBuilder.Entity("El3edda.Models.Mobile", b =>
+                {
+                    b.Navigation("Media");
                 });
 #pragma warning restore 612, 618
         }

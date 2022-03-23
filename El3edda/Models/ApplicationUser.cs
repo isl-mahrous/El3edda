@@ -7,5 +7,9 @@ namespace El3edda.Models
     {
         [Display(Name ="Full name")]
         public string FullName { get; set; }
+
+        //public string ShippingAddress { get; set; }
+        //public string BillingAddress { get; set; }
+
     }
 }

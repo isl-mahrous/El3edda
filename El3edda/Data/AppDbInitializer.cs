@@ -90,31 +90,31 @@ namespace El3edda.Data
                 }
 
                 //Mobiles
-                if (!context.Mobiles.Any())
-                {
-                    context.Mobiles.AddRange(new List<Mobile>() 
-                    {
-                        //Add Mobiles Data
-                        new Mobile()
-                        {
+                //if (!context.Mobiles.Any())
+                //{
+                //    context.Mobiles.AddRange(new List<Mobile>() 
+                //    {
+                //        //Add Mobiles Data
+                //        new Mobile()
+                //        {
 
-                        },
-                        new Mobile()
-                        {
+                //        },
+                //        new Mobile()
+                //        {
 
-                        },
-                        new Mobile()
-                        {
+                //        },
+                //        new Mobile()
+                //        {
 
-                        },
-                        new Mobile()
-                        {
+                //        },
+                //        new Mobile()
+                //        {
 
-                        }
+                //        }
 
-                    });
-                    context.SaveChanges();
-                }
+                //    });
+                //    context.SaveChanges();
+                //}
 
                 
 

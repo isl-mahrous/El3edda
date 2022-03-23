@@ -46,7 +46,7 @@ namespace test.Controllers
         // POST: Manufacturers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Origin")] Manufacturer manufacturer)
+        public async Task<IActionResult> Create( Manufacturer manufacturer)
         {
             if (ModelState.IsValid)
             {
