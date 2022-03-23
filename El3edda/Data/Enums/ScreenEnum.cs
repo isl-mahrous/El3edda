@@ -1,7 +1,7 @@
 ﻿namespace El3edda.Data.Enums
 {
-    public enum ScreenEnum : byte
+    public enum ScreenEnum
     {
-        AMOLED, IPSLCD, LCD, OLED, SuperAMOLED
+        AMOLED, IPS, OLED, SuperAMOLED, LiquidRetina
     }
 }

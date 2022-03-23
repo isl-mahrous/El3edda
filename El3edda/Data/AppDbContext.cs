@@ -16,5 +16,12 @@ namespace El3edda.Data
                 );
             base.OnModelCreating(modelBuilder);
         }
+
+        public virtual DbSet<Mobile> Mobiles { get; set; } 
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+
+
+        //////////// ORDERS //////////////
+        
     }
 }
