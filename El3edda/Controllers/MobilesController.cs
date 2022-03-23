@@ -66,9 +66,9 @@ namespace El3edda.Controllers
         }
 
         // GET: Mobiles/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.Manufactures = _serviceMan.GetAllAsync();
+            ViewBag.Manufactures = await _serviceMan.GetAllAsync();
             return View();
         }
 
@@ -77,13 +77,15 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold")] Mobile mobile)
+        public async Task<IActionResult> Create([Bind("Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold,Img,ManID, Specs")] Mobile mobile)
         {
             if (ModelState.IsValid)
             {
                 await _service.AddAsync(mobile);
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Manufactures = await _serviceMan.GetAllAsync();
             return View(mobile);
         }
 

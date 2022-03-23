@@ -1,7 +1,10 @@
-﻿@model El3edda.Models.Mobile
+﻿@using El3edda.Data.Enums
+@model El3edda.Models.Mobile
 
 @{
     ViewData["Title"] = "Create";
+    IEnumerable<El3edda.Models.Manufacturer> manufactures = new List<Manufacturer>();
+    manufactures = (List<El3edda.Models.Manufacturer>)ViewBag.Manufactures;
 }
 
 <h1>Create</h1>
@@ -52,6 +55,13 @@
                 <input asp-for="UnitsSold" class="form-control" />
                 <span asp-validation-for="UnitsSold" class="text-danger"></span>
             </div>
+
+             <div class="form-group">
+                <label asp-for="Img" class="control-label"></label>
+                <input asp-for="Img" class="form-control" />
+                <span asp-validation-for="Img" class="text-danger"></span>
+            </div>
+
              <div class="form-group">
                 <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
                 <input asp-for="Specs.BatteryCapacity" class="form-control" />
@@ -66,7 +76,7 @@
 
              <div class="form-group">
                 <label asp-for="Specs.Color" class="control-label"></label>
-                <input asp-for="Specs.Color" class="form-control" />
+                <select asp-for="Specs.Color" asp-items="Html.GetEnumSelectList(typeof(MobileColor))" class="form-control" ></select >
                 <span asp-validation-for="Specs.Color" class="text-danger"></span>
             </div>
 
@@ -96,13 +106,14 @@
 
             <div class="form-group">
                 <label asp-for="Specs.OS" class="control-label"></label>
-                <input asp-for="Specs.OS" class="form-control" />
+                <select asp-for="Specs.OS" asp-items="Html.GetEnumSelectList(typeof(OSEnum))" class="form-control" ></select>
+                
                 <span asp-validation-for="Specs.OS" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Specs.Screen" class="control-label"></label>
-                <input asp-for="Specs.Screen" class="form-control" />
+                <select asp-for="Specs.Screen" asp-items="Html.GetEnumSelectList(typeof(ScreenEnum))" class="form-control"></select>
                 <span asp-validation-for="Specs.Screen" class="text-danger"></span>
             </div>
 
@@ -112,16 +123,19 @@
                 <span asp-validation-for="Specs.Weight" class="text-danger"></span>
             </div>
 
+            
+            <select class="form-select form-select-lg mb-3 mt-3" name="ManID" >
+
+                @foreach(var man in manufactures)
+                {
+                    <option value="@man.Id">@man.Name</option>
+                }
+
+            </select>
+
+
             <div class="form-group">
-                <label asp-for="Manufacturer.Id" class="control-label"></label>
-                <input asp-for="Specs.Color" class="form-control" />
-                <span asp-validation-for="Specs.Color" class="text-danger"></span>
-            </div>
-
-
-
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+                <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a>
                 <input type="submit" value="Create" class="btn btn-primary mt-3" />
             </div>
         </form>
