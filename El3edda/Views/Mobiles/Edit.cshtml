@@ -3,8 +3,8 @@
 
 @{
     ViewData["Title"] = "Edit";
-    IEnumerable<El3edda.Models.Manufacturer> manufactures = 
-    (IEnumerable<El3edda.Models.Manufacturer>)ViewBag.Manufactures;
+    IEnumerable<El3edda.Models.Manufacturer> manufactures = new List<Manufacturer>();
+    manufactures = (List<El3edda.Models.Manufacturer>)ViewBag.Manufactures;
 }
 
 <h1>Edit</h1>
@@ -52,17 +52,18 @@
                 <span asp-validation-for="UnitsInStock" class="text-danger"></span>
             </div>
 
-             <div class="form-group">
-                <label asp-for="UnitsInStock" class="control-label"></label>
-                <input asp-for="UnitsInStock" class="form-control" value="@Model.UnitsInStock"/>
-                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
-            </div>
-
             <div class="form-group">
                 <label asp-for="UnitsSold" class="control-label"></label>
                 <input asp-for="UnitsSold" class="form-control" value="@Model.UnitsSold"/>
                 <span asp-validation-for="UnitsSold" class="text-danger"></span>
             </div>
+
+             <div class="form-group">
+                <label asp-for="Img" class="control-label"></label>
+                <input asp-for="Img" class="form-control" value="@Model.Img"/>
+                <span asp-validation-for="Img" class="text-danger"></span>
+            </div>
+
 
             <div class="form-group">
                 <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
@@ -127,7 +128,26 @@
                 <span asp-validation-for="Specs.Weight" class="text-danger"></span>
             </div>
 
-            <select class="form-group" name="ManID">
+            @* <div class="form-group">
+                <label asp-for="Manufacturer.Id" class="control-label" type="hidden"></label>
+                <input asp-for="Manufacturer.Id" class="form-control" value="@Model.Manufacturer.Id" type="hidden"/>
+                <span asp-validation-for="Manufacturer.Id" class="text-danger" type="hidden"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Manufacturer.Name" class="control-label" type="hidden"></label>
+                <input asp-for="Manufacturer.Name" class="form-control" value="@Model.Manufacturer.Name" type="hidden"/>
+                <span asp-validation-for="Manufacturer.Name" class="text-danger" type="hidden"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Manufacturer.Origin" class="control-label" type="hidden"></label>
+                <input asp-for="Manufacturer.Origin" class="form-control" value="@Model.Manufacturer.Origin" type="hidden"/>
+                <span asp-validation-for="Manufacturer.Origin" class="text-danger" type="hidden"></span>
+            </div>*@
+
+
+            <select class="form-select form-select-lg mb-3 mt-3" name="ManID" >
 
                 @foreach(var man in manufactures)
                 {

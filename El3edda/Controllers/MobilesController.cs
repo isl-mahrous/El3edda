@@ -111,18 +111,41 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, /*[Bind("Id,Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold,ManID")]*/ Mobile mobile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Serial,Name,ReleaseDate,Price,Description,WarrantyPeriod,UnitsInStock,UnitsSold,Img,ManID,Specs")] Mobile mobile)
         {
             if (id != mobile.Id)
             {
                 return NotFound();
             }
 
+            var editedmobile = await _service.GetByIdAsync(id);
+            
+            editedmobile.Serial = mobile.Serial;
+            editedmobile.Name = mobile.Name;
+            editedmobile.Price = mobile.Price;
+            editedmobile.Description = mobile.Description;
+            editedmobile.UnitsSold = mobile.UnitsSold;
+            editedmobile.UnitsInStock = mobile.UnitsInStock;
+            editedmobile.ManID = mobile.ManID;
+            editedmobile.Img = mobile.Img;
+            editedmobile.ReleaseDate = mobile.ReleaseDate;
+            editedmobile.WarrantyPeriod = mobile.WarrantyPeriod;
+            editedmobile.Specs.CPU = mobile.Specs.CPU;
+            editedmobile.Specs.OS = mobile.Specs.OS;
+            editedmobile.Specs.Color = mobile.Specs.Color;
+            editedmobile.Specs.BatteryCapacity = mobile.Specs.BatteryCapacity;
+            editedmobile.Specs.Dimensions.Height = mobile.Specs.Dimensions.Height;
+            editedmobile.Specs.Dimensions.Width = mobile.Specs.Dimensions.Width;
+            editedmobile.Specs.Dimensions.Thickness = mobile.Specs.Dimensions.Thickness;
+            editedmobile.Specs.CameraMegaPixels = mobile.Specs.CameraMegaPixels;
+            editedmobile.Specs.Screen = mobile.Specs.Screen;
+            editedmobile.Specs.Weight = mobile.Specs.Weight;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _service.AddAsync(mobile);
+                    await _service.UpdateAsync(id, editedmobile);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,6 +160,8 @@ namespace El3edda.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Manufactures = await _serviceMan.GetAllAsync();
             return View(mobile);
         }
 

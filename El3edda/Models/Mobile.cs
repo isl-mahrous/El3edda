@@ -35,19 +35,18 @@ namespace El3edda.Models
         //Relatonships
         [Required]
         public Specs? Specs { get; set; }
-        
-        
+
+
+        //[Required]
+        //public ICollection<Media> Media { get; set; }
+
         [Required]
-        public ICollection<Media> Media { get; set; }
-
-
         [ForeignKey("Manufacturer")]
-        [Required]
         public int ManID { get; set; }
-        public virtual Manufacturer Manufacturer { get; set; }
-        
 
-        [RegularExpression(@".jpg$")]
+        public virtual Manufacturer? Manufacturer { get; set; }
+
+        //[RegularExpression(@".jpg$")]
         public string? Img { get; set; }
 
 

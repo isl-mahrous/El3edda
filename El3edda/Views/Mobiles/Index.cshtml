@@ -11,19 +11,19 @@
 </p>
 
 
-<div class="d-flex flex-row mr-5">
+<div class="d-flex flex-row justify-content-center flex-wrap mr-5">
 
         @foreach(var mob in Model)
         {
             string imgsrcpath = "Images/" + mob.Img;
 
-          <div class="card" style="width: 18rem; margin-right: 2%">
+          <div class="card" style="width: 18rem; margin: 1% 1%">
             <img class="card-img-top" src=@imgsrcpath alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@mob.Name</h5>
                 <p class="card-text">@mob.Description</p>
                 <p class="card-text">$ @mob.Price</p>
-                <p class="card-text">Release Date @mob.ReleaseDate</p>
+                <p class="card-text">Release Date @mob.ReleaseDate.ToString("dd-mm-yyyy")</p>
             </div>
 
               <ul class="list-group list-group-flush list-unstyled">
