@@ -1,5 +1,8 @@
 using El3edda.Data;
 using El3edda.Data.Services;
+using El3edda.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +17,19 @@ builder.Services.AddDbContext<AppDbContext>(
 
 //Add Controllers Services
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
+
+
+
+//Authentication & Authorization
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
+
+
 
 var app = builder.Build();
 
