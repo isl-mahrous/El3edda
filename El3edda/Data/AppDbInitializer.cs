@@ -69,6 +69,7 @@ namespace El3edda.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 //Manufacturers
@@ -102,7 +103,7 @@ namespace El3edda.Data
                             ReleaseDate = new DateTime(2020,1,1),
                             Price = 899.99,
                             Description = "The Samsung Galaxy S10 is a smartphone designed and marketed by Samsung Electronics, a division of Samsung Corporation. It was released on September 3, 2020, by Samsung Electronics in the United States and on March 31, 2020, in Europe. It was the tenth-generation of the Galaxy S series of smartphones, and the first smartphone to feature a notch.",
-                            WarrantyPeriod = new TimeSpan(0,0,12,0),
+                            WarrantyPeriod = 12,
                             UnitsInStock = 10,
                             MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/02/samsung-s10.jpg",
                             ManufacturerId = 1,
@@ -128,9 +129,9 @@ namespace El3edda.Data
                        {
                            Name = "iPhone 11",
                             ReleaseDate = new DateTime(2020,1,1),
-                            Price = 899.99,
+                            Price = 1200,
                             Description = "The iPhone 11 is a smartphone designed and marketed by Apple Inc. It was released on September 3, 2020, by Apple Inc. It was the tenth-generation of the iPhone series of smartphones, and the first smartphone to feature a notch.",
-                            WarrantyPeriod = new TimeSpan(0,0,12,0),
+                            WarrantyPeriod = 12*2,
                             UnitsInStock = 10,
                             MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/09/Apple-iPhone-11.jpg",
                             ManufacturerId = 2,
@@ -157,9 +158,9 @@ namespace El3edda.Data
                        {
                             Name = "Xiaomi Redmi Note 8 Pro",
                              ReleaseDate = new DateTime(2020,1,1),
-                             Price = 899.99,
+                             Price = 600,
                              Description = "The Xiaomi Redmi Note 8 Pro is a smartphone designed and marketed by Xiaomi Communications, a division of Xiaomi Group. It was released on September 3, 2020, by Xiaomi Communications in the United States and on March 31, 2020, in Europe.",
-                             WarrantyPeriod = new TimeSpan(0,0,12,0),
+                             WarrantyPeriod = 5,
                              UnitsInStock = 10,
                              MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/09/Xiaomi-Redmi-Note-8-Pro.jpg",
                              ManufacturerId = 3,
