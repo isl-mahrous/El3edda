@@ -18,7 +18,8 @@ namespace El3edda.Controllers
         {
             //var mobiles = Context.Mobiles.ToList();
             IPropSearch searchCriteria = new PropSearch();
-            searchCriteria = new StringSearch(searchCriteria, "a");
+            //searchCriteria = new StringSearch(searchCriteria, "samsung");
+            searchCriteria = new PriceLowerSearch(searchCriteria, 800);
             var data = Context.Mobiles.Where(searchCriteria.searchPredicate).ToList();
             return View(data);
         }

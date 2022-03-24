@@ -21,6 +21,14 @@ namespace El3edda.utills
         Expression<Func<Mobile, bool>>  IPropSearch.searchPredicate => _predicate;
 
         protected IPropSearch _propsearch;
+        public virtual void addStringSearch(Expression<Func<Mobile, bool>> new_predicate)
+        {
+            _predicate = PredicateBuilder.And(_predicate, new_predicate);
+        }
+        public virtual void addDoubleLowerFilter(Expression<Func<Mobile, bool>> new_predicate)
+        {
+            _predicate = PredicateBuilder.And(_predicate, new_predicate);
+        }
     }
 
     public class StringSearch : PropSearch
@@ -29,22 +37,19 @@ namespace El3edda.utills
         {
             addStringSearch(m => m.Name.ToLower().Contains(value.ToLower()));
         }
-
-        public virtual void addStringSearch(Expression<Func<Mobile, bool>> new_predicate)
-        {
-            _predicate = PredicateBuilder.And(_predicate, new_predicate);
-        }
     }
-    public class doubleLowerSearch : PropSearch
+    public class PriceLowerSearch : PropSearch
     {   
-        public doubleLowerSearch(IPropSearch propSearch, double target) : base(propSearch)
+        public PriceLowerSearch(IPropSearch propSearch, double target) : base(propSearch)
         {
             addDoubleLowerFilter(m => m.Price < target);
         }
-        public virtual void addDoubleLowerFilter(Expression<Func<Mobile, bool>> new_predicate)
+    }
+    public class PriceHiegherSearch : PropSearch
+    {
+        public PriceHiegherSearch(IPropSearch propSearch, double target) : base(propSearch)
         {
-            _predicate = PredicateBuilder.And(_predicate, new_predicate);
+            addDoubleLowerFilter(m => m.Price > target);
         }
-
     }
 }
