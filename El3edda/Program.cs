@@ -1,5 +1,6 @@
 using El3edda.Data;
 using El3edda.Data.Services;
+using El3edda.Data.Services.MobileService;
 using El3edda.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(
 
 //Add Controllers Services
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
+builder.Services.AddScoped<IMobileService, MobileService>();
 
 
 

@@ -110,7 +110,7 @@ namespace El3edda.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacturers");
+                    b.ToTable("Manufacturers", (string)null);
                 });
 
             modelBuilder.Entity("El3edda.Models.Media", b =>
@@ -135,7 +135,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("MobileId");
 
-                    b.ToTable("Media");
+                    b.ToTable("Media", (string)null);
                 });
 
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
@@ -182,7 +182,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("ManufacturerId");
 
-                    b.ToTable("Mobiles");
+                    b.ToTable("Mobiles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -337,7 +337,7 @@ namespace El3edda.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("El3edda.Models.Specs", "Specs", b1 =>
+                    b.OwnsOne("El3edda.Models.Mobile.Specs#El3edda.Models.Specs", "Specs", b1 =>
                         {
                             b1.Property<int>("MobileId")
                                 .HasColumnType("int");
@@ -375,7 +375,7 @@ namespace El3edda.Migrations
 
                             b1.HasKey("MobileId");
 
-                            b1.ToTable("Mobiles");
+                            b1.ToTable("Mobiles", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("MobileId");

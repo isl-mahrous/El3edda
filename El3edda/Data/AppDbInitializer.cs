@@ -1,4 +1,5 @@
-﻿using El3edda.Data.Static;
+﻿using El3edda.Data.Enums;
+using El3edda.Data.Static;
 using El3edda.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -90,31 +91,55 @@ namespace El3edda.Data
                 }
 
                 //Mobiles
-                //if (!context.Mobiles.Any())
-                //{
-                //    context.Mobiles.AddRange(new List<Mobile>() 
-                //    {
-                //        //Add Mobiles Data
-                //        new Mobile()
-                //        {
+                if (!context.Mobiles.Any())
+                {
+                   context.Mobiles.AddRange(new List<Mobile>() 
+                   {
+                       //Add Mobiles Data
+                       new Mobile()
+                       {
+                           Name = "Samsung Galaxy S10",
+                            ReleaseDate = new DateTime(2020,1,1),
+                            Price = 899.99,
+                            Description = "The Samsung Galaxy S10 is a smartphone designed and marketed by Samsung Electronics, a division of Samsung Corporation. It was released on September 3, 2020, by Samsung Electronics in the United States and on March 31, 2020, in Europe. It was the tenth-generation of the Galaxy S series of smartphones, and the first smartphone to feature a notch.",
+                            WarrantyPeriod = new TimeSpan(0,0,12,0),
+                            UnitsInStock = 10,
+                            MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/02/samsung-s10.jpg",
+                            ManufacturerId = 1,
+                            Media = new List<Media>(){
+                                new Media(){
+                                    URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 
+                                    Type = MediaType.Video}
+                            },
+                            Specs = new Specs(){
+                                CPU = "Snapdragon 855",
+                                Screen = ScreenEnum.AMOLED,
+                                Height = 6.5,
+                                Width = 6.5,
+                                Thickness = 0.3,
+                                CameraMegaPixels = 16,
+                                Color = Colors.Black,
+                                Weight = 150,
+                                OS = OSEnum.Android,
+                                BatteryCapacity = 4000
+                            }
+                       }
+                    //    new Mobile()
+                    //    {
 
-                //        },
-                //        new Mobile()
-                //        {
+                    //    },
+                    //    new Mobile()
+                    //    {
 
-                //        },
-                //        new Mobile()
-                //        {
+                    //    },
+                    //    new Mobile()
+                    //    {
 
-                //        },
-                //        new Mobile()
-                //        {
+                    //    }
 
-                //        }
-
-                //    });
-                //    context.SaveChanges();
-                //}
+                   });
+                   context.SaveChanges();
+                }
 
                 
 
