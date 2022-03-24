@@ -60,7 +60,6 @@ namespace El3edda.Models
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
-
         public ICollection<Media> Media { get; set; }
 
 
