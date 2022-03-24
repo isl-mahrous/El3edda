@@ -123,15 +123,66 @@ namespace El3edda.Data
                                 OS = OSEnum.Android,
                                 BatteryCapacity = 4000
                             }
-                       }
-                    //    new Mobile()
-                    //    {
+                       },
+                       new Mobile()
+                       {
+                           Name = "iPhone 11",
+                            ReleaseDate = new DateTime(2020,1,1),
+                            Price = 899.99,
+                            Description = "The iPhone 11 is a smartphone designed and marketed by Apple Inc. It was released on September 3, 2020, by Apple Inc. It was the tenth-generation of the iPhone series of smartphones, and the first smartphone to feature a notch.",
+                            WarrantyPeriod = new TimeSpan(0,0,12,0),
+                            UnitsInStock = 10,
+                            MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/09/Apple-iPhone-11.jpg",
+                            ManufacturerId = 2,
+                            Media = new List<Media>(){
+                                new Media(){
+                                    URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 
+                                    Type = MediaType.Video}
+                            },
+                            Specs = new Specs(){
+                                CPU = "Apple A13 Bionic",
+                                Screen = ScreenEnum.AMOLED,
+                                Height = 6.5,
+                                Width = 6.5,
+                                Thickness = 0.3,
+                                CameraMegaPixels = 16,
+                                Color = Colors.White,
+                                Weight = 150,
+                                OS = OSEnum.Android,
+                                BatteryCapacity = 4000
+                            }
 
-                    //    },
-                    //    new Mobile()
-                    //    {
+                       },
+                       new Mobile()
+                       {
+                            Name = "Xiaomi Redmi Note 8 Pro",
+                             ReleaseDate = new DateTime(2020,1,1),
+                             Price = 899.99,
+                             Description = "The Xiaomi Redmi Note 8 Pro is a smartphone designed and marketed by Xiaomi Communications, a division of Xiaomi Group. It was released on September 3, 2020, by Xiaomi Communications in the United States and on March 31, 2020, in Europe.",
+                             WarrantyPeriod = new TimeSpan(0,0,12,0),
+                             UnitsInStock = 10,
+                             MainPhotoURL = "https://mobizil.com/wp-content/uploads/2019/09/Xiaomi-Redmi-Note-8-Pro.jpg",
+                             ManufacturerId = 3,
+                             Media = new List<Media>(){
+                                  new Media(){
+                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 
+                                        Type = MediaType.Video}
+                             },
+                             Specs = new Specs(){
+                                  CPU = "Snapdragon 855",
+                                  Screen = ScreenEnum.IPS,
+                                  Height = 6.5,
+                                  Width = 6.5,
+                                  Thickness = 0.3,
+                                  CameraMegaPixels = 16,
+                                  Color = Colors.Black,
+                                  Weight = 150,
+                                  OS = OSEnum.Android,
+                                  BatteryCapacity = 4000
+                             }
+                          },
 
-                    //    },
+                       
                     //    new Mobile()
                     //    {
 
