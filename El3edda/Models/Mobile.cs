@@ -31,9 +31,8 @@ namespace El3edda.Models
         public string Description { get; set; }
 
 
-        [DataType(DataType.Duration)]
-        [Display(Name= "Warranty Period")]
-        public TimeSpan WarrantyPeriod { get; set; }
+        [Display(Name= "Warranty Period monthes")]
+        public int WarrantyPeriod { get; set; }
 
         [Required]
         [Display(Name="Units In Stock")] 
