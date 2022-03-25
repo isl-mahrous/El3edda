@@ -3,126 +3,42 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-secondary mt-3">Create New</a>
-</p>
+<link href="~/css/MobileIndex.css" rel="stylesheet" />
 
 
-<div class="d-flex flex-row justify-content-center flex-wrap mr-5">
 
-        @foreach(var mob in Model)
-        {
-            @*string imgsrcpath = "Images/" + mob.;*@
 
-          <div class="card" style="width: 18rem; margin: 1% 1%">
-            <img class="card-img-top" src=@mob.MainPhotoURL alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@mob.Name</h5>
-                <p class="card-text">$ @mob.Price</p>
-                <p class="card-text">Release Date @mob.ReleaseDate.ToString("dd-mm-yyyy")</p>
+<div class="row">
+
+    @foreach (var mobile in Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a asp-controller="Mobiles" asp-action="Details" asp-route-id="@mobile.Id" class="image">
+                        <img src="@mobile.MainPhotoURL">
+                    </a>
+                    <ul class="product-links">
+                        <li><a asp-action="Details" asp-route-id="@mobile.Id"><i class="fa fa-eye"></i></a></li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        {
+                            <li><a asp-action="Edit" asp-route-id="@mobile.Id"><i class="fa fa-edit"></i></a></li>
+                            <li><a asp-action="Delete" asp-route-id="@mobile.Id"><i class="fa fa-trash"></i></a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <span class="badge rounded-pill bg-dark">@mobile.Manufacturer.Name</span>
+                    <hr/>
+                    <h3 class="title">@mobile.Name</h3>
+                    <div class="price">@mobile.Price EGP</div>
+                    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mobile.Id" class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
+                </div>
             </div>
+        </div>
+    }
 
-              <ul class="list-group list-group-flush list-unstyled">
-                <a asp-action="Details" asp-route-id="@mob.Id" class="btn btn-primary mt-3">Specifications</a>
-                
-                <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mob.Id" class="btn btn-success text-white @((mob.UnitsInStock < 0) ? "disabled" : "")">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @mob.Price.ToString("c"))
-                                </a>
-              </ul>
 
-              <div class="card-body">
-                <a asp-action="Edit" asp-route-id="@mob.Id"  class="btn btn-dark mt-3">Edit</a>
-                <a asp-action="Delete" asp-route-id="@mob.Id" class="btn btn-danger mt-3">Delete</a>
-              </div>
-
-            </div>
-        }
 </div>
 
-
-
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Serial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WarrantyPeriod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitsInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitsSold)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer.Name)
-            </th>
-             <th>
-                @Html.DisplayNameFor(model => model.Manufacturer.Origin)
-            </th>
-             <th>
-                @Html.DisplayNameFor(model => model.Media)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Serial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WarrantyPeriod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitsInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitsSold)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer.Origin)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Media)
-            </td>
-            <td>
-                
-            </td>
-        </tr>
-}
-    </tbody>*@
-@*</table>*@
+@await Html.PartialAsync("_CreateButton", "Mobiles")

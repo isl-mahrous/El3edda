@@ -28,7 +28,7 @@ namespace El3edda.Controllers
         // GET: Mobiles
         public async Task<IActionResult> Index()
         {
-            return View(await _service.GetAllAsync());
+            return View(await _service.GetAllAsync(m=>m.Manufacturer));
         }
 
         // GET: Mobiles/Details/5
