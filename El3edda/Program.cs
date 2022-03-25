@@ -1,5 +1,6 @@
 using El3edda.Data;
 using El3edda.Data.Cart;
+using El3edda.Data.PaymentSettings;
 using El3edda.Data.Services;
 using El3edda.Data.Services.MediaService;
 using El3edda.Data.Services.MobileService;
@@ -29,16 +30,22 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(c => ShoppingCart.GetShoppingCart(c));
 
+//Payment Services
+//PayPal
+builder.Services.Configure<PayPalSettings>(builder.Configuration.GetSection("PayPal"));
 
 //Authentication & Authorization
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services
+    .AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-});
-
+builder.Services.AddAuthentication(
+    options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    }
+);
 
 var app = builder.Build();
 

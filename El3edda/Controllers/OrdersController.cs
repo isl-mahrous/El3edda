@@ -15,7 +15,11 @@ namespace El3edda.Controllers
         private readonly ShoppingCart _shoppingCart;
         private readonly IOrdersService _ordersService;
 
-        public OrdersController(IMobileService service, ShoppingCart shoppingCart, IOrdersService ordersService)
+        public OrdersController(
+            IMobileService service,
+            ShoppingCart shoppingCart,
+            IOrdersService ordersService
+        )
         {
             _mobileService = service;
             _shoppingCart = shoppingCart;
@@ -30,6 +34,7 @@ namespace El3edda.Controllers
             var result = await _ordersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
             return View(result);
         }
+
         public IActionResult ShoppingCart()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -43,6 +48,7 @@ namespace El3edda.Controllers
 
             return View(response);
         }
+
         public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var mobile = await _mobileService.GetByIdAsync(id);
@@ -52,6 +58,7 @@ namespace El3edda.Controllers
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
+
         public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
         {
             var mobile = await _mobileService.GetByIdAsync(id);

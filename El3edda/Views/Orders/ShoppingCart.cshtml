@@ -1,4 +1,6 @@
 ﻿@using El3edda.Data.ViewModels
+@using Microsoft.Extensions.Options
+@inject IOptions<El3edda.Data.PaymentSettings.PayPalSettings> PayPal
 @model ShoppingCartVM
 
 @{
@@ -50,6 +52,7 @@
         </table>
         <div class="text-center">
             <div class="btn-group">
+                <div id="paypal-button"></div>
                 <a class="btn btn-outline-primary" asp-controller="Orders" asp-action="CompleteOrder">
                     Complete order
                 </a>
@@ -60,3 +63,49 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+  paypal.Button.render({
+    // Configure environment
+    env: 'sandbox',
+    client: {
+      sandbox: '@PayPal.Value.ClientID',
+    },
+    // Customize button (optional)
+    locale: 'en_US',
+
+    style: {
+      size: 'small',
+      color: 'gold',
+      shape: 'pill',
+    },
+
+    // Enable Pay Now checkout flow (optional)
+    commit: true,
+
+    // Set up a payment
+    payment: function(data, actions) {
+      return actions.payment.create({
+        transactions: [{
+          amount: {
+            total: @Model.ShoppingCartTotal.ToString(),
+            currency: 'USD'
+          }
+        }]
+      });
+    },
+
+    // Execute the payment
+    onAuthorize: function(data, actions) {
+      return actions.payment.execute().then(function() {
+            var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+            window.location.href = url;
+      });
+    }
+  }, '#paypal-button');
+
+</script>
+
+
