@@ -115,7 +115,6 @@
         color: #3c97c3;
         font-size: 20px;
         font-weight: 700;
-        width: calc(100% - 43px);
         display: inline-block;
     }
 
@@ -127,7 +126,8 @@
         line-height: 40px;
         width: 40px;
         height: 40px;
-        border-radius: 12px 12px 12px 20px;
+        border-radius: 12px 12px 20px 12px;
+        float:right;
         display: inline-block;
 
         transition: all .3s ease-in-out;

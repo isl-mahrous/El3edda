@@ -41,6 +41,9 @@ namespace El3edda.Data.Services.OrderServices
                     Price = item.Mobile.Price
                 };
 
+                //Increment Units Sold
+                item.Mobile.UnitsSold += item.Amount;
+
                 //Decrement Units in stock 
                 item.Mobile.UnitsInStock -= item.Amount;
 

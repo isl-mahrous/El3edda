@@ -29,10 +29,17 @@
                 </div>
                 <div class="product-content">
                     <span class="badge rounded-pill bg-dark">@mobile.Manufacturer.Name</span>
-                    <hr/>
+                    <hr />
                     <h3 class="title">@mobile.Name</h3>
                     <div class="price">@mobile.Price EGP</div>
-                    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mobile.Id" class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
+                    @if (mobile.UnitsInStock>0)
+                    {
+                        <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mobile.Id" class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
+                    }
+                    else
+                    {
+                        <p style="display: inline-block; float:right;font-size: 18px; width:fit-content" class="text-danger">Out of stock</p>
+                    }
                 </div>
             </div>
         </div>
