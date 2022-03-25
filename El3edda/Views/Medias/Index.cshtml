@@ -1,0 +1,46 @@
+﻿@model IEnumerable<El3edda.Models.Media>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary mt-3">Create New</a>
+</p>
+
+
+<div class="d-flex flex-row justify-content-center flex-wrap mr-5">
+
+        @foreach(var med in Model)
+        {
+
+          <div class="card" style="width: 18rem; margin: 1% 1%">
+            
+            @if(med.URL.Contains("watch"))
+            {
+               <iframe width="300" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+               title="YouTube video player" frameborder="0" 
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+               allowfullscreen></iframe>
+            }
+            else
+            {
+                <img class="card-img-top" src=@med.URL alt="Card image cap">
+            }
+
+            <div class="card-body">
+                <h5 class="card-title">@med.Type</h5>
+                <h5 class="card-title">@med.MobileId</h5>
+            </div>
+
+            <div class="card-body">
+            <a asp-action="Edit" asp-route-id="@med.Id"  class="btn btn-dark mt-3">Edit</a>
+            <a asp-action="Delete" asp-route-id="@med.Id" class="btn btn-danger mt-3">Delete</a>
+            </div>
+
+           </div>
+        }
+</div>
+

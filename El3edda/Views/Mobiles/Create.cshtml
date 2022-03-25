@@ -52,11 +52,12 @@
                 <span asp-validation-for="UnitsSold" class="text-danger"></span>
             </div>
 
-            @* <div class="form-group">
-                <label asp-for="Img" class="control-label"></label>
-                <input asp-for="Img" class="form-control" />
-                <span asp-validation-for="Img" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="MainPhotoURL" class="control-label"></label>
+                <input asp-for="MainPhotoURL" class="form-control" />
+                <span asp-validation-for="MainPhotoURL" class="text-danger"></span>
+
+            </div>
 
              <div class="form-group">
                 <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
@@ -119,8 +120,7 @@
                 <span asp-validation-for="Specs.Weight" class="text-danger"></span>
             </div>
 
-            
-            <select class="form-select form-select-lg mb-3 mt-3" name="ManID" >
+            <select class="form-select form-select-lg mb-3 mt-3" name="ManufacturerId" >
 
                 @foreach(var man in manufactures)
                 {

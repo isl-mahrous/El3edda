@@ -70,7 +70,7 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Mobile mobile)
+        public async Task<IActionResult> Create([Bind(include: "Name,Price,Description,UnitsSold,UnitsInStock,ManufacturerId,ReleaseDate,WarrantyPeriod,MainPhotoURL,Specs")] Mobile mobile)
         {
             if (ModelState.IsValid)
             {
@@ -119,6 +119,7 @@ namespace El3edda.Controllers
             editedmobile.ManufacturerId = mobile.ManufacturerId;
             editedmobile.ReleaseDate = mobile.ReleaseDate;
             editedmobile.WarrantyPeriod = mobile.WarrantyPeriod;
+            editedmobile.MainPhotoURL = mobile.MainPhotoURL;
             editedmobile.Specs.CPU = mobile.Specs.CPU;
             editedmobile.Specs.OS = mobile.Specs.OS;
             editedmobile.Specs.Color = mobile.Specs.Color;
