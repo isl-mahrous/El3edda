@@ -8,15 +8,6 @@ namespace El3edda.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        //Many to Many --> OnModelCreating
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder
-        //        .Entity<Mobile>()
-        //        .OwnsMany(mob => mob.Media, media => media.WithOwner().HasForeignKey("MobileId"));
-        //    base.OnModelCreating(modelBuilder);
-        //}
-
         public virtual DbSet<Mobile> Mobiles { get; set; } 
         public virtual DbSet<Manufacturer> Manufacturers { get; set; } 
         public virtual DbSet<Media> Medias { get; set; }
