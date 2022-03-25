@@ -1,5 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 using El3edda.Data;
+using El3edda.Data.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace El3edda.Models
 {
@@ -8,20 +12,67 @@ namespace El3edda.Models
         /// <summary>
         /// search text from the bar 
         /// </summary>
-        string text_search { get; set; }
-        DateTime releasebefore { get; set; }
-        DateTime releaseafter { get; set; }
-        ICollection<Manufacturer> manufacturers { get; set; }
-        double priceHiegher { get; set; }
-        double priceLower { get; set; }
-        double warrentyPeriodHiger { get; set; }
-        double warrentyPeriodLower { get; set; }
-        bool isSold { get; set; }
+        public string text_search { get; set; }
+        public DateTime? releasebefore { get; set; }
+        public DateTime? releaseafter { get; set; }
+        public ICollection<Manufacturer>? manufacturers { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? priceHiegher { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? priceLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? warrentyPeriodHiger { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? warrentyPeriodLower { get; set; }
+        public bool? InStock { get; set; }
     }
 
-    public class specSearchParamter
+    
+    public class specSearchParamter : MainSearchParamter
     {
-        ICollection<string> CPU { get; set; }
-        
+        public int id { get; set; }
+        [NotMapped]
+        public ICollection<string> CPUs { get; set; }
+        [NotMapped]
+        public ICollection<ScreenEnum> Screens { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? HeightLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? HeightHiger { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? WidthLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? WidthHiger { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? ThicknessLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? ThicknessHiger { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? CameraMegaPixelsLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? CameraMegaPixelsHiger { get; set; }
+        [NotMapped]
+        public ICollection<Colors> Colors { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? WeightLower { get; set; }
+        [Range(0, double.MaxValue)]
+        public double? WeightHiger { get; set; }
+        [NotMapped]
+        public ICollection<OSEnum> OS { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? BatteryCapacityLower { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? BatteryCapacityHiger { get; set; }
+
+        [Range(0, int.MaxValue)]
+        public int? RAMLower { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? RAMHiger { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? ROMLower { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? ROMHiger { get; set; }
+
+
     }
 }

@@ -1,55 +1,243 @@
 ﻿using System.Linq.Expressions;
+using El3edda.Data.Enums;
 using El3edda.Models;
 
 namespace El3edda.utills
 {
-    public interface IPropSearch
-    {
-        Expression<Func<Mobile, bool>>  searchPredicate {get;}
-    }
-
-    public class PropSearch : IPropSearch
+    public class PropSearch
     {
         public PropSearch() { _predicate = PredicateBuilder.True<Mobile>(); }
-        public PropSearch(IPropSearch propsearch)
-        {
-            _propsearch = propsearch;
-            _predicate = _propsearch.searchPredicate;
-        }
+
         protected Expression<Func<Mobile, bool>> _predicate { get; set; }
 
-        Expression<Func<Mobile, bool>>  IPropSearch.searchPredicate => _predicate;
+        public Expression<Func<Mobile, bool>> searchPredicate => _predicate;
 
-        protected IPropSearch _propsearch;
-        public virtual void addStringSearch(Expression<Func<Mobile, bool>> new_predicate)
+        public virtual void andCondition(Expression<Func<Mobile, bool>> new_predicate)
         {
             _predicate = PredicateBuilder.And(_predicate, new_predicate);
         }
-        public virtual void addDoubleLowerFilter(Expression<Func<Mobile, bool>> new_predicate)
+
+        public PropSearch StringSearch(string value)
         {
-            _predicate = PredicateBuilder.And(_predicate, new_predicate);
+            andCondition(m => m.Name.ToLower().Contains(value.ToLower()));
+            //TODO check the desription and all other fields
+            return this;
+        }
+        public PropSearch PriceLowerSearch(double target)
+        {
+            andCondition(m => m.Price < target);
+            return this;
+        }
+        public PropSearch PriceHiegherSearch(double target)
+        {
+            andCondition(m => m.Price > target);
+            return this;
+        }
+        public PropSearch ReleaseBeforeSearch(DateTime target)
+        {
+            andCondition(m => m.ReleaseDate < target);
+            return this;
+        }
+        public PropSearch ReleaseAfterSearch(DateTime target)
+        {
+            andCondition(m => m.ReleaseDate > target);
+            return this;
+        }
+        public PropSearch ManufacturerSearch(ICollection<Manufacturer> target)
+        {
+            andCondition(m => target.Contains(m.Manufacturer));
+            return this;
+        }
+        public PropSearch InStockSearch(bool isInStock)
+        {
+            // isInStock              unitsinstock == 0
+            // true(instock)       true                  false
+            // true(instock)       false                 true
+            // false               true                  true
+            // false               false                 false
+            andCondition(m => isInStock ^ m.UnitsInStock > 0);
+            return this;
+        }
+        public PropSearch CPUSearch(ICollection<string> target)
+        {
+            andCondition(m => target.Contains(m.Specs.CPU));
+            return this;
+        }
+
+        public PropSearch ScreenSearch(ICollection<ScreenEnum> target)
+        {
+            andCondition(m => target.Contains(m.Specs.Screen));
+            return this;
+        }
+        public PropSearch HeightLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.Height < target);
+            return this;
+        }
+        public PropSearch HeightHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.Height > target);
+            return this;
+        }
+        public PropSearch WidthLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.Width < target);
+            return this;
+        }
+        public PropSearch WidthHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.Width > target);
+            return this;
+        }
+        public PropSearch ThicknessLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.Thickness < target);
+            return this;
+        }
+        public PropSearch ThicknessHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.Thickness > target);
+            return this;
+        }
+        public PropSearch CameraMegaPixelsLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.CameraMegaPixels < target);
+            return this;
+        }
+        public PropSearch CameraMegaPixelsHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.CameraMegaPixels > target);
+            return this;
+        }
+        public PropSearch ColorSearch(ICollection<Colors> target)
+        {
+            andCondition(m => target.Contains(m.Specs.Color));
+            return this;
+        }
+        public PropSearch WeightLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.Weight < target);
+            return this;
+        }
+        public PropSearch WeightHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.Weight > target);
+            return this;
+        }
+        public PropSearch OSSearch(ICollection<OSEnum> target)
+        {
+            andCondition(m => target.Contains(m.Specs.OS));
+            return this;
+        }
+        //TODO add ram and rom to specs
+        // public PropSearch RAMLowerSearch(double target)
+        // {
+        //     andCondition(m => m.Specs.RAM < target);
+        //     return this;
+        // }
+        // public PropSearch RAMHigerSearch(double target)
+        // {
+        //     andCondition(m => m.Specs.RAM > target);
+        //     return this;
+        // }
+        // public PropSearch StorageLowerSearch(double target)
+        // {
+        //     andCondition(m => m.Specs.ROM < target);
+        //     return this;
+        // }
+        // public PropSearch StorageHigerSearch(double target)
+        // {
+        //     andCondition(m => m.Specs.ROM > target);
+        //     return this;
+        // }
+        public PropSearch BatteryCapacityLowerSearch(double target)
+        {
+            andCondition(m => m.Specs.BatteryCapacity < target);
+            return this;
+        }
+        public PropSearch BatteryCapacityHigerSearch(double target)
+        {
+            andCondition(m => m.Specs.BatteryCapacity > target);
+            return this;
+        }
+        
+        bool validString(string s){
+            return s != null && s.Length > 0;
+        }
+        bool validDouble(double? d){
+            return d > 0 && d != null;
+        }
+        bool validInt(int? i){
+            return i > 0 && i != null;
+        }
+        bool validDate(DateTime? d){
+            return d!=null && d !=DateTime.MinValue;
+        }
+        bool validCollection<T>(ICollection<T> c){
+            return c != null && c.Count > 0;
+        }
+
+        public PropSearch(specSearchParamter searParamters)
+        {
+            _predicate = PredicateBuilder.True<Mobile>();
+            if (validString(searParamters.text_search))
+                this.StringSearch(searParamters.text_search);
+            if (validDouble(searParamters.priceLower))
+                this.PriceLowerSearch((double)searParamters.priceLower);
+            if (validDouble(searParamters.priceHiegher))
+                this.PriceHiegherSearch((double)searParamters.priceHiegher);
+            if (validDate(searParamters.releaseafter))
+                this.ReleaseAfterSearch((DateTime)searParamters.releaseafter);
+            if (validDate(searParamters.releasebefore))
+                this.ReleaseBeforeSearch((DateTime)searParamters.releasebefore);
+            if (validCollection(searParamters.manufacturers))
+                this.ManufacturerSearch(searParamters.manufacturers);
+            if (searParamters.InStock != null)
+                this.InStockSearch((bool)searParamters.InStock);
+            if (validCollection(searParamters.CPUs))
+                this.CPUSearch(searParamters.CPUs);
+            if (validCollection(searParamters.Screens))
+                this.ScreenSearch(searParamters.Screens);
+            if (validDouble(searParamters.HeightLower))
+                this.HeightLowerSearch((double)searParamters.HeightLower);
+            if (validDouble(searParamters.HeightHiger))
+                this.HeightHigerSearch((double)searParamters.HeightHiger);
+            if (validDouble(searParamters.WidthLower))
+                this.WidthLowerSearch((double)searParamters.WidthLower);
+            if (validDouble(searParamters.WidthHiger))
+                this.WidthHigerSearch((double)searParamters.WidthHiger);
+            if (validDouble(searParamters.ThicknessLower))
+                this.ThicknessLowerSearch((double)searParamters.ThicknessLower);
+            if (validDouble(searParamters.ThicknessHiger))
+                this.ThicknessHigerSearch((double)searParamters.ThicknessHiger);
+            if (validDouble(searParamters.CameraMegaPixelsLower))
+                this.CameraMegaPixelsLowerSearch((double)searParamters.CameraMegaPixelsLower);
+            if (validDouble(searParamters.CameraMegaPixelsHiger))
+                this.CameraMegaPixelsHigerSearch((double)searParamters.CameraMegaPixelsHiger);
+            if (validCollection(searParamters.Colors))
+                this.ColorSearch(searParamters.Colors);
+            if (validDouble(searParamters.WeightLower))
+                this.WeightLowerSearch((double)searParamters.WeightLower);
+            if (validDouble(searParamters.WeightHiger))
+                this.WeightHigerSearch((double)searParamters.WeightHiger);
+            if (validCollection(searParamters.OS))
+                this.OSSearch(searParamters.OS);
+            // if(validDouble(searParamters.RAMLower))
+            //     this.RAMLowerSearch(searParamters.RAMLower);
+            // if(validDouble(searParamters.RAMHiger))
+            //     this.RAMHigerSearch(searParamters.RAMHiger);
+            // if(validDouble(searParamters.StorageLower))
+            //     this.StorageLowerSearch(searParamters.StorageLower);
+            // if(validDouble(searParamters.StorageHiger))
+            //     this.StorageHigerSearch(searParamters.StorageHiger);
+            if (validDouble(searParamters.BatteryCapacityLower))
+                this.BatteryCapacityLowerSearch((double)searParamters.BatteryCapacityLower);
+            if (validDouble(searParamters.BatteryCapacityHiger))
+                this.BatteryCapacityHigerSearch((double)searParamters.BatteryCapacityHiger);
+
+
         }
     }
 
-    public class StringSearch : PropSearch
-    {
-        public StringSearch(IPropSearch propSearch, string value) : base(propSearch)
-        {
-            addStringSearch(m => m.Name.ToLower().Contains(value.ToLower()));
-        }
-    }
-    public class PriceLowerSearch : PropSearch
-    {   
-        public PriceLowerSearch(IPropSearch propSearch, double target) : base(propSearch)
-        {
-            addDoubleLowerFilter(m => m.Price < target);
-        }
-    }
-    public class PriceHiegherSearch : PropSearch
-    {
-        public PriceHiegherSearch(IPropSearch propSearch, double target) : base(propSearch)
-        {
-            addDoubleLowerFilter(m => m.Price > target);
-        }
-    }
+
 }

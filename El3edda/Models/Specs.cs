@@ -34,6 +34,8 @@ namespace El3edda.Models
 
         public OSEnum OS { get; set; }
         public int BatteryCapacity { get; set; }
+        // public int RAM { get; set; }
+        // public int ROM { get; set; }
 
     }
 }
