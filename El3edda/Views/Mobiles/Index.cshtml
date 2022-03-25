@@ -18,10 +18,9 @@
             @*string imgsrcpath = "Images/" + mob.;*@
 
           <div class="card" style="width: 18rem; margin: 1% 1%">
-            @*<img class="card-img-top" src=@imgsrcpath alt="Card image cap">*@
+            <img class="card-img-top" src=@mob.MainPhotoURL alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@mob.Name</h5>
-                <p class="card-text">@mob.Description</p>
                 <p class="card-text">$ @mob.Price</p>
                 <p class="card-text">Release Date @mob.ReleaseDate.ToString("dd-mm-yyyy")</p>
             </div>

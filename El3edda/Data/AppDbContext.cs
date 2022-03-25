@@ -18,7 +18,8 @@ namespace El3edda.Data
         //}
 
         public virtual DbSet<Mobile> Mobiles { get; set; } 
-        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; } 
+        public virtual DbSet<Media> Medias { get; set; }
 
 
         //////////// ORDERS //////////////

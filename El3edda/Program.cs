@@ -1,6 +1,7 @@
 using El3edda.Data;
 using El3edda.Data.Cart;
 using El3edda.Data.Services;
+using El3edda.Data.Services.MediaService;
 using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services.OrderServices;
 using El3edda.Models;
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(
 //Add Controllers Services
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
 builder.Services.AddScoped<IMobileService, MobileService>();
+builder.Services.AddScoped<IMediaService, MediaService>();
 
 //Shopping Cart Services
 builder.Services.AddScoped<IOrdersService, OrdersService>();

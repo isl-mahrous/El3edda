@@ -2,11 +2,12 @@
 using El3edda.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using El3edda.Data.Base;
 
 namespace El3edda.Models
 {  
 
-    public class Media
+    public class Media : IEntityBase
     {
         [Key]
         public int Id { get; set; }

@@ -52,14 +52,13 @@ namespace El3edda.Models
         public Specs Specs { get; set; }
 
 
-
         //Relatonships
         [Required]
         [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
-        public ICollection<Media> Media { get; set; }
+        public virtual ICollection<Media> Media { get; set; }
 
 
     }
