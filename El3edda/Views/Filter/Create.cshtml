@@ -1,0 +1,148 @@
+﻿@model El3edda.Models.specSearchParamter
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>specSearchParamter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="HeightLower" class="control-label"></label>
+                <input asp-for="HeightLower" class="form-control" />
+                <span asp-validation-for="HeightLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeightHiger" class="control-label"></label>
+                <input asp-for="HeightHiger" class="form-control" />
+                <span asp-validation-for="HeightHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WidthLower" class="control-label"></label>
+                <input asp-for="WidthLower" class="form-control" />
+                <span asp-validation-for="WidthLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WidthHiger" class="control-label"></label>
+                <input asp-for="WidthHiger" class="form-control" />
+                <span asp-validation-for="WidthHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThicknessLower" class="control-label"></label>
+                <input asp-for="ThicknessLower" class="form-control" />
+                <span asp-validation-for="ThicknessLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThicknessHiger" class="control-label"></label>
+                <input asp-for="ThicknessHiger" class="form-control" />
+                <span asp-validation-for="ThicknessHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraMegaPixelsLower" class="control-label"></label>
+                <input asp-for="CameraMegaPixelsLower" class="form-control" />
+                <span asp-validation-for="CameraMegaPixelsLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraMegaPixelsHiger" class="control-label"></label>
+                <input asp-for="CameraMegaPixelsHiger" class="form-control" />
+                <span asp-validation-for="CameraMegaPixelsHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightLower" class="control-label"></label>
+                <input asp-for="WeightLower" class="form-control" />
+                <span asp-validation-for="WeightLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightHiger" class="control-label"></label>
+                <input asp-for="WeightHiger" class="form-control" />
+                <span asp-validation-for="WeightHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatteryCapacityLower" class="control-label"></label>
+                <input asp-for="BatteryCapacityLower" class="form-control" />
+                <span asp-validation-for="BatteryCapacityLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatteryCapacityHiger" class="control-label"></label>
+                <input asp-for="BatteryCapacityHiger" class="form-control" />
+                <span asp-validation-for="BatteryCapacityHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RAMLower" class="control-label"></label>
+                <input asp-for="RAMLower" class="form-control" />
+                <span asp-validation-for="RAMLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RAMHiger" class="control-label"></label>
+                <input asp-for="RAMHiger" class="form-control" />
+                <span asp-validation-for="RAMHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ROMLower" class="control-label"></label>
+                <input asp-for="ROMLower" class="form-control" />
+                <span asp-validation-for="ROMLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ROMHiger" class="control-label"></label>
+                <input asp-for="ROMHiger" class="form-control" />
+                <span asp-validation-for="ROMHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="text_search" class="control-label"></label>
+                <input asp-for="text_search" class="form-control" />
+                <span asp-validation-for="text_search" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="releasebefore" class="control-label"></label>
+                <input asp-for="releasebefore" class="form-control" />
+                <span asp-validation-for="releasebefore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="releaseafter" class="control-label"></label>
+                <input asp-for="releaseafter" class="form-control" />
+                <span asp-validation-for="releaseafter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="priceHiegher" class="control-label"></label>
+                <input asp-for="priceHiegher" class="form-control" />
+                <span asp-validation-for="priceHiegher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="priceLower" class="control-label"></label>
+                <input asp-for="priceLower" class="form-control" />
+                <span asp-validation-for="priceLower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="warrentyPeriodHiger" class="control-label"></label>
+                <input asp-for="warrentyPeriodHiger" class="form-control" />
+                <span asp-validation-for="warrentyPeriodHiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="warrentyPeriodLower" class="control-label"></label>
+                <input asp-for="warrentyPeriodLower" class="form-control" />
+                <span asp-validation-for="warrentyPeriodLower" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="InStock" /> @Html.DisplayNameFor(model => model.InStock)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="filter" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
