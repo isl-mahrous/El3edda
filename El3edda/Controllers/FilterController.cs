@@ -17,11 +17,13 @@ namespace El3edda.Controllers
         public IActionResult Index(specSearchParamter searchParam)
         {
             
-            PropSearch searchCriteria = new PropSearch(searchParam);
-            //searchCriteria.StringSearch("samsung")
-            //              .PriceLowerSearch(1000);
-            var data = Context.Mobiles.Where(searchCriteria.searchPredicate).ToList();
-            return View(data);
+            //PropSearch searchCriteria = new PropSearch(searchParam);
+            ////searchCriteria.StringSearch("samsung")
+            ////              .PriceLowerSearch(1000);
+            //var data = Context.Mobiles.Where(searchCriteria.searchPredicate).ToList();
+            //return View();
+            return RedirectToAction("Filtered", "Mobiles", searchParam);
+            
         }
         
         // POST: Manufacturers/Create

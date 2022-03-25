@@ -10,6 +10,7 @@ using El3edda.Data;
 using El3edda.Models;
 using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services;
+using El3edda.utills;
 
 namespace El3edda.Controllers
 {
@@ -18,11 +19,13 @@ namespace El3edda.Controllers
 
         private readonly IMobileService _service;
         private readonly IManufacturerService _serviceMan;
+        private readonly AppDbContext _context;
 
-        public MobilesController(IMobileService service, IManufacturerService serviceMan)
+        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context)
         {
             _service = service;
             _serviceMan = serviceMan;
+            _context = context;
         }
 
         // GET: Mobiles
@@ -31,6 +34,13 @@ namespace El3edda.Controllers
             return View(await _service.GetAllAsync(m=>m.Manufacturer));
         }
 
+        public async Task<IActionResult> Filtered(specSearchParamter searchParam)
+        {
+            PropSearch searchCriteria = new PropSearch(searchParam);
+            
+            var data = _context.Mobiles.Include(m=>m.Manufacturer).Where(searchCriteria.searchPredicate).ToList();
+            return View("Index", data);
+        }
         // GET: Mobiles/Details/5
         public async Task<IActionResult> Details(int id)
         {
