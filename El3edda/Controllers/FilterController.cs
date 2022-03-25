@@ -14,14 +14,31 @@ namespace El3edda.Controllers
 
         public AppDbContext Context { get; }
 
-        public IActionResult Index()
+        public IActionResult Index(specSearchParamter searchParam)
         {
-            //var mobiles = Context.Mobiles.ToList();
-            IPropSearch searchCriteria = new PropSearch();
-            //searchCriteria = new StringSearch(searchCriteria, "samsung");
-            searchCriteria = new PriceLowerSearch(searchCriteria, 800);
+            
+            PropSearch searchCriteria = new PropSearch(searchParam);
+            //searchCriteria.StringSearch("samsung")
+            //              .PriceLowerSearch(1000);
             var data = Context.Mobiles.Where(searchCriteria.searchPredicate).ToList();
             return View(data);
+        }
+        
+        // POST: Manufacturers/Create
+        
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(specSearchParamter searchParam)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Index), searchParam);
+            }
+            return View(searchParam);
         }
     }
 }
