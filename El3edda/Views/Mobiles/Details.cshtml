@@ -67,7 +67,10 @@
 </div>
 <div>
     <a asp-action="ViewSpecs" class="btn btn-primary mt-3" asp-route-id="@Model?.Id">View Specs</a> |
-    <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a>
+    <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a> |
+    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="btn btn-success text-white @((Model.UnitsInStock < 0) ? "disabled" : "")">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                                </a>
 
  </div>
 

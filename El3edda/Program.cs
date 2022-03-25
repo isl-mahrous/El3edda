@@ -1,6 +1,8 @@
 using El3edda.Data;
+using El3edda.Data.Cart;
 using El3edda.Data.Services;
 using El3edda.Data.Services.MobileService;
+using El3edda.Data.Services.OrderServices;
 using El3edda.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +22,10 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
 builder.Services.AddScoped<IMobileService, MobileService>();
 
+//Shopping Cart Services
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(c => ShoppingCart.GetShoppingCart(c));
 
 
 //Authentication & Authorization
@@ -46,14 +52,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 //Authentication
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
-AppDbInitializer.SeedUsersAndRoles(app).Wait();
 AppDbInitializer.Seed(app);
+AppDbInitializer.SeedUsersAndRoles(app).Wait();
 
 app.Run();

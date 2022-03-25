@@ -69,7 +69,6 @@ namespace El3edda.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 //Manufacturers

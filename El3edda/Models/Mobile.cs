@@ -31,7 +31,7 @@ namespace El3edda.Models
         public string Description { get; set; }
 
 
-        [Display(Name= "Warranty Period monthes")]
+        [Display(Name= "Warranty Period (Months)")]
         public int WarrantyPeriod { get; set; }
 
         [Required]
