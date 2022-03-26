@@ -7,7 +7,7 @@ namespace El3edda.Models
     {
         //[Required]
         //[Key]
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(maximumLength: 50, ErrorMessage = "Phone name cannot be more than 50 characters.")]

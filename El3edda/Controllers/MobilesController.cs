@@ -186,14 +186,39 @@ namespace El3edda.Controllers
         {
 
             var mobile = await _service.GetByIdAsync(id);
+
             if (mobile == null)
             {
                 return NotFound();
             }
 
+            var MVM = new MobileViewModel();
+            MVM.Id = mobile.Id;
+            MVM.Name = mobile.Name;
+            MVM.Description = mobile.Description;
+            MVM.Price = mobile.Price;
+            MVM.WarrantyPeriod = mobile.WarrantyPeriod;
+            MVM.ManufacturerId = mobile.ManufacturerId;
+            MVM.UnitsSold = mobile.UnitsSold;
+            MVM.UnitsInStock = mobile.UnitsInStock;
+            MVM.ReleaseDate = mobile.ReleaseDate;
+
+            MVM.Specs = new Specs();
+            MVM.Specs.CameraMegaPixels = mobile.Specs.CameraMegaPixels;
+            MVM.Specs.BatteryCapacity = mobile.Specs.BatteryCapacity;
+            MVM.Specs.Color = mobile.Specs.Color;
+            MVM.Specs.OS = mobile.Specs.OS;
+            MVM.Specs.CPU = mobile.Specs.CPU;
+            MVM.Specs.Height = mobile.Specs.Height;
+            MVM.Specs.Weight = mobile.Specs.Weight;
+            MVM.Specs.Thickness = mobile.Specs.Thickness;
+            MVM.Specs.Width = mobile.Specs.Width;
+            MVM.Specs.Screen = mobile.Specs.Screen;
+            MVM.Media = new List<IFormFile>();
+
             ViewBag.Manufactures = await _serviceMan.GetAllAsync();
 
-            return View(mobile);
+            return View(MVM);
         }
 
         // POST: Mobiles/Edit/5
@@ -201,34 +226,93 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Mobile mobile)
+        public async Task<IActionResult> Edit(int id, MobileViewModel mobileVM)
         {
-            if (id != mobile.Id)
+            if (id != mobileVM.Id)
             {
                 return NotFound();
             }
 
+            string UniqueFileName = "";
+            string UniqueFileNameMed = "";
+            string FilePath = "";
+
+            if (mobileVM.MainPhotoURL != null)
+            {
+                string UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images");
+                UniqueFileName = Guid.NewGuid().ToString() + "_" + mobileVM.MainPhotoURL.FileName;
+                FilePath = Path.Combine(UploadsFolder, UniqueFileName);
+                mobileVM.MainPhotoURL.CopyTo(new FileStream(FilePath, FileMode.Create));
+            }
+
+
             var editedmobile = await _service.GetByIdAsync(id);
-            
-            editedmobile.Name = mobile.Name;
-            editedmobile.Price = mobile.Price;
-            editedmobile.Description = mobile.Description;
-            editedmobile.UnitsSold = mobile.UnitsSold;
-            editedmobile.UnitsInStock = mobile.UnitsInStock;
-            editedmobile.ManufacturerId = mobile.ManufacturerId;
-            editedmobile.ReleaseDate = mobile.ReleaseDate;
-            editedmobile.WarrantyPeriod = mobile.WarrantyPeriod;
-            editedmobile.MainPhotoURL = mobile.MainPhotoURL;
-            editedmobile.Specs.CPU = mobile.Specs.CPU;
-            editedmobile.Specs.OS = mobile.Specs.OS;
-            editedmobile.Specs.Color = mobile.Specs.Color;
-            editedmobile.Specs.BatteryCapacity = mobile.Specs.BatteryCapacity;
-            editedmobile.Specs.Height = mobile.Specs.Height;
-            editedmobile.Specs.Width = mobile.Specs.Width;
-            editedmobile.Specs.Thickness = mobile.Specs.Thickness;
-            editedmobile.Specs.CameraMegaPixels = mobile.Specs.CameraMegaPixels;
-            editedmobile.Specs.Screen = mobile.Specs.Screen;
-            editedmobile.Specs.Weight = mobile.Specs.Weight;
+
+            editedmobile.MainPhotoURL = $"/Images/{UniqueFileName}";
+
+            editedmobile.Name = mobileVM.Name;
+            editedmobile.Price = mobileVM.Price;
+            editedmobile.Description = mobileVM.Description;
+            editedmobile.UnitsSold = mobileVM.UnitsSold;
+            editedmobile.UnitsInStock = mobileVM.UnitsInStock;
+            editedmobile.ManufacturerId = mobileVM.ManufacturerId;
+            editedmobile.ReleaseDate = mobileVM.ReleaseDate;
+            editedmobile.WarrantyPeriod = mobileVM.WarrantyPeriod;
+
+            editedmobile.Specs = new Specs();
+            editedmobile.Specs.CPU = mobileVM.Specs.CPU;
+            editedmobile.Specs.OS = mobileVM.Specs.OS;
+            editedmobile.Specs.Color = mobileVM.Specs.Color;
+            editedmobile.Specs.BatteryCapacity = mobileVM.Specs.BatteryCapacity;
+            editedmobile.Specs.Height = mobileVM.Specs.Height;
+            editedmobile.Specs.Width = mobileVM.Specs.Width;
+            editedmobile.Specs.Thickness = mobileVM.Specs.Thickness;
+            editedmobile.Specs.CameraMegaPixels = mobileVM.Specs.CameraMegaPixels;
+            editedmobile.Specs.Screen = mobileVM.Specs.Screen;
+            editedmobile.Specs.Weight = mobileVM.Specs.Weight;
+
+            var NewMediaList = new List<Media>();
+
+            if (mobileVM.Media != null && mobileVM.Media.Count > 0)
+            {
+                foreach (var media in mobileVM.Media)
+                {
+                    string UploadsFolder;
+
+                    if (media.ContentType.ToLower().Contains("image"))
+                    {
+                        UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images");
+                    }
+                    else
+                    {
+                        UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Videos");
+                    }
+
+                    UniqueFileNameMed = Guid.NewGuid().ToString() + "_" + media.FileName;
+                    FilePath = Path.Combine(UploadsFolder, UniqueFileNameMed);
+                    media.CopyTo(new FileStream(FilePath, FileMode.Create));
+                    Media SingleMedia;
+
+                    var DeletedMediaList = _context.Media.Where(m => m.MobileId == id);
+                    foreach (var med in DeletedMediaList)
+                    {
+                        _context.Media.Remove(med);
+                    }
+
+                    if (media.ContentType.ToLower().Contains("image"))
+                    {
+                        SingleMedia = new Media() { Type = MediaType.Photo, URL = $"/Images/{UniqueFileNameMed}", MobileId = editedmobile.Id };
+                    }
+                    else
+                    {
+                        SingleMedia = new Media() { Type = MediaType.Video, URL = $"/Videos/{UniqueFileNameMed}", MobileId = editedmobile.Id };
+                    }
+                    await _serviceMed.AddAsync(SingleMedia);
+                    NewMediaList.Add(SingleMedia);
+                }
+            }
+
+            editedmobile.Media = NewMediaList;
 
             if (ModelState.IsValid)
             {
@@ -238,7 +322,7 @@ namespace El3edda.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MobileExists(mobile.Id))
+                    if (!MobileExists(editedmobile.Id))
                     {
                         return NotFound();
                     }
@@ -251,7 +335,7 @@ namespace El3edda.Controllers
             }
 
             ViewBag.Manufactures = await _serviceMan.GetAllAsync();
-            return View(mobile);
+            return View(mobileVM);
         }
 
         // GET: Mobiles/Delete/5
