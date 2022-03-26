@@ -34,7 +34,7 @@ namespace El3edda.Controllers
             return View(await _service.GetAllAsync(m=>m.Manufacturer));
         }
 
-        public async Task<IActionResult> Filtered(specSearchParamter searchParam)
+        public IActionResult Filtered(specSearchParamter searchParam)
         {
             PropSearch searchCriteria = new PropSearch(searchParam);
             
