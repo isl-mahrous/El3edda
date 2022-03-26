@@ -8,6 +8,7 @@
     ViewData["Title"] = "Shopping Cart Summary";
     var stripeTotalAmount = (@Model.ShoppingCartTotal * 100).ToString();
 }
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
 <link href="~/css/CartSummary.css" rel="stylesheet" />
@@ -47,14 +48,13 @@
                                                         <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Mobile.Id"><i class="bi bi-dash-square"></i></a>
                                                     </div>
                                                     <div class="col-md-4 price">
-                                                        <span>@item.Mobile.Price.ToString() EGP</span>
+                                                        <span>@(item.Mobile.Price*item.Amount) EGP</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             }
                         </div>
                     </div>
