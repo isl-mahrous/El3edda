@@ -9,66 +9,62 @@
 <div>
     <h4>Mobile</h4>
     <hr />
-    <dl class="row">
-@*      
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Serial)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Serial)
-        </dd>*@
+    <div class="row">
+        <div class="col-6">
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-12">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WarrantyPeriod)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WarrantyPeriod)
-        </dd>
+            </div>
+            <div class="col-6">
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.WarrantyPeriod)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.WarrantyPeriod)
+            </dd>
 
-       @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitsInStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitsInStock)
-        </dd>*@
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.UnitsInStock)
+            </dd>
 
-
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitsSold)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitsSold)
-        </dd>
-    </dl>
+            <dt class = "col-sm-5 mt-3">
+                @Html.DisplayNameFor(model => model.UnitsSold)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.UnitsSold)
+            </dd>
+            </div>
+    </div>
 </div>
 <div>
     <a asp-action="ViewSpecs" class="btn btn-primary mt-3" asp-route-id="@Model?.Id">View Specs</a> |
     <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a> |
-    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="btn btn-success text-white @((Model.UnitsInStock < 0) ? "disabled" : "")">
+    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white @((Model.UnitsInStock < 0) ? "disabled" : "")">
                                     <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
                                 </a>
 

@@ -11,21 +11,26 @@ using El3edda.Models;
 using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services;
 using El3edda.utills;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Hosting;
+using El3edda.Data.Enums;
 
 namespace El3edda.Controllers
 {
+
     public class MobilesController : Controller
     {
 
         private readonly IMobileService _service;
         private readonly IManufacturerService _serviceMan;
         private readonly AppDbContext _context;
-
-        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _service = service;
             _serviceMan = serviceMan;
             _context = context;
+            _hostEnvironment = hostingEnvironment;
         }
 
         // GET: Mobiles
@@ -72,7 +77,8 @@ namespace El3edda.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Manufactures = await _serviceMan.GetAllAsync();
-            return View();
+            
+            return View(new MobileViewModel());
         }
 
         // POST: Mobiles/Create
@@ -80,16 +86,93 @@ namespace El3edda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind(include: "Name,Price,Description,UnitsSold,UnitsInStock,ManufacturerId,ReleaseDate,WarrantyPeriod,MainPhotoURL,Specs")] Mobile mobile)
+        public async Task<IActionResult> Create(MobileViewModel mobileVM)
         {
             if (ModelState.IsValid)
             {
-                await _service.AddAsync(mobile);
+
+                string UniqueFileName = "";
+                string UniqueFileNameMed = "";
+                string FilePath = "";
+
+
+                if (mobileVM.MainPhotoURL != null)
+                {
+                    string UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images");
+                    UniqueFileName  = Guid.NewGuid().ToString() + "_" + mobileVM.MainPhotoURL.FileName;
+                    FilePath = Path.Combine(UploadsFolder, UniqueFileName);
+                    mobileVM.MainPhotoURL.CopyTo(new FileStream(FilePath, FileMode.Create));
+                }
+
+                Mobile CreatedMobile = new Mobile();
+
+
+
+                CreatedMobile.MainPhotoURL = $"wwwroot/Images/{UniqueFileName}";
+                CreatedMobile.Name = mobileVM.Name;
+                CreatedMobile.Price = mobileVM.Price;
+                CreatedMobile.WarrantyPeriod = mobileVM.WarrantyPeriod;
+                CreatedMobile.ManufacturerId = mobileVM.ManufacturerId;
+                CreatedMobile.ReleaseDate = mobileVM.ReleaseDate;
+                CreatedMobile.UnitsSold = 0;
+                CreatedMobile.UnitsInStock = mobileVM.UnitsInStock;
+                CreatedMobile.Description = mobileVM.Description;
+
+                CreatedMobile.Specs = new Specs();
+
+                CreatedMobile.Specs.BatteryCapacity = mobileVM.Specs.BatteryCapacity;
+                CreatedMobile.Specs.Color = mobileVM.Specs.Color;
+                CreatedMobile.Specs.CameraMegaPixels = mobileVM.Specs.CameraMegaPixels;
+                CreatedMobile.Specs.CPU = mobileVM.Specs.CPU;
+                CreatedMobile.Specs.OS = mobileVM.Specs.OS;
+                CreatedMobile.Specs.Screen = mobileVM.Specs.Screen;
+                CreatedMobile.Specs.Height = mobileVM.Specs.Height;
+                CreatedMobile.Specs.Width = mobileVM.Specs.Width;
+                CreatedMobile.Specs.Thickness = mobileVM.Specs.Thickness;
+                CreatedMobile.Specs.Weight = mobileVM.Specs.Weight;
+
+                await _service.AddAsync(CreatedMobile);                
+
+                CreatedMobile.Media = new List<Media>();
+
+                if (mobileVM.Media != null && mobileVM.Media.Count > 0)
+                {
+                    foreach(var media in mobileVM.Media)
+                    {
+                        string UploadsFolder;
+
+                        if (media.ContentType.ToLower().Contains("image"))
+                        {
+                            UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images");
+                        }
+                        else
+                        {
+                            UploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Videos");
+                        }
+
+                        UniqueFileNameMed = Guid.NewGuid().ToString() + "_" + media.FileName;
+                        FilePath = Path.Combine(UploadsFolder, UniqueFileNameMed);
+                        media.CopyTo(new FileStream(FilePath, FileMode.Create));
+
+                        if (media.ContentType.ToLower().Contains("image"))
+                        {
+                            CreatedMobile.Media.Add(new Media() { Type = MediaType.Photo, URL = $"~/Images/{UniqueFileNameMed}", MobileId = CreatedMobile.Id });
+                        }
+                        else
+                        {
+                            CreatedMobile.Media.Add(new Media() { Type = MediaType.Video, URL = $"~/Videos/{UniqueFileNameMed}", MobileId = CreatedMobile.Id });
+                        }
+                    }
+                }
+
+                await _service.UpdateAsync(CreatedMobile.Id, CreatedMobile);
+
+
                 return RedirectToAction(nameof(Index));
             }
 
             ViewBag.Manufactures = await _serviceMan.GetAllAsync();
-            return View(mobile);
+            return View(mobileVM);
         }
 
         // GET: Mobiles/Edit/5

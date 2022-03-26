@@ -1,45 +1,42 @@
-﻿using El3edda.Data.Base;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace El3edda.Models
 {
-
-    public class Mobile : IEntityBase
+    public class MobileViewModel
     {
-        [Key]
-        public int Id { get; set; }
+        //[Required]
+        //[Key]
+        //public int Id { get; set; }
 
         [Required]
-        [StringLength(maximumLength:50, ErrorMessage = "Phone name cannot be more than 50 characters.")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Phone name cannot be more than 50 characters.")]
         public string Name { get; set; }
-        
-        
-        [Display(Name ="Release Date")]
+
+
+        [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
-        
-        
+
+
         [Required]
         [DataType(DataType.Currency)]
         public double Price { get; set; }
-        
+
         [Required]
         [StringLength(maximumLength: 500, ErrorMessage = "Description is too long.")]
         public string Description { get; set; }
 
 
-        [Display(Name= "Warranty Period (Months)")]
+        [Display(Name = "Warranty Period monthes")]
         public int WarrantyPeriod { get; set; }
 
         [Required]
-        [Display(Name="Units In Stock")] 
+        [Display(Name = "Units In Stock")]
         public int UnitsInStock { get; set; }
-        
-        [Required]
+
         [Display(Name = "Main Photo")]
-        public string MainPhotoURL { get; set; }
+        public IFormFile MainPhotoURL { get; set; }
 
         [Required]
         [Display(Name = "Units Sold")]
@@ -47,17 +44,16 @@ namespace El3edda.Models
 
         [Required]
         [Display(Name = "Specifications")]
-        public Specs Specs { get; set; }
 
+        public Specs Specs { get; set; }
 
         //Relatonships
         [Required]
         [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
-        public virtual Manufacturer Manufacturer { get; set; }
 
-        public virtual ICollection<Media> Media { get; set; }
-
+        public Manufacturer Manufacturer { get; set; }
+        public List<IFormFile> Media { get; set; }
 
     }
 }

@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
@@ -21,7 +20,7 @@
                 <div class="product-grid">
                     <div class="product-image">
                         <a asp-controller="Mobiles" asp-action="Details" asp-route-id="@mobile.Id" class="image">
-                            <img src="@mobile.MainPhotoURL">
+                            <img src=@mobile.MainPhotoURL>
                         </a>
                         <ul class="product-links">
                             <li><a asp-action="Details" asp-route-id="@mobile.Id"><i class="fa fa-eye"></i></a></li>
