@@ -1,14 +1,18 @@
 ﻿@using El3edda.Data.ViewModels
 @using Microsoft.Extensions.Options
 @inject IOptions<El3edda.Data.PaymentSettings.PayPalSettings> PayPal
+@inject IOptions<El3edda.Data.PaymentSettings.StripeSettings> Stripe
 @model ShoppingCartVM
 
 @{
     ViewData["Title"] = "Shopping Cart Summary";
+    var stripeTotalAmount = (@Model.ShoppingCartTotal * 100).ToString();
 }
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
 <link href="~/css/CartSummary.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
 
 @*<div class="row">
     <div class="col-md-8 offset-2">
@@ -126,6 +130,18 @@
                                 <a class="btn btn-success btn-lg btn-block my-2" asp-controller="Mobiles" asp-action="Index">
                                     Add more items
                                 </a>
+								<form asp-action="Charge" method="POST">
+                                      <script
+                                        src="https://checkout.stripe.com/checkout.js"
+                                        class="stripe-button"
+                                        data-key="@Stripe.Value.PublishableKey"
+                                        data-name=""
+                                        data-description=""
+                                        data-amount="@stripeTotalAmount"
+                                        data-currency="usd">
+                                      </script>
+                                      <input type="text" value = "@stripeTotalAmount" name="total" hidden/>
+								</form>
                                 <div id="paypal-button" class="my-2"></div>
                             </div>
                         </div>
@@ -178,8 +194,14 @@
         });
       }
     }, '#paypal-button');
-
 </script>
+
+<script>
+$(".stripe-button-el").find("span").remove();
+$(document).find("button.stripe-button-el").removeAttr("style").addClass("btn btn-success btn-lg btn-block my-2");
+$(".stripe-button-el").html("Pay With Card");
+</script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 

@@ -9,6 +9,7 @@ using El3edda.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,9 @@ builder.Services.AddScoped(c => ShoppingCart.GetShoppingCart(c));
 //PayPal
 builder.Services.Configure<PayPalSettings>(builder.Configuration.GetSection("PayPal"));
 
+//Stripe
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
 //Authentication & Authorization
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>()
@@ -48,6 +52,9 @@ builder.Services.AddAuthentication(
 );
 
 var app = builder.Build();
+
+//Configure Stripe API
+StripeConfiguration.ApiKey = (builder.Configuration.GetSection("Stripe")["SecretKey"]);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

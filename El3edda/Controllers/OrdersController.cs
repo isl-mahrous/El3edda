@@ -4,6 +4,7 @@ using El3edda.Data.Services.OrderServices;
 using El3edda.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 using System.Security.Claims;
 
 namespace El3edda.Controllers
@@ -78,6 +79,35 @@ namespace El3edda.Controllers
             await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();
             return View("CompleteOrder");
+        }
+
+        public IActionResult Charge(string stripeEmail, string stripeToken, int total)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(
+                new CustomerCreateOptions { Email = stripeEmail, Source = stripeToken }
+            );
+
+            var charge = charges.Create(
+                new ChargeCreateOptions
+                {
+                    Amount = total,
+                    Description = "Order Payment",
+                    Currency = "USD",
+                    Customer = customer.Id
+                }
+            );
+
+            if (charge.Status == "succeeded")
+            {
+                return RedirectToAction("CompleteOrder");
+            }
+            else
+            {
+                return RedirectToAction("ShoppingCart");
+            }
         }
     }
 }
