@@ -34,19 +34,14 @@ namespace El3edda.Controllers
         }
 
         // GET: Mobiles
-        public async Task<IActionResult> Index()
-        {
-            return View(await _service.GetAllAsync(m=>m.Manufacturer));
-        }
-
-        public IActionResult Filtered(specSearchParamter searchParam)
+        public async Task<IActionResult> Index(specSearchParamter searchParam)
         {
             PropSearch searchCriteria = new PropSearch(searchParam);
-            
-            var data = _context.Mobiles.Include(m=>m.Manufacturer).Where(searchCriteria.searchPredicate).ToList();
-            return View("Index", data);
+            var data = _context.Mobiles.Include(m => m.Manufacturer).Where(searchCriteria.searchPredicate).ToList();
+            return View(data);
         }
-        // GET: Mobiles/Details/5
+
+        
         public async Task<IActionResult> Details(int id)
         {
 

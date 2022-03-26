@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<El3edda.Models.Mobile>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
+	specSearchParamter searchparam = ViewBag.search;
+
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
@@ -9,10 +11,10 @@
     <div class="col-md-12 bg-dark text-white my-5" style="height:300px">
         Top Selling
     </div>
-    <div class="col-md-3 bg-dark text-white m-2">
-        <h3>Filters</h3>
+    <div class="col-md-3 bg-white text-white m-3">
+        <partial name="RenderFilter" model=searchparam />
     </div>
-    <div class="row col-md-9">
+    <div class="row col-md-8">
 
         @foreach (var mobile in Model)
         {
