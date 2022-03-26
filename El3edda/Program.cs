@@ -13,8 +13,7 @@ using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+
 
 //Add Db
 builder.Services.AddDbContext<AppDbContext>(
@@ -50,6 +49,9 @@ builder.Services.AddAuthentication(
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     }
 );
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

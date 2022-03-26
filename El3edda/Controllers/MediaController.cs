@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace El3edda.Controllers
 {
-    public class MediasController : Controller
+    public class MediaController : Controller
     {
 
         private readonly IMediaService _service;
         private readonly IMobileService _serviceMan;
 
-        public MediasController(IMediaService service, IMobileService serviceMan)
+        public MediaController(IMediaService service, IMobileService serviceMan)
         {
             _service = service;
             _serviceMan = serviceMan;

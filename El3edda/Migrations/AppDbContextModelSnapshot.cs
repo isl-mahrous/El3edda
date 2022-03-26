@@ -110,7 +110,7 @@ namespace El3edda.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacturers", (string)null);
+                    b.ToTable("Manufacturers");
                 });
 
             modelBuilder.Entity("El3edda.Models.Media", b =>
@@ -135,7 +135,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("MobileId");
 
-                    b.ToTable("Medias", (string)null);
+                    b.ToTable("Media");
                 });
 
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
@@ -182,7 +182,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("ManufacturerId");
 
-                    b.ToTable("Mobiles", (string)null);
+                    b.ToTable("Mobiles");
                 });
 
             modelBuilder.Entity("El3edda.Models.Order", b =>
@@ -205,7 +205,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("El3edda.Models.OrderItem", b =>
@@ -234,7 +234,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("El3edda.Models.ShoppingCartItem", b =>
@@ -258,7 +258,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("MobileId");
 
-                    b.ToTable("ShoppingCartItems", (string)null);
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -413,7 +413,7 @@ namespace El3edda.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("El3edda.Models.Mobile.Specs#El3edda.Models.Specs", "Specs", b1 =>
+                    b.OwnsOne("El3edda.Models.Specs", "Specs", b1 =>
                         {
                             b1.Property<int>("MobileId")
                                 .HasColumnType("int");
@@ -451,7 +451,7 @@ namespace El3edda.Migrations
 
                             b1.HasKey("MobileId");
 
-                            b1.ToTable("Mobiles", (string)null);
+                            b1.ToTable("Mobiles");
 
                             b1.WithOwner()
                                 .HasForeignKey("MobileId");

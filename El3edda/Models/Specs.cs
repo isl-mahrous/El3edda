@@ -10,10 +10,10 @@ namespace El3edda.Models
     {
         [Required]
         public string CPU { get; set; }
-
         
         [Required]
         [EnumDataType(typeof(ScreenEnum))]
+        [Display(Name ="Screen Type")]
         public ScreenEnum Screen { get; set; }
         
         
@@ -21,7 +21,7 @@ namespace El3edda.Models
         public double Width { get; set; }
         public double Thickness { get; set; }
         
-        
+        [Display(Name ="Camera Megapixels")]
         public double CameraMegaPixels { get; set; }
 
         [Required]
@@ -31,8 +31,9 @@ namespace El3edda.Models
 
 
         [EnumDataType(typeof(OSEnum))]
-
+        [Display(Name ="Operating System")]
         public OSEnum OS { get; set; }
+        [Display(Name = "Battery Capacity")]
         public int BatteryCapacity { get; set; }
         // public int RAM { get; set; }
         // public int ROM { get; set; }

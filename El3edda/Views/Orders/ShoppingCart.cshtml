@@ -13,64 +13,6 @@
 <link href="~/css/CartSummary.css" rel="stylesheet" />
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
-
-@*<div class="row">
-    <div class="col-md-8 offset-2">
-    <div class="text-center">
-    <h2>
-    Your shopping cart summary
-    </h2>
-    </div>
-    <table class="table">
-    <thead>
-    <tr>
-    <th>Amount</th>
-    <th>Mobile</th>
-    <th>Price</th>
-    <th>Subtotal</th>
-    <th></th>
-    <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-    {
-    <tr>
-    <td class="align-middle">@item.Amount</td>
-    <td class="align-middle">@item.Mobile.Name</td>
-    <td class="align-middle">@item.Mobile.Price.ToString("c")</td>
-    <td class="align-middle">@((item.Amount*item.Mobile.Price).ToString("c"))</td>
-    <td class="align-middle"><a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Mobile.Id"><i class="bi bi-plus-square"></i></a></td>
-    <td class="align-middle"><a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Mobile.Id"><i class="bi bi-dash-square"></i></a></td>
-    </tr>
-    }
-    </tbody>
-    <tfoot>
-    <tr>
-    <td colspan="2"></td>
-    <td><b>Total</b></td>
-    <td>
-    @Model.ShoppingCartTotal.ToString("c")
-    </td>
-    <td></td>
-    <td></td>
-    </tr>
-    </tfoot>
-    </table>
-    <div class="text-center">
-    <div class="btn-group">
-    <div id="paypal-button"></div>
-    <a class="btn btn-outline-primary" asp-controller="Orders" asp-action="CompleteOrder">
-    Complete order
-    </a>
-    <a class="btn btn-outline-success" asp-controller="Mobiles" asp-action="Index">
-    Add more items
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-*@
 <main class="page">
     <section class="shopping-cart dark">
         <div class="container">

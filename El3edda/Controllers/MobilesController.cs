@@ -14,6 +14,7 @@ using El3edda.utills;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Hosting;
 using El3edda.Data.Enums;
+using El3edda.Data.Services.MediaService;
 
 namespace El3edda.Controllers
 {
@@ -25,19 +26,21 @@ namespace El3edda.Controllers
         private readonly IManufacturerService _serviceMan;
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context, IWebHostEnvironment hostingEnvironment)
+        private readonly IMediaService _mediaService;
+        public MobilesController(IMediaService mediaService, IMobileService service, IManufacturerService serviceMan,AppDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _service = service;
             _serviceMan = serviceMan;
             _context = context;
             _hostEnvironment = hostingEnvironment;
+            _mediaService = mediaService;
         }
 
         // GET: Mobiles
         public async Task<IActionResult> Index(specSearchParamter searchParam)
         {
             PropSearch searchCriteria = new PropSearch(searchParam);
-            var data = _context.Mobiles.Include(m => m.Manufacturer).Where(searchCriteria.searchPredicate).ToList();
+            var data = await _context.Mobiles.Include(m => m.Manufacturer).Where(searchCriteria.searchPredicate).ToListAsync();
             return View(data);
         }
 
@@ -102,8 +105,7 @@ namespace El3edda.Controllers
                 Mobile CreatedMobile = new Mobile();
 
 
-
-                CreatedMobile.MainPhotoURL = $"wwwroot/Images/{UniqueFileName}";
+                CreatedMobile.MainPhotoURL = $"/Images/{UniqueFileName}";
                 CreatedMobile.Name = mobileVM.Name;
                 CreatedMobile.Price = mobileVM.Price;
                 CreatedMobile.WarrantyPeriod = mobileVM.WarrantyPeriod;
@@ -128,7 +130,8 @@ namespace El3edda.Controllers
 
                 await _service.AddAsync(CreatedMobile);                
 
-                CreatedMobile.Media = new List<Media>();
+                
+                var NewMediaList = new List<Media>();
 
                 if (mobileVM.Media != null && mobileVM.Media.Count > 0)
                 {
@@ -148,18 +151,22 @@ namespace El3edda.Controllers
                         UniqueFileNameMed = Guid.NewGuid().ToString() + "_" + media.FileName;
                         FilePath = Path.Combine(UploadsFolder, UniqueFileNameMed);
                         media.CopyTo(new FileStream(FilePath, FileMode.Create));
+                        Media SingleMedia;
 
                         if (media.ContentType.ToLower().Contains("image"))
                         {
-                            CreatedMobile.Media.Add(new Media() { Type = MediaType.Photo, URL = $"~/Images/{UniqueFileNameMed}", MobileId = CreatedMobile.Id });
+                            SingleMedia = new Media() { Type = MediaType.Photo, URL = $"/Images/{UniqueFileNameMed}", MobileId = CreatedMobile.Id };
                         }
                         else
                         {
-                            CreatedMobile.Media.Add(new Media() { Type = MediaType.Video, URL = $"~/Videos/{UniqueFileNameMed}", MobileId = CreatedMobile.Id });
+                            SingleMedia = new Media() { Type = MediaType.Video, URL = $"/Videos/{UniqueFileNameMed}", MobileId = CreatedMobile.Id };
                         }
+                        await _mediaService.AddAsync(SingleMedia);
+                        NewMediaList.Add(SingleMedia);
                     }
                 }
 
+                CreatedMobile.Media = NewMediaList;
                 await _service.UpdateAsync(CreatedMobile.Id, CreatedMobile);
 
 

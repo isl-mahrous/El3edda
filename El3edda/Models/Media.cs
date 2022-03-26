@@ -17,7 +17,6 @@ namespace El3edda.Models
         public MediaType Type { get; set; }
         
         [Required]
-        [DataType(DataType.Url)]
         public string URL { get; set; }
 
         [Required]
