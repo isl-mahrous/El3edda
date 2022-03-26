@@ -26,14 +26,15 @@ namespace El3edda.Controllers
         private readonly IManufacturerService _serviceMan;
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
-        private readonly IMediaService _mediaService;
-        public MobilesController(IMediaService mediaService, IMobileService service, IManufacturerService serviceMan,AppDbContext context, IWebHostEnvironment hostingEnvironment)
+        private readonly IMediaService _serviceMed;
+        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context
+                                    , IWebHostEnvironment hostingEnvironment, IMediaService serviceMed)
         {
             _service = service;
             _serviceMan = serviceMan;
             _context = context;
             _hostEnvironment = hostingEnvironment;
-            _mediaService = mediaService;
+            _serviceMed = serviceMed;
         }
 
         // GET: Mobiles
@@ -48,12 +49,14 @@ namespace El3edda.Controllers
         public async Task<IActionResult> Details(int id)
         {
 
-            var mobile = await _service.GetByIdAsync(id);
+            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {
                 return NotFound();
             }
+
+            ViewBag.Media = _context.Media.Where(m => m.MobileId == id).ToList();
 
             return View(mobile);
         }
@@ -128,6 +131,7 @@ namespace El3edda.Controllers
                 CreatedMobile.Specs.Thickness = mobileVM.Specs.Thickness;
                 CreatedMobile.Specs.Weight = mobileVM.Specs.Weight;
 
+
                 await _service.AddAsync(CreatedMobile);                
 
                 
@@ -161,7 +165,7 @@ namespace El3edda.Controllers
                         {
                             SingleMedia = new Media() { Type = MediaType.Video, URL = $"/Videos/{UniqueFileNameMed}", MobileId = CreatedMobile.Id };
                         }
-                        await _mediaService.AddAsync(SingleMedia);
+                        await _serviceMed.AddAsync(SingleMedia);
                         NewMediaList.Add(SingleMedia);
                     }
                 }
