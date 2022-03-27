@@ -12,7 +12,8 @@
 		Top Selling
 	</div>
 	<div class="col-md-3 bg-white text-white m-3">
-		<partial name="RenderFilter" model=searchparam />
+		@* <partial name="RenderFilter" model=searchparam /> *@
+		@await Component.InvokeAsync("FilterMobile",searchparam)
 	</div>
 	<div class="row col-md-8">
 
