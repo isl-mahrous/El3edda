@@ -15,7 +15,7 @@ namespace El3edda.Models
         public string text_search { get; set; }
         public DateTime? releasebefore { get; set; }
         public DateTime? releaseafter { get; set; }
-        public ICollection<Manufacturer>? manufacturers { get; set; }
+        public ICollection<int>? manufacturerids { get; set; }
         [Range(0, double.MaxValue)]
         public double? priceHiegher { get; set; }
         [Range(0, double.MaxValue)]

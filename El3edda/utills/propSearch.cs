@@ -43,9 +43,9 @@ namespace El3edda.utills
             andCondition(m => m.ReleaseDate > target);
             return this;
         }
-        public PropSearch ManufacturerSearch(ICollection<Manufacturer> target)
+        public PropSearch ManufacturerSearch(ICollection<int> target)
         {
-            andCondition(m => target.Contains(m.Manufacturer));
+            andCondition(m => target.Contains(m.Manufacturer.Id));
             return this;
         }
         public PropSearch InStockSearch(bool isInStock)
@@ -161,66 +161,66 @@ namespace El3edda.utills
             return this;
         }
         
-        bool validString(string s){
+        bool valid(string s){
             return s != null && s.Length > 0;
         }
-        bool validDouble(double? d){
+        bool valid(double? d){
             return d > 0 && d != null;
         }
-        bool validInt(int? i){
+        bool valid(int? i){
             return i > 0 && i != null;
         }
-        bool validDate(DateTime? d){
+        bool valid(DateTime? d){
             return d!=null && d !=DateTime.MinValue;
         }
-        bool validCollection<T>(ICollection<T> c){
+        bool valid<T>(ICollection<T> c){
             return c != null && c.Count > 0;
         }
 
         public PropSearch(specSearchParamter searParamters)
         {
             _predicate = PredicateBuilder.True<Mobile>();
-            if (validString(searParamters.text_search))
+            if (valid(searParamters.text_search))
                 this.StringSearch(searParamters.text_search);
-            if (validDouble(searParamters.priceLower))
+            if (valid(searParamters.priceLower))
                 this.PriceLowerSearch((double)searParamters.priceLower);
-            if (validDouble(searParamters.priceHiegher))
+            if (valid(searParamters.priceHiegher))
                 this.PriceHiegherSearch((double)searParamters.priceHiegher);
-            if (validDate(searParamters.releaseafter))
+            if (valid(searParamters.releaseafter))
                 this.ReleaseAfterSearch((DateTime)searParamters.releaseafter);
-            if (validDate(searParamters.releasebefore))
+            if (valid(searParamters.releasebefore))
                 this.ReleaseBeforeSearch((DateTime)searParamters.releasebefore);
-            if (validCollection(searParamters.manufacturers))
-                this.ManufacturerSearch(searParamters.manufacturers);
+            if (valid(searParamters.manufacturerids))
+                this.ManufacturerSearch(searParamters.manufacturerids);
             if (searParamters.InStock != null)
                 this.InStockSearch((bool)searParamters.InStock);
-            if (validCollection(searParamters.CPUs))
+            if (valid(searParamters.CPUs))
                 this.CPUSearch(searParamters.CPUs);
-            if (validCollection(searParamters.Screens))
+            if (valid(searParamters.Screens))
                 this.ScreenSearch(searParamters.Screens);
-            if (validDouble(searParamters.HeightLower))
+            if (valid(searParamters.HeightLower))
                 this.HeightLowerSearch((double)searParamters.HeightLower);
-            if (validDouble(searParamters.HeightHiger))
+            if (valid(searParamters.HeightHiger))
                 this.HeightHigerSearch((double)searParamters.HeightHiger);
-            if (validDouble(searParamters.WidthLower))
+            if (valid(searParamters.WidthLower))
                 this.WidthLowerSearch((double)searParamters.WidthLower);
-            if (validDouble(searParamters.WidthHiger))
+            if (valid(searParamters.WidthHiger))
                 this.WidthHigerSearch((double)searParamters.WidthHiger);
-            if (validDouble(searParamters.ThicknessLower))
+            if (valid(searParamters.ThicknessLower))
                 this.ThicknessLowerSearch((double)searParamters.ThicknessLower);
-            if (validDouble(searParamters.ThicknessHiger))
+            if (valid(searParamters.ThicknessHiger))
                 this.ThicknessHigerSearch((double)searParamters.ThicknessHiger);
-            if (validDouble(searParamters.CameraMegaPixelsLower))
+            if (valid(searParamters.CameraMegaPixelsLower))
                 this.CameraMegaPixelsLowerSearch((double)searParamters.CameraMegaPixelsLower);
-            if (validDouble(searParamters.CameraMegaPixelsHiger))
+            if (valid(searParamters.CameraMegaPixelsHiger))
                 this.CameraMegaPixelsHigerSearch((double)searParamters.CameraMegaPixelsHiger);
-            if (validCollection(searParamters.Colors))
+            if (valid(searParamters.Colors))
                 this.ColorSearch(searParamters.Colors);
-            if (validDouble(searParamters.WeightLower))
+            if (valid(searParamters.WeightLower))
                 this.WeightLowerSearch((double)searParamters.WeightLower);
-            if (validDouble(searParamters.WeightHiger))
+            if (valid(searParamters.WeightHiger))
                 this.WeightHigerSearch((double)searParamters.WeightHiger);
-            if (validCollection(searParamters.OS))
+            if (valid(searParamters.OS))
                 this.OSSearch(searParamters.OS);
             // if(validDouble(searParamters.RAMLower))
             //     this.RAMLowerSearch(searParamters.RAMLower);
@@ -230,9 +230,9 @@ namespace El3edda.utills
             //     this.StorageLowerSearch(searParamters.StorageLower);
             // if(validDouble(searParamters.StorageHiger))
             //     this.StorageHigerSearch(searParamters.StorageHiger);
-            if (validDouble(searParamters.BatteryCapacityLower))
+            if (valid((double?)searParamters.BatteryCapacityLower))
                 this.BatteryCapacityLowerSearch((double)searParamters.BatteryCapacityLower);
-            if (validDouble(searParamters.BatteryCapacityHiger))
+            if (valid((double?)searParamters.BatteryCapacityHiger))
                 this.BatteryCapacityHigerSearch((double)searParamters.BatteryCapacityHiger);
 
 

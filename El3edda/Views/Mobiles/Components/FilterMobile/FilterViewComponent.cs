@@ -31,7 +31,7 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
             {
                 foreach (var manfcture in manufacturers_list)
                 {
-                    if (searchParamter.manufacturers.Any(m => m.Id == int.Parse(manfcture.Value)))
+                    if (searchParamter.manufacturerids.Contains(int.Parse(manfcture.Value)))
                     {
                         manfcture.Selected = true;
                     }
