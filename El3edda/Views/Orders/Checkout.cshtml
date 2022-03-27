@@ -1,6 +1,6 @@
 ﻿@using El3edda.Data.ViewModels
 @model CheckoutVM 
-@{ var itemCount = 1; Layout = null;}
+@{ var itemCount = 1; Layout = "_TemplateLayout";}
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -11,65 +11,13 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="~/Template/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/style.css" type="text/css">
+    <title>Checkout</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuL88cuJhN7J7ugkxZHez92qbF6K0-Jzo"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="~/js/googleMapScript.js"></script>
   </head>
   <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-      <div class="offcanvas__option">
-        <div class="offcanvas__links">
-          <a href="#">Sign in</a>
-          <a href="#">FAQs</a>
-        </div>
-        <div class="offcanvas__top__hover">
-          <span>Usd <i class="arrow_carrot-down"></i>
-          </span>
-          <ul>
-            <li>USD</li>
-            <li>EUR</li>
-            <li>USD</li>
-          </ul>
-        </div>
-      </div>
-      <div class="offcanvas__nav__option">
-        <a href="#" class="search-switch">
-          <img src="img/icon/search.png" alt="">
-        </a>
-        <a href="#">
-          <img src="img/icon/heart.png" alt="">
-        </a>
-        <a href="#">
-          <img src="img/icon/cart.png" alt="">
-          <span>0</span>
-        </a>
-        <div class="price">$0.00</div>
-      </div>
-      <div id="mobile-menu-wrap"></div>
-      <div class="offcanvas__text">
-        <p>Free shipping, 30-day return or refund guarantee.</p>
-      </div>
-    </div>
-    <!-- Offcanvas Menu End -->
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
       <div class="container">
@@ -139,19 +87,11 @@
       </div>
     </section>
     <!-- Checkout Section End -->
-    <!-- Js Plugins -->
-    <script src="~/Template/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Template/js/bootstrap.min.js"></script>
-    <script src="~/Template/js/jquery.nice-select.min.js"></script>
-    <script src="~/Template/js/jquery.nicescroll.min.js"></script>
-    <script src="~/Template/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/Template/js/jquery.countdown.min.js"></script>
-    <script src="~/Template/js/jquery.slicknav.js"></script>
-    <script src="~/Template/js/mixitup.min.js"></script>
-    <script src="~/Template/js/owl.carousel.min.js"></script>
-    <script src="~/Template/js/main.js"></script>
   </body>
-</html> @*@{ ViewData["Title"] = "Order Completed"; } <div class="row">
+</html>
+
+
+@*@{ ViewData["Title"] = "Order Completed"; } <div class="row">
   <div class="col-md-6 offset-3 alert-success text-center">
     <h2 class=""> Order Completed Successfully </h2>
     <p>You can check all your orders in your profile</p>
