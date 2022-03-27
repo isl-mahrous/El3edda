@@ -133,7 +133,12 @@ namespace El3edda.Controllers
             return View("CompleteOrder");
         }
 
-        public IActionResult Charge(string stripeEmail, string stripeToken, int total)
+        public IActionResult Charge(
+            string stripeEmail,
+            string stripeToken,
+            double ShoppingCartTotal,
+            long total
+        )
         {
             var customers = new Stripe.CustomerService();
             var charges = new Stripe.ChargeService();

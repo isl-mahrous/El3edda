@@ -83,6 +83,12 @@ namespace El3edda.Data.Cart
             _context.SaveChanges();
         }
 
+        public void ClearCart()
+        {
+            _context.ShoppingCartItems.RemoveRange(_context.ShoppingCartItems);
+            _context.SaveChanges();
+        }
+
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             return ShoppingCartItems
