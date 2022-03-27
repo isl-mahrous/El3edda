@@ -16,7 +16,9 @@ namespace El3edda.Data.Cart
 
         public static ShoppingCart GetShoppingCart(IServiceProvider services)
         {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            ISession session = services
+                .GetRequiredService<IHttpContextAccessor>()
+                ?.HttpContext.Session;
             var context = services.GetService<AppDbContext>();
             string CartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", CartId);
@@ -25,7 +27,9 @@ namespace El3edda.Data.Cart
 
         public void AddItemToCart(Mobile mobile)
         {
-            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Mobile.Id == mobile.Id && n.ShoppingCartId == ShoppingCartId);
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(
+                n => n.Mobile.Id == mobile.Id && n.ShoppingCartId == ShoppingCartId
+            );
 
             if (shoppingCartItem == null)
             {
@@ -46,7 +50,9 @@ namespace El3edda.Data.Cart
 
         public void RemoveItemFromCart(Mobile mobile)
         {
-            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Mobile.Id == mobile.Id && n.ShoppingCartId == ShoppingCartId);
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(
+                n => n.Mobile.Id == mobile.Id && n.ShoppingCartId == ShoppingCartId
+            );
 
             if (shoppingCartItem != null)
             {
@@ -63,22 +69,44 @@ namespace El3edda.Data.Cart
             _context.SaveChanges();
         }
 
+        public void RemoveAllItemFromCart(Mobile mobile)
+        {
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(
+                n => n.Mobile.Id == mobile.Id && n.ShoppingCartId == ShoppingCartId
+            );
+
+            if (shoppingCartItem != null)
+            {
+                _context.ShoppingCartItems.Remove(shoppingCartItem);
+            }
+
+            _context.SaveChanges();
+        }
+
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems
-                                        .Where(n => n.ShoppingCartId == ShoppingCartId)
-                                        .Include(n => n.Mobile).ToList());
+            return ShoppingCartItems
+                ?? (
+                    ShoppingCartItems = _context.ShoppingCartItems
+                        .Where(n => n.ShoppingCartId == ShoppingCartId)
+                        .Include(n => n.Mobile)
+                        .ToList()
+                );
         }
 
         public double GetShoppingCartTotal()
         {
-            return _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId)
-                .Select(n => n.Mobile.Price * n.Amount).Sum();
+            return _context.ShoppingCartItems
+                .Where(n => n.ShoppingCartId == ShoppingCartId)
+                .Select(n => n.Mobile.Price * n.Amount)
+                .Sum();
         }
 
         public async Task ClearShoppingCartAsync()
         {
-            var items = await _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).ToListAsync();
+            var items = await _context.ShoppingCartItems
+                .Where(n => n.ShoppingCartId == ShoppingCartId)
+                .ToListAsync();
             _context.ShoppingCartItems.RemoveRange(items);
             await _context.SaveChangesAsync();
         }

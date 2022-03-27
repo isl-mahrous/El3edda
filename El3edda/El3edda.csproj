@@ -33,4 +33,10 @@
     <None Include="wwwroot\Images\Xaomi.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\Template\img\favicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

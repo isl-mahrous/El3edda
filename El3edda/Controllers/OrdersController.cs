@@ -54,6 +54,20 @@ namespace El3edda.Controllers
             return View(response);
         }
 
+        public IActionResult NewShoppingCart()
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
+
+            var response = new ShoppingCartVM()
+            {
+                ShoppingCart = _shoppingCart,
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
+            };
+
+            return View(response);
+        }
+
         public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var mobile = await _mobileService.GetByIdAsync(id);
@@ -61,7 +75,7 @@ namespace El3edda.Controllers
             {
                 _shoppingCart.AddItemToCart(mobile);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return RedirectToAction(nameof(NewShoppingCart));
         }
 
         public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
@@ -71,7 +85,17 @@ namespace El3edda.Controllers
             {
                 _shoppingCart.RemoveItemFromCart(mobile);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return RedirectToAction(nameof(NewShoppingCart));
+        }
+
+        public async Task<IActionResult> RemoveAllItemFromShoppingCart(int id)
+        {
+            var mobile = await _mobileService.GetByIdAsync(id);
+            if (mobile != null)
+            {
+                _shoppingCart.RemoveAllItemFromCart(mobile);
+            }
+            return RedirectToAction(nameof(NewShoppingCart));
         }
 
         public async Task<IActionResult> Checkout()
@@ -136,6 +160,11 @@ namespace El3edda.Controllers
             {
                 return RedirectToAction("ShoppingCart");
             }
+        }
+
+        public IActionResult CompleteOrder()
+        {
+            return View();
         }
     }
 }

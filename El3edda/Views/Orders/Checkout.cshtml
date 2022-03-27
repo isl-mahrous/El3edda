@@ -1,101 +1,220 @@
 ﻿@using El3edda.Data.ViewModels
-@model CheckoutVM 
-@{ var itemCount = 1; Layout = "_TemplateLayout";}
+@using Microsoft.Extensions.Options
+@inject IOptions<El3edda.Data.PaymentSettings.PayPalSettings> PayPal
+@inject IOptions<El3edda.Data.PaymentSettings.StripeSettings> Stripe
+@model CheckoutVM
+@{ 
+    var itemCount = 1; Layout = "_TemplateLayout";
 
-<!DOCTYPE html>
-<html lang="zxx">
-  <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Checkout</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuL88cuJhN7J7ugkxZHez92qbF6K0-Jzo"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="~/js/googleMapScript.js"></script>
-  </head>
-  <body>
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="breadcrumb__text">
-              <h4>Check Out</h4>
-              <div class="breadcrumb__links">
-                <a href="./index.html">Home</a>
-                <a href="./shop.html">Shop</a>
-                <span>Check Out</span>
+    var stripeTotalAmount = (@Model.ShoppingCartTotal * 100).ToString();
+}
+
+    <!DOCTYPE html>
+    <html lang="zxx">
+      <head>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+        <meta charset="UTF-8" />
+        <meta name="description" content="El3edda" />
+        <meta name="keywords" content="El3edda" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Checkout</title>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+        />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuL88cuJhN7J7ugkxZHez92qbF6K0-Jzo"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="~/js/googleMapScript.js"></script>
+        <style>
+          .checkout__Buttons__all {
+            padding: 15px 0;
+            margin-bottom: 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+          }
+          .stripe-button-el {
+            width: 150px;
+            border-radius: 0;
+            background-image: none;
+            background-color: rgb(44, 46, 47);
+            border-radius: 5px;
+            margin-top: 3vh;
+            height: 35px;
+          }
+          .stripe-button-el span {
+            color:#eee;
+            font-family: Nunito Sans, sans-serif;
+            font-size: 16px;
+            border-radius: 0;
+            background-image: none;
+            background-color: rgb(44, 46, 47);
+            height: 35px;
+          }
+        </style>
+      </head>
+      <body>
+        <!-- Breadcrumb Section Begin -->
+        <section class="breadcrumb-option">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                  <h4>Check Out</h4>
+                  <div class="breadcrumb__links">
+                    <a href="./index.html">Home</a>
+                    <a href="./shop.html">Shop</a>
+                    <span>Check Out</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-      <div class="container">
-        <div class="checkout__form">
-          <form action="#">
-            <div class="row">
-              <div class="col-lg-8 col-md-6">
-                <h6 class="checkout__title">Address Details</h6>
+        </section>
+        <!-- Breadcrumb Section End -->
+        <!-- Checkout Section Begin -->
+        <section class="checkout spad">
+          <div class="container">
+            <div class="checkout__form">
+              <form action="#">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-8 col-md-6">
+                    <h6 class="checkout__title">Address Details</h6>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="checkout__input">
+                          <label asp-for="ShippingAddress.State"></label>
+                          <input asp-for="ShippingAddress.State" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="checkout__input">
+                          <label asp-for="ShippingAddress.City"></label>
+                          <input asp-for="ShippingAddress.City" />
+                        </div>
+                      </div>
+                    </div>
                     <div class="checkout__input">
-                      <label asp-for="ShippingAddress.State"></label>
-                      <input asp-for="ShippingAddress.State">
+                      <label asp-for="ShippingAddress.Neighbourhood"></label>
+                      <input asp-for="ShippingAddress.Neighbourhood" />
+                    </div>
+                    <div class="checkout__input">
+                      <label asp-for="ShippingAddress.Street"></label>
+                      <input asp-for="ShippingAddress.Street" />
+                    </div>
+                    <div
+                      id="map-canvas"
+                      style="width: 100%; height: 400px"
+                    ></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <div class="checkout__order">
+                      <h4 class="order__title">Your order</h4>
+                      <div class="checkout__order__products">
+                        Product <span>Total</span>
+                      </div>
+                      <ul class="checkout__total__products">
+                        @foreach (var item in
+                        Model.ShoppingCart.ShoppingCartItems) {
+                        <li>
+                          @(itemCount++). @item.Mobile.Name
+                          <span>$ @(item.Mobile.Price*item.Amount)</span>
+                        </li>
+                        }
+                      </ul>
+                      <ul class="checkout__total__all">
+                        <li>Total <span>$@Model.ShoppingCartTotal</span></li>
+                      </ul>
+                      <div
+                        class="checkout__Buttons__all"
+                        id="paypal-button"
+                      ></div>
+                      <form asp-action="Charge" method="POST">
+                        <div class="checkout__Buttons__allCard" style="text-align:center">
+                          <script
+                            src="https://checkout.stripe.com/checkout.js"
+                            class="stripe-button"
+                            data-key="@Stripe.Value.PublishableKey"
+                            data-name=""
+                            data-description=""
+                            data-amount="@stripeTotalAmount"
+                            data-currency="usd"
+                          ></script>
+                        </div>
+                        <input
+                          type="text"
+                          value="@stripeTotalAmount"
+                          name="total"
+                          hidden
+                        />
+                      </form>
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="checkout__input">
-                      <label asp-for="ShippingAddress.City"></label>
-                      <input asp-for="ShippingAddress.City">
-                    </div>
-                  </div>
                 </div>
-                <div class="checkout__input">
-                  <label asp-for="ShippingAddress.Neighbourhood"></label>
-                  <input asp-for="ShippingAddress.Neighbourhood">
-                </div>
-                <div class="checkout__input">
-                  <label asp-for="ShippingAddress.Street"></label>
-                  <input asp-for="ShippingAddress.Street">
-                </div>
-                <div id="map-canvas" style="width: 100%; height: 400px"></div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="checkout__order">
-                  <h4 class="order__title">Your order</h4>
-                  <div class="checkout__order__products">Product <span>Total</span>
-                  </div>
-                  <ul class="checkout__total__products"> @foreach (var item in Model.ShoppingCart.ShoppingCartItems) { <li>@(itemCount++). @item.Mobile.Name <span>$ @(item.Mobile.Price*item.Amount)</span>
-                    </li> } </ul>
-                  <ul class="checkout__total__all">
-                    <li>Total <span>$@Model.ShoppingCartTotal</span>
-                    </li>
-                    <button type="submit" class="site-btn">PLACE ORDER</button>
-                </div>
-              </div>
+              </form>
             </div>
-          </form>
-        </div>
+          </div>
+        </section>
+        <!-- Checkout Section End -->
+      </body>
+      <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+      <script>
+        paypal.Button.render({
+          // Configure environment
+          env: 'sandbox',
+          client: {
+            sandbox: '@PayPal.Value.ClientID',
+          },
+          // Customize button (optional)
+          locale: 'en_US',
+
+        style: {
+            layout: "horizontal",
+            color: "black",
+            shape: "rect",
+            label: "paypal",
+            tagline: false,
+            height: 40,
+        },
+
+          // Enable Pay Now checkout flow (optional)
+          commit: true,
+
+          // Set up a payment
+          payment: function(data, actions) {
+            return actions.payment.create({
+              transactions: [{
+                amount: {
+                  total: @Model.ShoppingCartTotal.ToString(),
+                  currency: 'USD'
+                }
+              }]
+            });
+          },
+
+          // Execute the payment
+          onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                  var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                  window.location.href = url;
+            });
+          }
+        }, '#paypal-button');
+      </script>
+    </html>
+    @*@{ ViewData["Title"] = "Order Completed"; }
+    <div class="row">
+      <div class="col-md-6 offset-3 alert-success text-center">
+        <h2 class="">Order Completed Successfully</h2>
+        <p>You can check all your orders in your profile</p>
+        <hr />
+        <h3>Thank you!</h3>
       </div>
-    </section>
-    <!-- Checkout Section End -->
-  </body>
-</html>
-
-
-@*@{ ViewData["Title"] = "Order Completed"; } <div class="row">
-  <div class="col-md-6 offset-3 alert-success text-center">
-    <h2 class=""> Order Completed Successfully </h2>
-    <p>You can check all your orders in your profile</p>
-    <hr />
-    <h3> Thank you! </h3>
-  </div>
-</div>*@
+    </div>
+    *@</El3edda.Data.PaymentSettings.StripeSettings
+  ></El3edda.Data.PaymentSettings.PayPalSettings
+>
