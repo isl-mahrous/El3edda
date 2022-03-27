@@ -10,7 +10,7 @@ namespace El3edda.Data
 
         public virtual DbSet<Mobile> Mobiles { get; set; } 
         public virtual DbSet<Manufacturer> Manufacturers { get; set; } 
-        public virtual DbSet<Media> Medias { get; set; }
+        public virtual DbSet<Media> Media { get; set; }
 
 
         //////////// ORDERS //////////////
@@ -18,6 +18,8 @@ namespace El3edda.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+
 
     }
 }

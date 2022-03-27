@@ -110,7 +110,7 @@ namespace El3edda.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacturers", (string)null);
+                    b.ToTable("Manufacturers");
                 });
 
             modelBuilder.Entity("El3edda.Models.Media", b =>
@@ -135,7 +135,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("MobileId");
 
-                    b.ToTable("Medias", (string)null);
+                    b.ToTable("Media");
                 });
 
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
@@ -182,7 +182,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("ManufacturerId");
 
-                    b.ToTable("Mobiles", (string)null);
+                    b.ToTable("Mobiles");
                 });
 
             modelBuilder.Entity("El3edda.Models.Order", b =>
@@ -205,7 +205,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("El3edda.Models.OrderItem", b =>
@@ -234,7 +234,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("El3edda.Models.ShoppingCartItem", b =>
@@ -258,7 +258,7 @@ namespace El3edda.Migrations
 
                     b.HasIndex("MobileId");
 
-                    b.ToTable("ShoppingCartItems", (string)null);
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -394,6 +394,36 @@ namespace El3edda.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("El3edda.Models.ApplicationUser", b =>
+                {
+                    b.OwnsOne("El3edda.Models.Address", "ShippingAddress", b1 =>
+                        {
+                            b1.Property<string>("ApplicationUserId")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Neighbourhood")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("State")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ApplicationUserId");
+
+                            b1.ToTable("AspNetUsers");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ApplicationUserId");
+                        });
+
+                    b.Navigation("ShippingAddress");
+                });
+
             modelBuilder.Entity("El3edda.Models.Media", b =>
                 {
                     b.HasOne("El3edda.Models.Mobile", "Mobile")
@@ -413,7 +443,7 @@ namespace El3edda.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("El3edda.Models.Mobile.Specs#El3edda.Models.Specs", "Specs", b1 =>
+                    b.OwnsOne("El3edda.Models.Specs", "Specs", b1 =>
                         {
                             b1.Property<int>("MobileId")
                                 .HasColumnType("int");
@@ -451,7 +481,7 @@ namespace El3edda.Migrations
 
                             b1.HasKey("MobileId");
 
-                            b1.ToTable("Mobiles", (string)null);
+                            b1.ToTable("Mobiles");
 
                             b1.WithOwner()
                                 .HasForeignKey("MobileId");
@@ -470,6 +500,33 @@ namespace El3edda.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("El3edda.Models.Address", "ShippingAddress", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Neighbourhood")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("State")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("ShippingAddress");
 
                     b.Navigation("User");
                 });

@@ -2,9 +2,10 @@
 using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services.OrderServices;
 using El3edda.Data.ViewModels;
+using El3edda.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Stripe;
 using System.Security.Claims;
 
 namespace El3edda.Controllers
@@ -15,16 +16,19 @@ namespace El3edda.Controllers
         private readonly IMobileService _mobileService;
         private readonly ShoppingCart _shoppingCart;
         private readonly IOrdersService _ordersService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public OrdersController(
             IMobileService service,
             ShoppingCart shoppingCart,
-            IOrdersService ordersService
+            IOrdersService ordersService,
+            UserManager<ApplicationUser> userManager
         )
         {
             _mobileService = service;
             _shoppingCart = shoppingCart;
             _ordersService = ordersService;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -70,28 +74,52 @@ namespace El3edda.Controllers
             return RedirectToAction(nameof(ShoppingCart));
         }
 
-        public async Task<IActionResult> CompleteOrder()
+        public async Task<IActionResult> Checkout()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
+
+            var response = new CheckoutVM()
+            {
+                ShoppingCart = _shoppingCart,
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
+                ShippingAddress = user.ShippingAddress ?? new Address()
+            };
+
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout(CheckoutVM checkoutVM)
         {
             var items = _shoppingCart.GetShoppingCartItems();
             var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
+            await _ordersService.StoreOrderAsync(
+                items,
+                userId,
+                userEmailAddress,
+                checkoutVM.ShippingAddress
+            );
+
             await _shoppingCart.ClearShoppingCartAsync();
             return View("CompleteOrder");
         }
 
         public IActionResult Charge(string stripeEmail, string stripeToken, int total)
         {
-            var customers = new CustomerService();
-            var charges = new ChargeService();
+            var customers = new Stripe.CustomerService();
+            var charges = new Stripe.ChargeService();
 
             var customer = customers.Create(
-                new CustomerCreateOptions { Email = stripeEmail, Source = stripeToken }
+                new Stripe.CustomerCreateOptions { Email = stripeEmail, Source = stripeToken }
             );
 
             var charge = charges.Create(
-                new ChargeCreateOptions
+                new Stripe.ChargeCreateOptions
                 {
                     Amount = total,
                     Description = "Order Payment",

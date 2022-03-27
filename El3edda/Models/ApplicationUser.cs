@@ -3,13 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace El3edda.Models
 {
-    public class ApplicationUser:IdentityUser
+    public class ApplicationUser : IdentityUser
     {
-        [Display(Name ="Full name")]
+        [Display(Name = "Full name")]
         public string FullName { get; set; }
 
-        //public string ShippingAddress { get; set; }
-        //public string BillingAddress { get; set; }
-
+        public Address ShippingAddress { get; set; }
     }
 }

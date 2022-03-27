@@ -7,13 +7,19 @@ namespace El3edda.Data.Services.OrderServices
     public class OrdersService : IOrdersService
     {
         private readonly AppDbContext _context;
+
         public OrdersService(AppDbContext context)
         {
             _context = context;
         }
+
         public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole)
         {
-            var orders = await _context.Orders.Include(o => o.OrderItems).ThenInclude(oi => oi.Mobile).Include(o => o.User).ToListAsync();
+            var orders = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Mobile)
+                .Include(o => o.User)
+                .ToListAsync();
             if (userRole != UserRoles.Admin)
             {
                 orders = orders.Where(o => o.UserId == userId).ToList();
@@ -21,13 +27,14 @@ namespace El3edda.Data.Services.OrderServices
             return orders;
         }
 
-        public async Task StoreOrderAsync(List<ShoppingCartItem> items, string userId, string email)
+        public async Task StoreOrderAsync(
+            List<ShoppingCartItem> items,
+            string userId,
+            string email,
+            Address shippingAddress
+        )
         {
-            var order = new Order()
-            {
-                UserId = userId,
-                Email = email,
-            };
+            var order = new Order() { UserId = userId, Email = email, };
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
 
@@ -44,7 +51,7 @@ namespace El3edda.Data.Services.OrderServices
                 //Increment Units Sold
                 item.Mobile.UnitsSold += item.Amount;
 
-                //Decrement Units in stock 
+                //Decrement Units in stock
                 item.Mobile.UnitsInStock -= item.Amount;
 
                 await _context.OrderItems.AddAsync(orderItem);

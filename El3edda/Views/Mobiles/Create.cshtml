@@ -1,189 +1,220 @@
 ﻿@using El3edda.Data.Enums
-@model El3edda.Models.Mobile
+@model El3edda.Models.MobileViewModel
+
 
 @{
     ViewData["Title"] = "Create";
     IEnumerable<El3edda.Models.Manufacturer> manufactures = new List<Manufacturer>();
     manufactures = (List<El3edda.Models.Manufacturer>)ViewBag.Manufactures;
 }
+<link href="~/css/MobileIndex.css" rel="stylesheet" />
 
-<h1>Create</h1>
+<h1>Create New Mobile</h1>
 
-<h4>Mobile</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="All" class="text-danger"></div>
-           
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" />
-                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WarrantyPeriod" class="control-label"></label>
-                <input asp-for="WarrantyPeriod" class="form-control" />
-                <span asp-validation-for="WarrantyPeriod" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitsInStock" class="control-label"></label>
-                <input asp-for="UnitsInStock" class="form-control" />
-                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitsSold" class="control-label"></label>
-                <input asp-for="UnitsSold" class="form-control" />
-                <span asp-validation-for="UnitsSold" class="text-danger"></span>
-            </div>
+    <div class="col-md-12">
 
-            <div class="form-group">
-                <label asp-for="MainPhotoURL" class="control-label"></label>
-                <input asp-for="MainPhotoURL" class="form-control" />
-                <span asp-validation-for="MainPhotoURL" class="text-danger"></span>
+        <form class="row" asp-action="Create" enctype="multipart/form-data">
+            <div class="row col-md-9">
+                <p>
+                    <h3>
+                        Technical Details
+                    </h3>
+                </p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6">
 
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" onchange="NameChange(this)" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select mb-3 mt-3" id="ManufacturerIdDropDown" name="ManufacturerId" onchange="ManufacturerChanged(this)">
 
-             <div class="form-group">
-                <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
-                <input asp-for="Specs.BatteryCapacity" class="form-control" />
-                <span asp-validation-for="Specs.BatteryCapacity" class="text-danger"></span>
-            </div>
+                            @foreach (var man in manufactures)
+                            {
+                                <option value="@man.Id">@man.Name</option>
+                            }
 
-            <div class="form-group">
-                <label asp-for="Specs.CameraMegaPixels" class="control-label"></label>
-                <input asp-for="Specs.CameraMegaPixels" class="form-control" />
-                <span asp-validation-for="Specs.CameraMegaPixels" class="text-danger"></span>
-            </div>
-
-             <div class="form-group">
-                <label asp-for="Specs.Color" class="control-label"></label>
-                <select asp-for="Specs.Color" asp-items="Html.GetEnumSelectList(typeof(Colors))" class="form-control" ></select >
-                <span asp-validation-for="Specs.Color" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.CPU" class="control-label"></label>
-                <input asp-for="Specs.CPU" class="form-control" />
-                <span asp-validation-for="Specs.CPU" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.Height" class="control-label"></label>
-                <input asp-for="Specs.Height" class="form-control" />
-                <span asp-validation-for="Specs.Height" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.Width" class="control-label"></label>
-                <input asp-for="Specs.Width" class="form-control" />
-                <span asp-validation-for="Specs.Width" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.Thickness" class="control-label"></label>
-                <input asp-for="Specs.Thickness" class="form-control" />
-                <span asp-validation-for="Specs.Thickness" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.OS" class="control-label"></label>
-                <select asp-for="Specs.OS" asp-items="Html.GetEnumSelectList(typeof(OSEnum))" class="form-control" ></select>
-                
-                <span asp-validation-for="Specs.OS" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.Screen" class="control-label"></label>
-                <select asp-for="Specs.Screen" asp-items="Html.GetEnumSelectList(typeof(ScreenEnum))" class="form-control"></select>
-                <span asp-validation-for="Specs.Screen" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Specs.Weight" class="control-label"></label>
-                <input asp-for="Specs.Weight" class="form-control" />
-                <span asp-validation-for="Specs.Weight" class="text-danger"></span>
-            </div>
-
-            <select class="form-select form-select-lg mb-3 mt-3" name="ManufacturerId" >
-
-                @foreach(var man in manufactures)
-                {
-                    <option value="@man.Id">@man.Name</option>
-                }
-
-            </select>
+                        </select>
+                    </div>
 
 
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a>
-                <input type="submit" value="Create" class="btn btn-primary mt-3" />
+                    <div class="form-group">
+                        <label asp-for="ReleaseDate" class="control-label"></label>
+                        <input asp-for="ReleaseDate" class="form-control" value="@DateTime.Now" />
+                        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" onchange="PriceChange(this)" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.CPU" class="control-label"></label>
+                        <input asp-for="Specs.CPU" class="form-control" />
+                        <span asp-validation-for="Specs.CPU" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Height" class="control-label"></label>
+                        <input asp-for="Specs.Height" class="form-control" />
+                        <span asp-validation-for="Specs.Height" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Width" class="control-label"></label>
+                        <input asp-for="Specs.Width" class="form-control" />
+                        <span asp-validation-for="Specs.Width" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Thickness" class="control-label"></label>
+                        <input asp-for="Specs.Thickness" class="form-control" />
+                        <span asp-validation-for="Specs.Thickness" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Screen" class="control-label"></label>
+                        <select asp-for="Specs.Screen" asp-items="Html.GetEnumSelectList(typeof(ScreenEnum))" class="form-control"></select>
+                        <span asp-validation-for="Specs.Screen" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <label asp-for="MainPhotoURL" class="control-label custom-file-label"></label>
+                            <input asp-for="MainPhotoURL" class="form-control custom-file-input" type="file" accept="image/png, image/jpeg, image/jpg" onchange="loadFile(event)" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <label asp-for="Media" class="control-label custom-file-label"></label>
+                            <input asp-for="Media" class="form-control custom-file-input multiple" accept="image/png, image/jpeg, image/jpg, video/mp4" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WarrantyPeriod" class="control-label"></label>
+                        <input asp-for="WarrantyPeriod" class="form-control" />
+                        <span asp-validation-for="WarrantyPeriod" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UnitsInStock" class="control-label"></label>
+                        <input asp-for="UnitsInStock" class="form-control" />
+                        <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Specs.BatteryCapacity" class="control-label"></label>
+                        <input asp-for="Specs.BatteryCapacity" class="form-control" />
+                        <span asp-validation-for="Specs.BatteryCapacity" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.CameraMegaPixels" class="control-label"></label>
+                        <input asp-for="Specs.CameraMegaPixels" class="form-control" />
+                        <span asp-validation-for="Specs.CameraMegaPixels" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Color" class="control-label"></label>
+                        <select asp-for="Specs.Color" asp-items="Html.GetEnumSelectList(typeof(Colors))" class="form-control"></select>
+                        <span asp-validation-for="Specs.Color" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Specs.OS" class="control-label"></label>
+                        <select asp-for="Specs.OS" asp-items="Html.GetEnumSelectList(typeof(OSEnum))" class="form-control"></select>
+                        <span asp-validation-for="Specs.OS" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specs.Weight" class="control-label"></label>
+                        <input asp-for="Specs.Weight" class="form-control" />
+                        <span asp-validation-for="Specs.Weight" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-3">
+                <p>
+                    <h3>Mobile Preview</h3>
+                </p>
+                <div class="col-md-12">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a class="image">
+                                <img src="/Images/dummyPhone.jpg" id="previewImg">
+                            </a>
+                            <ul class="product-links">
+                                <li><a><i class="fa fa-eye"></i></a></li>
+                                <li><a><i class="fa fa-edit"></i></a></li>
+                                <li><a><i class="fa fa-trash"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <span class="badge rounded-pill bg-dark" id="spanManufacturer">Manufacturer</span>
+                            <hr />
+                            <h3 class="title" id="mobName">Mobile Name</h3>
+                            <div class="price"><span id="mobPrice">xxxx</span> EGP</div>
+
+                            <a class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid my-1 text-center">
+                    <input type="submit" value="Create" class="btn btn-success btn-lg btn-block my-2" />
+                    <a asp-action="Index" class="btn btn-dark btn-lg btn-block my-2">Back</a>
+                </div>
+            </div>
+
+
+
         </form>
     </div>
 </div>
 
-@*
-<div>
-    <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
-</div>*@
 
 @section Scripts {
-    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
-}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    <script>
+            var loadFile = function(event) {
+            var image = document.getElementById('previewImg');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
 
-@*
-     <td>
-                @Html.DisplayFor(modelItem => item.Specs.BatteryCapacity)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.CameraMegaPixels)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specs.CPU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Height)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Width)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.Dimensions.Thickness)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.OS)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.Screen)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Specs.Weight)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer.Origin)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Media)
-            </td>*@
+        var ManufacturerChanged = function (sel){
+                var span = document.getElementById('spanManufacturer');
+
+                span.innerText = sel.options[sel.selectedIndex].text;
+            }
+
+            var NameChange = function(nameInput){
+                var name = document.getElementById('mobName');
+                name.innerText = nameInput.value;
+            }
+            var PriceChange = function(priceInput){
+                var price = document.getElementById('mobPrice');
+                price.innerText = priceInput.value;
+            }
+    </script>
+}
+}

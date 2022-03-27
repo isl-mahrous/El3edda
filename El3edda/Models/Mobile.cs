@@ -10,8 +10,7 @@ namespace El3edda.Models
     {
         [Key]
         public int Id { get; set; }
-        
-        
+
         [Required]
         [StringLength(maximumLength:50, ErrorMessage = "Phone name cannot be more than 50 characters.")]
         public string Name { get; set; }
@@ -40,7 +39,6 @@ namespace El3edda.Models
         
         [Required]
         [Display(Name = "Main Photo")]
-        [DataType(DataType.ImageUrl)]
         public string MainPhotoURL { get; set; }
 
         [Required]
