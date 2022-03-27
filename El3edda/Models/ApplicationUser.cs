@@ -9,6 +9,5 @@ namespace El3edda.Models
         public string FullName { get; set; }
 
         public Address ShippingAddress { get; set; }
-        public Address BillingAddress { get; set; }
     }
 }
