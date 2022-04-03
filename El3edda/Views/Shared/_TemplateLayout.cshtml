@@ -37,8 +37,10 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
+                @*<a href="#">Sign in</a>*@
+                <a  asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
+                <a  asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                @*<a href="#">FAQs</a>*@
             </div>
             <div class="offcanvas__top__hover">
                 <span>Usd <i class="arrow_carrot-down"></i></span>
@@ -75,8 +77,10 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
-                                <a href="#">FAQs</a>
+                                @*<a href="#">Sign in</a>*@
+                                <a  asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
+                                <a  asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                @*<a href="#">FAQs</a>*@
                             </div>
                             <div class="header__top__hover">
                                 <span>Usd <i class="arrow_carrot-down"></i></span>
@@ -221,5 +225,5 @@
     <script src="~/Template/js/owl.carousel.min.js"></script>
     <script src="~/Template/js/main.js"></script>
 </body>
-
+@RenderSection("scripts", required: false)
 </html>

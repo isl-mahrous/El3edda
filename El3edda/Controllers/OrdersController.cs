@@ -116,32 +116,31 @@ namespace El3edda.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Checkout(CheckoutVM checkoutVM)
+        public async Task<IActionResult> Checkout(Address shippingAddress)
         {
             var items = _shoppingCart.GetShoppingCartItems();
             var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            await _ordersService.StoreOrderAsync(
-                items,
-                userId,
-                userEmailAddress,
-                checkoutVM.ShippingAddress
-            );
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, shippingAddress);
 
             await _shoppingCart.ClearShoppingCartAsync();
+
             return View("CompleteOrder");
         }
 
-        public IActionResult Charge(
+        public async Task<IActionResult> Charge(
             string stripeEmail,
             string stripeToken,
-            double ShoppingCartTotal,
-            long total
+            CheckoutVM checkoutVM
         )
         {
             var customers = new Stripe.CustomerService();
             var charges = new Stripe.ChargeService();
+
+            var items = _shoppingCart.GetShoppingCartItems();
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var customer = customers.Create(
                 new Stripe.CustomerCreateOptions { Email = stripeEmail, Source = stripeToken }
@@ -150,7 +149,7 @@ namespace El3edda.Controllers
             var charge = charges.Create(
                 new Stripe.ChargeCreateOptions
                 {
-                    Amount = total,
+                    Amount = (long)checkoutVM.ShoppingCartTotal * 100,
                     Description = "Order Payment",
                     Currency = "USD",
                     Customer = customer.Id
@@ -159,7 +158,19 @@ namespace El3edda.Controllers
 
             if (charge.Status == "succeeded")
             {
-                return RedirectToAction("CompleteOrder");
+                await _ordersService.StoreOrderAsync(
+                    items,
+                    userId,
+                    userEmailAddress,
+                    checkoutVM.ShippingAddress
+                );
+
+                await _shoppingCart.ClearShoppingCartAsync();
+
+                return RedirectToAction(
+                    "CompleteOrder",
+                    new { ShippingAddress = checkoutVM.ShippingAddress }
+                );
             }
             else
             {
@@ -167,8 +178,27 @@ namespace El3edda.Controllers
             }
         }
 
-        public IActionResult CompleteOrder()
+        async public Task<IActionResult> PaypalCompleteOrder(Address ShippingAddress)
         {
+            var items = _shoppingCart.GetShoppingCartItems();
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, ShippingAddress);
+            await _shoppingCart.ClearShoppingCartAsync();
+
+            return View("CompleteOrder");
+        }
+
+        async public Task<IActionResult> CompleteOrder(Address ShippingAddress)
+        {
+            //var items = _shoppingCart.GetShoppingCartItems();
+            //var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            //await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, ShippingAddress);
+            //await _shoppingCart.ClearShoppingCartAsync();
+
             return View();
         }
     }

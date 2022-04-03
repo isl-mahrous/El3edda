@@ -34,7 +34,12 @@ namespace El3edda.Data.Services.OrderServices
             Address shippingAddress
         )
         {
-            var order = new Order() { UserId = userId, Email = email, };
+            var order = new Order()
+            {
+                UserId = userId,
+                Email = email,
+                ShippingAddress = shippingAddress
+            };
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
 
