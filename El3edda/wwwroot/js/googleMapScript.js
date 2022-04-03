@@ -1,16 +1,10 @@
-let lat = 29.9762;
-let lng = 30.921122;
+let lat;
+let lng;
 let marker;
 
-function DisplayGoogleMap() {
-    getLocation();
+async function DisplayGoogleMap() {
+    await getLocation(() => { });
 
-    var geocoder = new google.maps.Geocoder();
-    var state;
-    var neighbourhood;
-    var city;
-    var street;
-    var add;
 
     //Set the Latitude and Longitude of the Map
     var address = new google.maps.LatLng(lat, lng);
@@ -18,8 +12,8 @@ function DisplayGoogleMap() {
     //Create Options or set different Characteristics of Google Map
     var mapOptions = {
         center: address,
-        zoom: 15,
-        minZoom: 15,
+        zoom: 13,
+        minZoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
 
@@ -46,7 +40,13 @@ function DisplayGoogleMap() {
 
 function getLocation() {
     if (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(getPosition);
+        return new Promise((resolve, reject) =>
+            navigator.geolocation.getCurrentPosition((position) => {
+                lat = position.coords.latitude;
+                lng = position.coords.longitude;
+                resolve();
+            })
+        );
 }
 
 function getPosition(position) {
