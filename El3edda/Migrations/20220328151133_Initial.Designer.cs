@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace El3edda.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220326175806_AddressModelAdded")]
-    partial class AddressModelAdded
+    [Migration("20220328151133_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -398,31 +398,6 @@ namespace El3edda.Migrations
 
             modelBuilder.Entity("El3edda.Models.ApplicationUser", b =>
                 {
-                    b.OwnsOne("El3edda.Models.Address", "BillingAddress", b1 =>
-                        {
-                            b1.Property<string>("ApplicationUserId")
-                                .HasColumnType("nvarchar(450)");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Neighbourhood")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("State")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ApplicationUserId");
-
-                            b1.ToTable("AspNetUsers");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ApplicationUserId");
-                        });
-
                     b.OwnsOne("El3edda.Models.Address", "ShippingAddress", b1 =>
                         {
                             b1.Property<string>("ApplicationUserId")
@@ -447,8 +422,6 @@ namespace El3edda.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("ApplicationUserId");
                         });
-
-                    b.Navigation("BillingAddress");
 
                     b.Navigation("ShippingAddress");
                 });
@@ -529,6 +502,33 @@ namespace El3edda.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("El3edda.Models.Address", "ShippingAddress", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Neighbourhood")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("State")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("ShippingAddress");
 
                     b.Navigation("User");
                 });
