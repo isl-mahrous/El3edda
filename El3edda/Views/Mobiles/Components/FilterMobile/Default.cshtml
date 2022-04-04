@@ -2,14 +2,14 @@
 @{
 	SelectList all_manufacturers = ViewBag.Manufacturers;
 }
-<form asp-action="Index">
+<form asp-action="Index" method="get" class="col-12">
 	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-	<div class="form-group">
+	<div class="form-group mb-0">
 		<input asp-for="text_search" id="main_search" class="form-control" placeholder="search" />
 		<span asp-validation-for="text_search" class="text-danger"></span>
 	</div>
 	<br />
-	<input type="submit" value="apply" class="btn btn-primary" />
+	<input type="submit" value="apply" class="btn btn-outline-dark m-2" />
 	<div class="accordion">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-infoHeading">
@@ -22,39 +22,38 @@
 			<div id="panelsStayOpen-info" class="accordion-collapse collapse"
 				aria-labelledby="panelsStayOpen-infoHeading">
 				<div class="accordion-body">
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-building"></i>
 						</span>
-						<div class="form-group">
-							<select asp-for="manufacturerids" asp-items=ViewBag.Manufacturers  class="form-control" multiple ></select>
+						<div class="form-group mb-0">
+							<select asp-for="manufacturerids" asp-items=ViewBag.Manufacturers  class="form-select" ></select>
 							<span asp-validation-for="manufacturerids" class="text-danger"></span>
 						</div>
 					</div>
-					<div class="input-group">
-						<span class="input-group-text">
+					<div class="input-group flex-nowrap mb-2">
+						<span class="input-group-text ">
 							<i class="fa-solid fa-dollar"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="priceHiegher" class="form-control" placeholder="price from" />
 							<span asp-validation-for="priceHiegher" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="priceLower" class="form-control" placeholder="price to" />
 							<span asp-validation-for="priceLower" class="text-danger"></span>
 						</div>
 					</div>
 
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-clock"></i>
 						</span>
-						<div class="form-group">
-
+						<div class="form-group mb-0">
 							<input asp-for="warrentyPeriodHiger" class="form-control" placeholder="warrenty minimum" />
 							<span asp-validation-for="warrentyPeriodHiger" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 
 							<input asp-for="warrentyPeriodLower" class="form-control" placeholder="warrenty maximum" />
 							<span asp-validation-for="warrentyPeriodLower" class="text-danger"></span>
@@ -62,24 +61,22 @@
 
 					</div>
 
-					<div class="input-group">
-						<span class="input-group-text">
+					<div class="input-group mb-2">
+						@* <span class="input-group-text">
 							<i class="fa-solid fa-calendar"></i>
-						</span>
-						<div class="form-group">
-
+						</span> *@
+						<div class="form-group mb-0">
 							<input asp-for="releasebefore" type="date" class="form-control" placeholder="release after" />
 							<span asp-validation-for="releasebefore" class="text-danger"></span>
 						</div>
-						<div class="form-group">
-
+						<div class="form-group mb-0">
 							<input asp-for="releaseafter" type="date" class="form-control" placeholder="release before" />
 							<span asp-validation-for="releaseafter" class="text-danger"></span>
 						</div>
 
 					</div>
 
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<div class="form-group form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" asp-for="InStock" /> @Html.DisplayNameFor(model
@@ -103,57 +100,57 @@
 			<div id="panelsStayOpen-dimesion" class="accordion-collapse collapse"
 				aria-labelledby="panelsStayOpen-dimesion">
 				<div class="accordion-body">
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-arrows-up-down"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="HeightLower" class="form-control" placeholder="height from" />
 							<span asp-validation-for="HeightLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="HeightHiger" class="form-control" placeholder="height to" />
 							<span asp-validation-for="HeightHiger" class="text-danger"></span>
 						</div>
 					</div>
 
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-arrows-left-right"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="WidthLower" class="form-control" placeholder="width from" />
 							<span asp-validation-for="WidthLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="WidthHiger" class="form-control" placeholder="width to" />
 							<span asp-validation-for="WidthHiger" class="text-danger"></span>
 						</div>
 					</div>
 
 
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-up-right-and-down-left-from-center"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="ThicknessLower" class="form-control" placeholder="thickness from" />
 							<span asp-validation-for="ThicknessLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="ThicknessHiger" class="form-control" placeholder="thickness to" />
 							<span asp-validation-for="ThicknessHiger" class="text-danger"></span>
 						</div>
 					</div>
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-weight-hanging"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="WeightLower" class="form-control" placeholder="weight from" />
 							<span asp-validation-for="WeightLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="WeightHiger" class="form-control" placeholder="weight to" />
 							<span asp-validation-for="WeightHiger" class="text-danger"></span>
 						</div>
@@ -172,15 +169,15 @@
 			<div id="panelsStayOpen-camera" class="accordion-collapse collapse"
 				aria-labelledby="panelsStayOpen-camera">
 				<div class="accordion-body">
-					<div class="input-group">
+					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">
 							<i class="fa-solid fa-camera"></i>
 						</span>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="CameraMegaPixelsLower" class="form-control" placeholder="megapixel from" />
 							<span asp-validation-for="CameraMegaPixelsLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="CameraMegaPixelsHiger" class="form-control" placeholder="megapixel to" />
 							<span asp-validation-for="CameraMegaPixelsHiger" class="text-danger"></span>
 						</div>
@@ -199,31 +196,31 @@
 			<div id="panelsStayOpen-hardware" class="accordion-collapse collapse"
 				aria-labelledby="panelsStayOpen-harwareHeading">
 				<div class="accordion-body">
-					<div class="input-group">
-						<div class="form-group">
+					<div class="input-group flex-nowrap mb-2">
+						<div class="form-group mb-0">
 							<input asp-for="BatteryCapacityLower" class="form-control" placeholder="capacity from" />
 							<span asp-validation-for="BatteryCapacityLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<input asp-for="BatteryCapacityHiger" class="form-control" placeholder="capacity to" />
 							<span asp-validation-for="BatteryCapacityHiger" class="text-danger"></span>
 						</div>
 					</div>
-					@* <div class="form-group">
+					@* <div class="form-group mb-0">
 						<input asp-for="RAMLower" class="form-control" />
 						<span asp-validation-for="RAMLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 
 						<input asp-for="RAMHiger" class="form-control" />
 						<span asp-validation-for="RAMHiger" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 
 						<input asp-for="ROMLower" class="form-control" />
 						<span asp-validation-for="ROMLower" class="text-danger"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-0">
 
 						<input asp-for="ROMHiger" class="form-control" />
 						<span asp-validation-for="ROMHiger" class="text-danger"></span>
@@ -235,7 +232,7 @@
 	</div>
 
 
-	<div class="form-group">
-		<input type="submit" value="apply" class="btn btn-primary" />
+	<div class="form-group mb-0">
+		<input type="submit" value="apply" class="btn btn-outline-dark m-2" />
 	</div>
 </form>
