@@ -345,24 +345,20 @@
                     len++;
 
                 });
-                
+
+                mobimgs[i] = $("#slideshow").attr("src");
+                len++;                
 
                 var interval = setInterval(function(){
-                                        
-                    //$("#slideshow").fadeOut(250);
 
-                    if(i == len)
+                    if(i >= len)
                     {
                         i = 0;
                     }
 
                     $("#slideshow").attr("src", mobimgs[i++]);
 
-                
-                    //$("#slideshow").fadeIn(250)
-
-
-                },3000);
+                },5000);
             });
 
 
