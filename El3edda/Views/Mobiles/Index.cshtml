@@ -9,11 +9,11 @@
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
-<div class="row">
+<div class="row mb-3">
 	<div class="col-md-12 bg-dark text-white my-5" style="height:300px">
 		Top Selling
 	</div>
-	<div class="col-md-3 bg-white text-white m-3">
+	<div class="col-md-3 bg-white m-3">
 		@* <partial name="RenderFilter" model=searchparam /> *@
 		@await Component.InvokeAsync("FilterMobile",searchparam)
 	</div>
@@ -40,7 +40,7 @@
 						@{
 							var manfacture_Search = new specSearchParamter() { manufacturerids = new List<int>(){ mobile.Manufacturer.Id } };
 						}
-						<form asp-action="Index" >
+						<form asp-action="Index" method="get" >
 							<input hidden name="manufacturerids" value=@mobile.Manufacturer.Id />
 							<input type="submit" value=@mobile.Manufacturer.Name class="badge rounded-pill bg-dark" style="display: block"/>
 						</form>

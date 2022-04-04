@@ -95,8 +95,8 @@
                         <ul>
                             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><a asp-controller="Mobiles" asp-action="Index">Shop</a></li>
-                            <li><a href="">About Us</a></li>
-                            <li><a href="">Contacts</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                            <li><a asp-controller="Home" asp-action="Contacts">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -180,7 +180,6 @@
     <!-- Js Plugins -->
     <script src="~/Template/js/jquery-3.3.1.min.js"></script>
     <script src="~/Template/js/bootstrap.min.js"></script>
-    <script src="~/Template/js/jquery.nice-select.min.js"></script>
     <script src="~/Template/js/jquery.nicescroll.min.js"></script>
     <script src="~/Template/js/jquery.magnific-popup.min.js"></script>
     <script src="~/Template/js/jquery.countdown.min.js"></script>
@@ -196,6 +195,11 @@
 
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
-@RenderSection("scripts", required: false)
+
+
+@*@RenderSection("scripts", required: false)*@
+
+
 </html>

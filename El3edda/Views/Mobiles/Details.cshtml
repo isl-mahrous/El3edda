@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Details";
     var medias = (List<Media>)ViewBag.Media;
+    Queue<String> mobimgs = new Queue<String>();
 }
 
 
@@ -53,12 +54,12 @@
                             @foreach(var med in medias)
                             {
                                   <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-@i" role="tab">
-                                        <div class="product__thumb__pic set-bg" data-setbg="@med.URL"></div>
-                                    </a>
-                                 </li>
+                                        <a class="nav-link active" data-toggle="tab" href="#tabs-@i" role="tab">
+                                            <div class="product__thumb__pic set-bg" data-setbg="@med.URL"></div>
+                                        </a>
+                                  </li>
 
-                                 i++;
+                                i++;
                             }
 
                         </ul>
@@ -330,12 +331,47 @@
 
            <script>
 
-            $(".product__thumb__pic").on("click", function()
+            $(function()
             {
-                $("#slideshow").attr("src", $(this).attr("data-setbg"));
-            })
-    
-    
+                var mobimgs = [];
+                var i = 0;
+                var len = 0;
+                
+                
+                
+                $('.product__thumb__pic').each(function(i, obj) {
+
+                    mobimgs[i++] = $(this).data("setbg");
+                    len++;
+
+                });
+
+                mobimgs[i] = $("#slideshow").attr("src");
+                len++;                
+
+                var interval = setInterval(function(){
+
+                    if(i >= len)
+                    {
+                        i = 0;
+                    }
+
+                    $("#slideshow").attr("src", mobimgs[i++]);
+
+                },5000);
+            });
+
+
+            $(".product__thumb__pic").on("click", function()
+                {
+                    $("#slideshow").fadeOut(100);
+                    
+                    $("#slideshow").attr("src", $(this).attr("data-setbg"));
+
+                    $("#slideshow").fadeIn(100);
+
+                })
+
          </script>
     }
     
