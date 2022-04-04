@@ -1,10 +1,4 @@
-﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
+﻿
 
 @model El3edda.Models.Mobile
 
@@ -13,190 +7,344 @@
     var medias = (List<Media>)ViewBag.Media;
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Mobile</h4>
-    <hr />
-    <div class="row d-flex">
-        <div class="col-4">
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.ReleaseDate)
-            </dd>
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class = "col-sm-12">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.WarrantyPeriod)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.WarrantyPeriod)
-            </dd>
+<style>
 
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.UnitsInStock)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.UnitsInStock)
-            </dd>
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 
-            <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.UnitsSold)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.UnitsSold)
-            </dd>
-                <dt class = "col-sm-5 mt-3">
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </dt>
-            <dd class = "col-sm-5">
-                @Html.DisplayFor(model => model.Manufacturer.Name)
-            </dd>
+    .card {
+        border: none;
+        -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
+    }
 
-        </div>
+    .comment-text {
+        font-size: 16px
+    }
 
-        <div class="col-4">
+    .fs-10 {
+        font-size: 12px
+    }
 
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.BatteryCapacity)
-            </dt>
-             <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.BatteryCapacity)
-            </dd>
-             <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.CameraMegaPixels)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.CameraMegaPixels)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Color)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Color)
-            </dd>
-             <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.CPU)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.CPU)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Height)
-            </dt>
+</style>
 
-             <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Height)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Width)
-            </dt>
-
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Width)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Thickness)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Thickness)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.OS)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.OS)
-            </dd>
-            <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Screen)
-            </dt>
-             <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Screen)
-            </dd>
-             <dt class = "col-sm-2 mt-3">
-                    @Html.DisplayNameFor(model => model.Specs.Weight)
-            </dt>
-            <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Specs.Weight)
-            </dd>
-        </div>
-
-        <div id="carouselExampleIndicators" class="carousel slide col-4 text-center" data-ride="carousel">
-              
-              <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-              
-              <div class="carousel-inner">
-
-                    <div class="carousel-item active text-center">
-                      <img class="d-block w-100" src=@Model.MainPhotoURL alt="First slide">
-                    </div>
-                
-                    @foreach(var med in medias)
-                    {
-                        <div class="carousel-item">
-
-                          <img class="d-block w-100" src=@med.URL alt="">
-                        
+    <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+        <div class="product__details__pic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__breadcrumb">
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-controller="Mobiles" asp-action="Index">Shop</a>
+                            <span>Mobile Details</span>
                         </div>
-                    }
-                
-              </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-4.png">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-9">
 
-                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                  </a>
+                        <div class="tab-content">
+                              
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__pic__item">
+                                    <img src="@Model.MainPhotoURL" alt="">
+                                </div>
+                            </div>
+                            
+                            @{
+                                int i = 1;
+                             }
 
-                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                  </a>
-        
-              </div>
+                            @foreach(var med in medias)
+                            {
+                                   <div class="tab-pane active" id="tabs-@i" role="tabpanel">
+                                        <div class="product__details__pic__item">
+                                            <img src="@med.URL" alt="">
+                                        </div>
+                                    </div>
+                                    
+                                    i++;
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        
-<div>
-    <a asp-action="ViewSpecs" class="btn btn-primary mt-3" asp-route-id="@Model?.Id">View Specs</a> |
-    <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a> |
-    <a asp-controller="Orders" asp-action="AddItemToShoppingCart" 
-    asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white @((Model.UnitsInStock < 0) ? "disabled" : "")">
+
+        <div class="product__details__content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product__details__text">
+                            <h4>@Model.Name</h4>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span> - 5 Reviews</span>
+                            </div>
+                           
+                            <h3>$@Model.Price <span></span></h3>
+                            <p>@Model.Description</p>
+
+                        
+                            <div class="product__details__cart__option">
+
+                                <a asp-controller="Orders" asp-action="AddItemToShoppingCart" 
+                                 asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white 
+                                               @((Model.UnitsInStock < 0) ? "disabled" : "")">
                                     <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c")) </a>
-                                    | <a asp-action="Edit" class="btn btn-warning mt-3" asp-route-id="@Model?.Id">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__tab">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5"
+                                    role="tab">Description</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
+                                    Previews(5)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
+                                    information</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <p class="note">@Model.Description</p>
+                                        
+                                        <div class="product__details__tab__content__item">
+                                            
+                                            <h5>Mobile Infomation</h5>
+
+                                            <p>The mobile above is of type @Model.Manufacturer.Name, made in @Model.Manufacturer.Origin, named @Model.Name, 
+                                                which features many of the same capabilities as a modern smart mobile phone. These handy little devices allow
+                                                individuals to retrieve and store e-mail messages, create a contact file, coordinate appointments, 
+                                                surf the internet, exchange text messages and more. Our product is released in @Model.ReleaseDate with warranty period up 
+                                                to @Model.WarrantyPeriod. With a competitive price of @Model.Price our mobile suit well ot your need. 
+                                                @Model.UnitsSold peices have beeen sold till now since the first release of the phone 
+                                                Every mobile must be accompanied with specific software to operate the unit and must feature
+                                                a touchscreen and touchpad.</p>
 
 
-</div>
+                                        </div>
 
+                                        <div class="product__details__tab__content__item mb-5">
+                                            
+                                            <h5>Material used</h5>
+                                            
+                                            <p> The metal Body is made mainly of aluminum alloy, which is mixed with a small amount of magnesium or other metal materials
+                                                to enhance its strength. Magnesium-aluminum alloy and titanium-aluminum alloy are now commonly used as the body of mobile
+                                                phones. Currently, aluminum is the most versatile and cost-effective smartphone body material, and it is more recyclable
+                                                than titanium and magnesium. </p>
+                                        
+                                        </div>
 
- 
-     <script>
-    
-        $("#carouselExampleIndicators").carousel(
-            {
-                interval: 1500;
-            });
-    
-    </script>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        
+                                        <div class="product__details__tab__content__item mb-5">
+
+                                             <div class="card p-3 mb-2">
+                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40" class="rounded-circle">
+                                                    <div class="d-flex flex-column ms-2">
+                                                        <h6 class="mb-1 text-primary m-1">Emma</h6>
+                                                        <p class="comment-text m-1">This is the first time to buy from el 3edda store and it was such a great experience the I really need to do it so soon. I bought xaomi phone last year and it still works well since then.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="card p-3 mb-2">
+                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/hczKIze.jpg" height="40" width="40" class="rounded-circle">
+                                                    <div class="d-flex flex-column ms-2">
+                                                        <h6 class="mb-1 text-primary m-1">Morne Micheal</h6>
+                                                        <p class="comment-text m-1">One of my friends recommended me buying my daughter birthday gift from El-3edda store and can't express my sincere advice to me. It was such a great experiece and the warranty wouldn't be more longer than that. Thanl you all</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 21,2020 1:10 PM</span> </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card p-3 mb-2">
+                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/C4egmYM.jpg" height="40" width="40" class="rounded-circle">
+                                                    <div class="d-flex flex-column ms-2">
+                                                        <h6 class="mb-1 text-primary m-1">إسلام محروس</h6>
+                                                        <p class="comment-text m-1">الحقيقة انبسطت جدا بالتعامل مع تيم عظيم زى تيم العدة ستور. الموبايلات جودتها حلوة جدا والأسعار تنافسية جدا بالمقارنة بباقى الأسعار فى السوق . خدمة ما بعد البيع رائعة. شكرا ليكوا وان شاء الله مش هتكون اخر تجربة</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 12,2020 12:10 PM</span> </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-7" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        
+                                        <p class="note">@Model.Name</p>
+                                        
+                                        <div class="product__details__tab__content__item row">
+                                            
+                                         <div class="col-6">
+                                           <table class="table caption-top">
+                                              <caption>Specifications</caption>
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col">Feature</th>
+                                                  <th scope="col">information</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+
+                                                 <tr>
+                                                  <td scope="row">Manufaturer</td>
+                                                  <td>@Model.Manufacturer.Name</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Release Date</td>
+                                                  <td>@Model.ReleaseDate</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">CPU</td>
+                                                  <td>@Model.Specs.CPU</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Color</td>
+                                                  <td>@Model.Specs.Color</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Battery Capacity</td>
+                                                  <td>@Model.Specs.BatteryCapacity</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Camera</td>
+                                                  <td>@Model.Specs.CameraMegaPixels</td>
+                                                </tr>
+
+                                              </tbody>
+                                           </table>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <table class="table caption-top">
+
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col">Feature</th>
+                                                  <th scope="col">information</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+
+                                                <tr>
+                                                  <td scope="row">Operating System</td>
+                                                  <td>@Model.Specs.OS</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Screen</td>
+                                                  <td>@Model.Specs.Screen</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Height</td>
+                                                  <td>@Model.Specs.Height</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Width</td>
+                                                  <td>@Model.Specs.Width</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Thickness</td>
+                                                  <td>@Model.Specs.Thickness</td>
+                                                </tr>
+
+                                                 <tr>
+                                                  <td scope="row">Weight</td>
+                                                  <td>@Model.Specs.Weight</td>
+                                                </tr>
+
+                                              </tbody>
+                                           </table>
+                                         </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Details Section End -->
+
