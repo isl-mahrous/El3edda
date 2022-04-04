@@ -119,8 +119,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -153,8 +163,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -188,8 +208,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -222,8 +252,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -256,8 +296,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -290,8 +340,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -324,8 +384,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -358,8 +428,18 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                                        Type = MediaType.Video
+                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        Type = MediaType.Photo
+                                    },
+                                    new Media()
+                                    {
+                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        Type = MediaType.Photo
                                     }
                                 },
                                 Specs = new Specs()
@@ -377,7 +457,7 @@ namespace El3edda.Data
                                 }
                             }
                         }
-                    );
+                    ); ; ;
                     context.SaveChanges();
                 }
             }
