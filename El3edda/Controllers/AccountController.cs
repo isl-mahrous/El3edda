@@ -14,12 +14,17 @@ namespace El3edda.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly AppDbContext _context;
 
-        public AccountController(AppDbContext context, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AccountController(
+            AppDbContext context,
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager
+        )
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         public IActionResult Login()
         {
             var response = new LoginVM();
@@ -29,7 +34,8 @@ namespace El3edda.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            if (!ModelState.IsValid) return View(loginVM);
+            if (!ModelState.IsValid)
+                return View(loginVM);
 
             var user = await _userManager.FindByEmailAsync(loginVM.Email);
             if (user != null)
@@ -38,7 +44,12 @@ namespace El3edda.Controllers
 
                 if (passwordCheck)
                 {
-                    var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
+                    var result = await _signInManager.PasswordSignInAsync(
+                        user,
+                        loginVM.Password,
+                        false,
+                        false
+                    );
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");
@@ -52,8 +63,6 @@ namespace El3edda.Controllers
             return View(loginVM);
         }
 
-
-
         ///Register
         public IActionResult Register()
         {
@@ -61,11 +70,11 @@ namespace El3edda.Controllers
             return View(response);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            if (!ModelState.IsValid) return View(registerVM);
+            if (!ModelState.IsValid)
+                return View(registerVM);
 
             var user = await _userManager.FindByEmailAsync(registerVM.Email);
             if (user != null)
@@ -90,17 +99,14 @@ namespace El3edda.Controllers
 
             TempData["Error"] = "Make sure you use stronger password";
             return View(registerVM);
-
         }
 
-        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
-
 
         //Users
         public async Task<IActionResult> Users()
