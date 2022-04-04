@@ -69,21 +69,9 @@
                               
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="@Model.MainPhotoURL" alt="">
+                                    <img src="@Model.MainPhotoURL" alt="" id="slideshow">
                                 </div>
                             </div>
-
-
-                            @foreach(var med in medias)
-                            {
-                                   <div class="tab-pane active" id="tabs-@j" role="tabpanel">
-                                        <div class="product__details__pic__item">
-                                            <img src="@med.URL" alt="">
-                                        </div>
-                                    </div>
-                                    
-                                    j++;
-                            }
 
                         </div>
 
@@ -337,3 +325,18 @@
     </section>
     <!-- Shop Details Section End -->
 
+ 
+    @section scripts{
+
+           <script>
+
+            $(".product__thumb__pic").on("click", function()
+            {
+                $("#slideshow").attr("src", $(this).attr("data-setbg"));
+            })
+    
+    
+         </script>
+    }
+    
+ 
