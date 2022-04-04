@@ -126,6 +126,12 @@
                     </div>
                 </form>
                 </div>
+                <form asp-action="PaypalCompleteOrder" method="POST" name="paypalPayment">
+                    <input asp-for="ShippingAddress.State" hidden/>
+                    <input asp-for="ShippingAddress.City" hidden/>
+                    <input asp-for="ShippingAddress.Neighbourhood" hidden/>
+                    <input asp-for="ShippingAddress.Street" hidden/>
+                </form>
             </div>
             </div>
         </div>
@@ -167,7 +173,12 @@
         // Execute the payment
         onAuthorize: function(data, actions) {
         return actions.payment.execute().then(function() {
-            var url = '@Url.Action("PaypalCompleteOrder", "Orders", new {ShippingAddress = Model.ShippingAddress})';
+            var city = document.getElementById("ShippingAddress_City").value;
+            var street = document.getElementById("ShippingAddress_Street").value;
+            var state = document.getElementById("ShippingAddress_State").value;
+            var neighbourhood = document.getElementById("ShippingAddress_Neighbourhood").value;
+
+            var url = '@Url.Action("PaypalCompleteOrder", "Orders")?city='+ city + '&street='+ street + '&state=' + state + "&neighbourhood="+ neighbourhood;
             window.location.href = url;
         });
         }

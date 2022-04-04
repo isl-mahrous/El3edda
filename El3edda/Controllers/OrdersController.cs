@@ -167,10 +167,9 @@ namespace El3edda.Controllers
 
                 await _shoppingCart.ClearShoppingCartAsync();
 
-                return RedirectToAction(
-                    "CompleteOrder",
-                    new { ShippingAddress = checkoutVM.ShippingAddress }
-                );
+                sendConfirmationMail();
+
+                return View("CompleteOrder");
             }
             else
             {
@@ -178,28 +177,41 @@ namespace El3edda.Controllers
             }
         }
 
-        async public Task<IActionResult> PaypalCompleteOrder(Address ShippingAddress)
+        async public Task<IActionResult> PaypalCompleteOrder(
+            string city,
+            string neighbourhood,
+            string state,
+            string street
+        )
         {
             var items = _shoppingCart.GetShoppingCartItems();
             var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var address = new Address()
+            {
+                City = city,
+                Neighbourhood = neighbourhood,
+                State = state,
+                Street = street
+            };
 
-            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, ShippingAddress);
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, address);
             await _shoppingCart.ClearShoppingCartAsync();
 
+            sendConfirmationMail();
             return View("CompleteOrder");
         }
 
-        async public Task<IActionResult> CompleteOrder(Address ShippingAddress)
+        private void sendConfirmationMail()
         {
-            //var items = _shoppingCart.GetShoppingCartItems();
-            //var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
-            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
-            //await _ordersService.StoreOrderAsync(items, userId, userEmailAddress, ShippingAddress);
-            //await _shoppingCart.ClearShoppingCartAsync();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(
+                "https://orderconfirmationemailapi.azurewebsites.net/api/"
+            );
 
-            return View();
+            client.GetAsync($"sendmailer/{userEmailAddress}");
         }
     }
 }
