@@ -13,10 +13,14 @@ web based solution for e-commerce website specialized in selling mobile phones u
     - support for third party regestration/login using (Facebook)
 
 ## prodauct navigation
-    - static landing page 
+    - landing page 
     - browsing products in grid view
     - view mobile details
     - filtering mobiles by price, manfacutre , specs, etc.
+
+### landing page
+![land](https://media4.giphy.com/media/fI8B0JsLHbEwIE0BpS/giphy.gif)
+
 ### browsing products
 ![all](images/site/view_mobile.png)
 
