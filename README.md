@@ -1,4 +1,4 @@
-![El3edda](images/logo.png)
+<img src="images/logo.png" width="50%" />
 
 web based solution for e-commerce website specialized in selling mobile phones using .Net core .
 
@@ -22,10 +22,11 @@ web based solution for e-commerce website specialized in selling mobile phones u
 ![land](https://media4.giphy.com/media/fI8B0JsLHbEwIE0BpS/giphy.gif)
 
 ### browsing products
-![all](images/site/view_mobile.png)
+<img src="images/site/view_mobile.png" width="80%" />
+
 
 ### view mobile details
-![detials](images/site/phone_details.png)
+<img src="images/site/phone_details.png" width="80%" />
 
 ### filtering mobiles
 ![filter](images/site/filterView.png)
