@@ -33,3 +33,13 @@ web based solution for e-commerce website specialized in selling mobile phones u
 ## products
     - add/edit/delete products
 
+
+
+# Development Guide
+# packages overview
+![packages](documentation/packageDiagrams.png)
+
+
+
+# models class diagram
+![class_diagram](documentation\class_diagram.png)
