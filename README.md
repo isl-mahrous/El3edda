@@ -14,9 +14,17 @@ web based solution for e-commerce website specialized in selling mobile phones u
 
 ## prodauct navigation
     - static landing page 
-    - browsing products and view their details
+    - browsing products in grid view
+    - view mobile details
     - filtering mobiles by price, manfacutre , specs, etc.
+### browsing products
+![all](images/site/view_mobile.png)
 
+### view mobile details
+![detials](images/site/phone_details.png)
+
+### filtering mobiles
+![filter](images/site/filterView.png)
 ## order 
     - managing in session cart
     - support third party payment using Stripe , paypal 
@@ -32,14 +40,14 @@ web based solution for e-commerce website specialized in selling mobile phones u
 
 ## products
     - add/edit/delete products
-
+![add](images/site/edit_mobile.png)
 
 
 # Development Guide
-# packages overview
+## packages overview
 ![packages](documentation/packageDiagrams.png)
 
 
 
-# models class diagram
+## models class diagram
 ![class_diagram](documentation/class_diagram.png)
