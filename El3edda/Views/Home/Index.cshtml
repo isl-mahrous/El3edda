@@ -1,317 +1,145 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    var TopSellers = (IEnumerable<Mobile>)ViewBag.TopSellers;
-    var TopSellersList = TopSellers.ToList();
-    var NewArrivals = (IEnumerable<Mobile>)ViewBag.NewArrivals ;
-    var HotSales = (IEnumerable<Mobile>)ViewBag.HotSales;
+	ViewData["Title"] = "Home Page";
+	var TopSellers = (IEnumerable<Mobile>)ViewBag.TopSellers;
+	var NewArrivals = (IEnumerable<Mobile>)ViewBag.NewArrivals;
+	var HotSales = (IEnumerable<Mobile>)ViewBag.HotSales;
+	var TopSellersList = TopSellers.ToList();
+	var NewArrivalsList = NewArrivals.ToList();
+	var HotSalesList = HotSales.ToList();
+	var BestDealMobile = (Mobile)ViewBag.BestDealMobile;
 }
 
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/Template/img/hero/hero-1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Luxury Collection</h6>
-                                <h2>Fall - Winter Collections 2022</h2>
-                                <p>We have a collection of luxury phones from the top-notch manufacturers to fit and suit all your needs.</p>
-                                <a href="@Url.Action("Index", "Mobiles")" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg="/Template/img/hero/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Top-Notch Collection</h6>
-                                <h2>IPhone Collection 2022</h2>
-                                <p>We have a collection of exceptional-quality top-notch phones to suit your needs.</p>
-                                <a href="@Url.Action("Index", "Mobiles")" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
+<!-- Hero Section Begin -->
+<section class="hero">
+	<div class="hero__slider owl-carousel">
+		<div class="hero__items set-bg" data-setbg="/Template/img/hero/hero-1.jpg">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-7 col-md-8">
+						<div class="hero__text">
+							<h6>Luxury Collection</h6>
+							<h2>Fall - Winter Collections 2022</h2>
+							<p>We have a collection of luxury phones from the top-notch manufacturers to fit and suit all your needs.</p>
+							<a href="@Url.Action("Index", "Mobiles")" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hero__items set-bg" data-setbg="/Template/img/hero/hero-2.jpg">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-7 col-md-8">
+						<div class="hero__text">
+							<h6>Top-Notch Collection</h6>
+							<h2>IPhone Collection 2022</h2>
+							<p>We have a collection of exceptional-quality top-notch phones to suit your needs.</p>
+							<a href="@Url.Action("Index", "Mobiles")" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Hero Section End -->
 
-     <!-- Product Section Begin Work in Progress -->
-    <section class="product spad">
+<div style="height:10%;"></div>
+
+<!-- Product Section Begin -->
+<section class="product spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="filter__controls">
+					<li class="active" data-filter=".best-sellers">Best Sellers</li>
+					<li data-filter=".new-arrivals">New Arrivals</li>
+					<li data-filter=".hot-sales">Hot Sales</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row product__filter">
+			<!--Top Sellers-->
+			@for (int i = 0; i < TopSellersList.Count; i++)
+			{
+				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-sellers">
+					<div class="product__item">
+						<div class="product__item__pic set-bg" data-setbg="@TopSellersList[i].MainPhotoURL">
+						</div>
+						<div class="product__item__text">
+							<h6>@TopSellersList[i].Name</h6>
+							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @TopSellersList[i].Id})" class="add-cart">+ Add To Cart</a>
+							<h5>@TopSellersList[i].Price EGP</h5>
+						</div>
+					</div>
+				</div>
+			}
+			<!--Top Sellers end-->
+
+			<!--Hot Sales-->
+			@for (int i = 0; i < HotSalesList.Count; i++)
+			{
+				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" style="display:none;">
+					<div class="product__item">
+						<div class="product__item__pic set-bg" data-setbg="@HotSalesList[i].MainPhotoURL">
+						</div>
+						<div class="product__item__text">
+							<h6>@HotSalesList[i].Name</h6>
+							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @HotSalesList[i].Id})" class="add-cart">+ Add To Cart</a>
+							<h5>@HotSalesList[i].Price EGP</h5>
+						</div>
+					</div>
+				</div>
+			}
+			<!--Hot Sales End-->
+
+			<!--New Arrivals-->
+			@for (int i = 0; i < NewArrivalsList.Count; i++)
+			{
+				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" style="display:none;">
+					<div class="product__item">
+						<div class="product__item__pic set-bg" data-setbg="@NewArrivalsList[i].MainPhotoURL">
+						</div>
+						<div class="product__item__text">
+							<h6>@NewArrivalsList[i].Name</h6>
+							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @NewArrivalsList[i].Id})" class="add-cart">+ Add To Cart</a>
+							<h5>@NewArrivalsList[i].Price EGP</h5>
+						</div>
+					</div>
+				</div>
+			}
+			<!--New Arrivals End-->
+
+		</div>
+	</div>
+</section>
+<!-- Product Section End -->
+
+   <!-- Categories Section Begin -->
+    <section class="categories spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">Best Sellers</li>
-                        <li data-filter=".new-arrivals">New Arrivals</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row product__filter">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="@TopSellersList[0].MainPhotoURL">
-                            <span class="label">New</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>@TopSellersList[0].Name</h6>
-                            <a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @TopSellersList[0].Id})" class="add-cart">+ Add To Cart</a>
-                            <h5>@TopSellersList[0].Price EGP</h5>
+                <div class="col-lg-4">
+                    <div class="categories__hot__deal">
+                        <img src="@BestDealMobile.MainPhotoURL" alt="">
+                        <div class="hot__deal__sticker">
+                            <span>Sale Of</span>
+                            <h5>@BestDealMobile.Price EGP</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Piqué Biker Jacket</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$67.24</h5>
-                            <div class="product__color__select">
-                                <label for="pc-4">
-                                    <input type="radio" id="pc-4">
-                                </label>
-                                <label class="active black" for="pc-5">
-                                    <input type="radio" id="pc-5">
-                                </label>
-                                <label class="grey" for="pc-6">
-                                    <input type="radio" id="pc-6">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-3">
+
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                            <span class="label">Sale</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Multi-pocket Chest Bag</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$43.48</h5>
-                            <div class="product__color__select">
-                                <label for="pc-7">
-                                    <input type="radio" id="pc-7">
-                                </label>
-                                <label class="active black" for="pc-8">
-                                    <input type="radio" id="pc-8">
-                                </label>
-                                <label class="grey" for="pc-9">
-                                    <input type="radio" id="pc-9">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-4.jpg">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Diagonal Textured Cap</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$60.9</h5>
-                            <div class="product__color__select">
-                                <label for="pc-10">
-                                    <input type="radio" id="pc-10">
-                                </label>
-                                <label class="active black" for="pc-11">
-                                    <input type="radio" id="pc-11">
-                                </label>
-                                <label class="grey" for="pc-12">
-                                    <input type="radio" id="pc-12">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-5.jpg">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Lether Backpack</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$31.37</h5>
-                            <div class="product__color__select">
-                                <label for="pc-13">
-                                    <input type="radio" id="pc-13">
-                                </label>
-                                <label class="active black" for="pc-14">
-                                    <input type="radio" id="pc-14">
-                                </label>
-                                <label class="grey" for="pc-15">
-                                    <input type="radio" id="pc-15">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-6.jpg">
-                            <span class="label">Sale</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Ankle Boots</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$98.49</h5>
-                            <div class="product__color__select">
-                                <label for="pc-16">
-                                    <input type="radio" id="pc-16">
-                                </label>
-                                <label class="active black" for="pc-17">
-                                    <input type="radio" id="pc-17">
-                                </label>
-                                <label class="grey" for="pc-18">
-                                    <input type="radio" id="pc-18">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>T-shirt Contrast Pocket</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$49.66</h5>
-                            <div class="product__color__select">
-                                <label for="pc-19">
-                                    <input type="radio" id="pc-19">
-                                </label>
-                                <label class="active black" for="pc-20">
-                                    <input type="radio" id="pc-20">
-                                </label>
-                                <label class="grey" for="pc-21">
-                                    <input type="radio" id="pc-21">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-8.jpg">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Basic Flowing Scarf</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>$26.28</h5>
-                            <div class="product__color__select">
-                                <label for="pc-22">
-                                    <input type="radio" id="pc-22">
-                                </label>
-                                <label class="active black" for="pc-23">
-                                    <input type="radio" id="pc-23">
-                                </label>
-                                <label class="grey" for="pc-24">
-                                    <input type="radio" id="pc-24">
-                                </label>
-                            </div>
-                        </div>
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="categories__deal__countdown">
+                        <span>Deal Of The Week</span>
+                        <h2>@BestDealMobile.Name</h2>
+ 
+                        <a href="@Url.Action("AddItemToShoppingCart", "Orders", new{Id = @BestDealMobile.Id})" class="primary-btn">Shop now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Product Section End -->
+    <!-- Categories Section End -->

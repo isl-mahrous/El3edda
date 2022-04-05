@@ -112,6 +112,7 @@ namespace El3edda.Data
                                     "The Samsung Galaxy S10 is a smartphone designed and marketed by Samsung Electronics, a division of Samsung Corporation. It was released on September 3, 2020, by Samsung Electronics in the United States and on March 31, 2020, in Europe. It was the tenth-generation of the Galaxy S series of smartphones, and the first smartphone to feature a notch.",
                                 WarrantyPeriod = 12,
                                 UnitsInStock = 10,
+                                UnitsSold = 100,
                                 MainPhotoURL =
                                     "https://mobizil.com/wp-content/uploads/2019/02/samsung-s10.jpg",
                                 ManufacturerId = 1,
@@ -156,6 +157,7 @@ namespace El3edda.Data
                                     "The Xiaomi Redmi Note 8 Pro is a smartphone designed and marketed by Xiaomi Communications, a division of Xiaomi Group. It was released on September 3, 2020, by Xiaomi Communications in the United States and on March 31, 2020, in Europe.",
                                 WarrantyPeriod = 5,
                                 UnitsInStock = 10,
+                                UnitsSold = 700,
                                 MainPhotoURL =
                                     "https://mobizil.com/wp-content/uploads/2019/09/Xiaomi-Redmi-Note-8-Pro.jpg",
                                 ManufacturerId = 3,
@@ -201,6 +203,7 @@ namespace El3edda.Data
                                     "The iPhone 11 is a smartphone designed and marketed by Apple Inc. It was released on September 3, 2020, by Apple Inc. It was the tenth-generation of the iPhone series of smartphones, and the first smartphone to feature a notch.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 10,
+                                UnitsSold = 400,
                                 MainPhotoURL =
                                     "https://mobizil.com/wp-content/uploads/2019/09/Apple-iPhone-11.jpg",
                                 ManufacturerId = 2,
@@ -289,6 +292,7 @@ namespace El3edda.Data
                                     "The iPhone 13 Pro Max is Apple's biggest phone in the lineup with a massive, 6.7 screen that for the first time in an iPhone comes with 120Hz ProMotion display that ensures super smooth scrolling.The benefit of such a gigantic phone is that it also comes with the biggest battery of all iPhone 13 series.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 15,
+                                UnitsSold = 800,
                                 MainPhotoURL =
                                     "https://www.theiphonewiki.com/w/images/7/7d/IPhone_13_Pro_Max.png",
                                 ManufacturerId = 2,
@@ -333,6 +337,7 @@ namespace El3edda.Data
                                     "The iPhone 13 Pro is Apple's smaller premium iPhone with a 6.1 screen size and for the first time in an iPhone, it comes with a 120Hz ProMotion display for super smooth scrolling.The list of innovations includes a more capable triple camera setup, with a wide, ultra - wide and zoom cameras, as well as a LiDAR scanner.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 10,
+                                UnitsSold = 600,
                                 MainPhotoURL =
                                     "https://www.theiphonewiki.com/w/images/4/4e/IPhone_13_Pro.png",
                                 ManufacturerId = 2,
@@ -377,6 +382,7 @@ namespace El3edda.Data
                                     "The iPhone 13 is the successor to Apple's best selling iPhone 12, and it improves upon a successful formula: $800 price for a flagship processor and a 6.1-inch screen size that is not too large, nor too small. The iPhone 13 brings a new Apple A15 Bionic chip and improvements to the dual camera setup consisting of a wide and ultra-wide camera.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 5,
+                                UnitsSold = 400,
                                 MainPhotoURL =
                                     "https://www.theiphonewiki.com/w/images/3/37/IPhone_13.png",
                                 ManufacturerId = 2,
@@ -421,6 +427,7 @@ namespace El3edda.Data
                                     "The iPhone 13 Mini is the successor to Apple's first super mini flagship in recent years, the iPhone 12 Mini. It retains the same 5.4 screen size and the one-handed use friendly form factor, while at the same time bringing a faster Apple A15 Bionic processor. On the camera front, the 13 Mini keeps a wide and an ultra - wide setup, and it does not have a dedicated telephoto zoom camera.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 18,
+                                UnitsSold = 800, 
                                 MainPhotoURL =
                                     "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                 ManufacturerId = 2,
