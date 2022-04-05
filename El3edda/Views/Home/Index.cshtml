@@ -1,5 +1,6 @@
-﻿@{
-	ViewData["Title"] = "Home Page";
+﻿@using El3edda.Models
+@{
+	ViewData["Title"] = "Home";
 	var TopSellers = (IEnumerable<Mobile>)ViewBag.TopSellers;
 	var NewArrivals = (IEnumerable<Mobile>)ViewBag.NewArrivals;
 	var HotSales = (IEnumerable<Mobile>)ViewBag.HotSales;

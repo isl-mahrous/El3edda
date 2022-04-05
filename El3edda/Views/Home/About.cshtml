@@ -1,4 +1,6 @@
-﻿
+﻿@{
+    ViewBag.Title = "About";
+}
 
 
     <!-- Breadcrumb Section Begin -->
@@ -9,7 +11,7 @@
                     <div class="breadcrumb__text text-center">
                         <h4>About Us</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
+                            <a href="@Url.Action("Index", "Home")">Home</a>
                             <span>About Us</span>
                         </div>
                     </div>
