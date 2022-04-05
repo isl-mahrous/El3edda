@@ -45,10 +45,15 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <ul class="nav nav-tabs" role="tablist">
-                               
+                            
+                             <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="@Model.MainPhotoURL"></div>
+                                </a>
+                             </li>
+                            
                             @{
-                                int i = 1;
-                                int j = 1;
+                                int i = 2;
                              }
 
                             @foreach(var med in medias)
@@ -337,17 +342,13 @@
                 var i = 0;
                 var len = 0;
                 
-                
-                
+
                 $('.product__thumb__pic').each(function(i, obj) {
 
                     mobimgs[i++] = $(this).data("setbg");
                     len++;
 
                 });
-
-                mobimgs[i] = $("#slideshow").attr("src");
-                len++;                
 
                 var interval = setInterval(function(){
 
@@ -358,17 +359,14 @@
 
                     $("#slideshow").attr("src", mobimgs[i++]);
 
-                },5000);
+                }, 3000);
             });
 
 
             $(".product__thumb__pic").on("click", function()
                 {
-                    $("#slideshow").fadeOut(100);
                     
                     $("#slideshow").attr("src", $(this).attr("data-setbg"));
-
-                    $("#slideshow").fadeIn(100);
 
                 })
 
