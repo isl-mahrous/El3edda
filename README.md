@@ -42,4 +42,4 @@ web based solution for e-commerce website specialized in selling mobile phones u
 
 
 # models class diagram
-![class_diagram](documentation\class_diagram.png)
+![class_diagram](documentation/class_diagram.png)
