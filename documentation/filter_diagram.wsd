@@ -1,0 +1,60 @@
+@startuml filter_with_decorator
+class Mobile
+{
+    int Id
+    srting Name
+    datetime Release Date
+    Manufacturer Manufacturer
+    double Price
+    string Description
+    Media Media[]
+    int warrentyPeriod
+    Specs Dpecs
+    int unitsInStock
+    int unitsSold
+}
+Specs *-- Mobile
+Manufacturer *-- Mobile
+Media o-- Mobile
+
+
+interface IsearchParamters {
+    string text_search { get; set; } 
+    dateTime releasebefore { get; set; }
+    dateTime releaseafter { get; set; }
+    Icollection<Manufacturer> manufacturer { get; set; }
+    double priceHiegher { get; set; }
+    double priceLower { get; set; }
+    double warrentyPeriodHiger { get; set; }
+    double warrentyPeriodLower { get; set; }
+    bool isSold { get; set; }
+
+}
+
+
+class search_builder {
+    IsearchParamters _searchParamter { get; }
+    search_builder()
+    search_builder(IsearchParamters)
+    search_builder setTextSearch(string)
+    search_builder setReleaseBefore(dateTime)
+    search_builder setReleaseAfter(dateTime)
+    search_builder setManufacturer(Icollection<Manufacturer>)
+    search_builder setPriceHiger(double)
+    search_builder setPriceLower(double)
+    search_builder setWarrentyPeriodHiger(double)
+    search_builder setWarrentyPeriodLower(double)
+    search_builder setIsSold(bool)
+    IsearchParamters build()
+}
+
+class IPredicateBuilderDecorator {
+    pridicateBuilder _predicateBuilder { get; }
+    IPredicateBuilderDecorator(pridicateBuilder)
+    build()
+}
+
+note right of IsearchParamters
+    search term is obtained from the search bar 
+    it will check every string property in the mobile
+end note
