@@ -1,0 +1,19 @@
+@startuml meta_test
+class "MetaData<T>" {
+    bool isDiscrate
+    string spec_name
+    Icollection<T>? values
+    T givenValue
+}
+
+class Mobile {
+
+    int units_in_stock
+    Icollection<MetaData> metaData
+    Media Media[]
+    string Description
+    double Price
+    int unitsSold
+}
+
+Mobile *-- "MetaData<T>"

@@ -1,0 +1,54 @@
+@startuml components_diagram
+package Controllers {
+    class AccountController
+    class FilterController
+    class HomeController
+    class ManufacturersController
+    class MediaController
+    class MobilesController
+    class OrdersController
+}
+
+package Data {
+    class ShopingCart
+    package Payment {
+        class PayPalSettings
+        class stripeSettings
+    }
+    package Services {
+        class ManufacturerService
+        class MediaService
+        class MobileService
+        class OrderServices
+    }
+}
+
+Package Models {
+    class Address
+    class ApplicationUser
+    class ErrorViewModel
+    class Manufacturer
+    class Media
+    class Mobile
+    class MobileViewModel
+    class Order
+    class OrderItem
+    class searchParamter
+    class ShoppingCartItem
+    class Specs
+    Mobile            *-- Specs           
+    Mobile            *-- Manufacturer    
+    Mobile            o-- Media           
+    ShoppingCartItem  o--  Mobile          
+    Order             *-- ApplicationUser 
+    Order             *-- OrderItem       
+    OrderItem         o-- Mobile
+    ApplicationUser   *-- Address
+    Order             *-- Address
+
+}
+
+Package Utils {
+    class predicateBuilder
+    class propSearch
+}

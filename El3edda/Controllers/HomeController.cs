@@ -20,9 +20,10 @@ namespace El3edda.Controllers
         public IActionResult Index()
         {
             var mobiles = service.GetAllAsync().Result;
-            ViewBag.TopSellers = mobiles.OrderByDescending(p => p.UnitsSold).Take(3);
-            ViewBag.NewArrivals = mobiles.OrderByDescending(p => p.ReleaseDate).Take(3);
-            ViewBag.HotSales = mobiles.OrderBy(p => p.Price).Take(3);
+            ViewBag.BestDealMobile = mobiles.OrderBy(p => p.Price).First();
+            ViewBag.TopSellers = mobiles.OrderByDescending(p => p.UnitsSold).Take(8);
+            ViewBag.NewArrivals = mobiles.OrderByDescending(p => p.ReleaseDate).Take(4);
+            ViewBag.HotSales = mobiles.OrderBy(p => p.Price).Take(4);
             return View();
         }
 
