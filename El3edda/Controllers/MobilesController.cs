@@ -343,7 +343,7 @@ namespace El3edda.Controllers
         {
 
 
-            var mobile = await _service.GetByIdAsync(id);
+            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {

@@ -4,61 +4,122 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1 style="margin-left:3%; margin-bottom:3% margin-top:3%;">Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="margin-left:3%; margin-top:1%">Are you sure you want to delete this?</h3>
 <div>
-    <h4>Mobile</h4>
+    <h4 style="margin-left:3%">Mobile @Model.Name (@Model.Price EGP)</h4>
     <hr />
-    <dl class="row">
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WarrantyPeriod)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WarrantyPeriod)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitsInStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitsInStock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitsSold)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitsSold)
-        </dd>
-    </dl>
+    <div class="row product__details__tab__content__item" style="margin-left:2.5%; margin-right:2.5% ; margin-top:5%">
+                                            
+        <div class="col-md-4 col-sm-12">
+            <table class="table caption-top">
+                <caption>Specifications</caption>
+                <thead>
+                <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">information</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                    <td scope="row">Manufaturer</td>
+                    <td>@Model.Manufacturer.Name</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Release Date</td>
+                    <td>@Model.ReleaseDate</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">CPU</td>
+                    <td>@Model.Specs.CPU</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Color</td>
+                    <td>@Model.Specs.Color</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Battery Capacity</td>
+                    <td>@Model.Specs.BatteryCapacity</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Camera</td>
+                    <td>@Model.Specs.CameraMegaPixels</td>
+                </tr>
+
+                </tbody>
+            </table>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        <table class="table caption-top">
+            <thead>
+                <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">information</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td scope="row">Operating System</td>
+                    <td>@Model.Specs.OS</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Screen</td>
+                    <td>@Model.Specs.Screen</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Height</td>
+                    <td>@Model.Specs.Height</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Width</td>
+                    <td>@Model.Specs.Width</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Thickness</td>
+                    <td>@Model.Specs.Thickness</td>
+                </tr>
+
+                    <tr>
+                    <td scope="row">Weight</td>
+                    <td>@Model.Specs.Weight</td>
+                </tr>
+            </tbody>
+        </table>
+     </div>
+               
+
+        <div class="col-md-4 text-center">
+            <div class="col-md-12">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a class="image">
+                            <img src="@Model.MainPhotoURL">
+                        </a>
+                    </div>
+                </div>
+             </div>
+         </div>
+      </div>
+
+
     
-    <form asp-action="Delete">
+    <form asp-action="Delete" style="margin-bottom:5%" class="text-center">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger mt-3" /> |
-        <a asp-action="Index"  class="btn btn-dark mt-3">Back to List</a>
+        <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a> |
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary mt-3">View Details</a> |
+        <input type="submit" value="Confirm Delete" class="btn btn-danger mt-3" />
     </form>
 </div>
