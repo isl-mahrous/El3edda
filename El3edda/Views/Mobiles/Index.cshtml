@@ -21,8 +21,8 @@
 
 		@foreach (var mobile in Model)
 		{
-			<div class="col-md-4 col-sm-6">
-				<div class="product-grid">
+			<div class="col-md-3 col-sm-6" style="margin-top:1%;">
+				<div class="product-grid" style="height:430px">
 					<div class="product-image">
 						<a asp-controller="Mobiles" asp-action="Details" asp-route-id="@mobile.Id" class="image">
 							<img src=@mobile.MainPhotoURL>

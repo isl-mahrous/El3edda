@@ -9,21 +9,21 @@
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
-<h1>Create New Mobile</h1>
+<h1 style="margin-left:3%">Create New Mobile</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-12">
 
-        <form class="row" asp-action="Create" enctype="multipart/form-data">
+        <form class="row m-10" asp-action="Create" enctype="multipart/form-data">
             <div class="row col-md-9">
                 <p>
-                    <h3>
+                    <h3 style="margin-left:3%">
                         Technical Details
                     </h3>
                 </p>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="col-md-6">
+                <div class="col-md-5" style="margin-left:3%">
 
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
@@ -87,6 +87,7 @@
                 </div>
                 <div class="col-md-6">
 
+                    <label>Media</label>
 
                     <div class="form-group">
                         <div class="custom-file">
@@ -143,7 +144,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-11" style="margin-left:3%">
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
                         <textarea asp-for="Description" class="form-control"></textarea>
@@ -151,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
                 <p>
                     <h3>Mobile Preview</h3>
                 </p>
