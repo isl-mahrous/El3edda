@@ -184,8 +184,8 @@ namespace El3edda.utills
                 this.StringSearch(searParamters.text_search);
             if (valid(searParamters.priceLower))
                 this.PriceLowerSearch((double)searParamters.priceLower);
-            if (valid(searParamters.priceHiegher))
-                this.PriceHiegherSearch((double)searParamters.priceHiegher);
+            if (valid(searParamters.priceHigher))
+                this.PriceHiegherSearch((double)searParamters.priceHigher);
             if (valid(searParamters.releaseafter))
                 this.ReleaseAfterSearch((DateTime)searParamters.releaseafter);
             if (valid(searParamters.releasebefore))
@@ -200,20 +200,20 @@ namespace El3edda.utills
                 this.ScreenSearch(searParamters.Screens);
             if (valid(searParamters.HeightLower))
                 this.HeightLowerSearch((double)searParamters.HeightLower);
-            if (valid(searParamters.HeightHiger))
-                this.HeightHigerSearch((double)searParamters.HeightHiger);
+            if (valid(searParamters.HeightHigher))
+                this.HeightHigerSearch((double)searParamters.HeightHigher);
             if (valid(searParamters.WidthLower))
                 this.WidthLowerSearch((double)searParamters.WidthLower);
-            if (valid(searParamters.WidthHiger))
-                this.WidthHigerSearch((double)searParamters.WidthHiger);
+            if (valid(searParamters.WidthHigher))
+                this.WidthHigerSearch((double)searParamters.WidthHigher);
             if (valid(searParamters.ThicknessLower))
                 this.ThicknessLowerSearch((double)searParamters.ThicknessLower);
-            if (valid(searParamters.ThicknessHiger))
-                this.ThicknessHigerSearch((double)searParamters.ThicknessHiger);
+            if (valid(searParamters.ThicknessHigher))
+                this.ThicknessHigerSearch((double)searParamters.ThicknessHigher);
             if (valid(searParamters.CameraMegaPixelsLower))
                 this.CameraMegaPixelsLowerSearch((double)searParamters.CameraMegaPixelsLower);
-            if (valid(searParamters.CameraMegaPixelsHiger))
-                this.CameraMegaPixelsHigerSearch((double)searParamters.CameraMegaPixelsHiger);
+            if (valid(searParamters.CameraMegaPixelsHigher))
+                this.CameraMegaPixelsHigerSearch((double)searParamters.CameraMegaPixelsHigher);
             if (valid(searParamters.Colors))
                 this.ColorSearch(searParamters.Colors);
             if (valid(searParamters.WeightLower))
@@ -232,8 +232,8 @@ namespace El3edda.utills
             //     this.StorageHigerSearch(searParamters.StorageHiger);
             if (valid((double?)searParamters.BatteryCapacityLower))
                 this.BatteryCapacityLowerSearch((double)searParamters.BatteryCapacityLower);
-            if (valid((double?)searParamters.BatteryCapacityHiger))
-                this.BatteryCapacityHigerSearch((double)searParamters.BatteryCapacityHiger);
+            if (valid((double?)searParamters.BatteryCapacityHigher))
+                this.BatteryCapacityHigerSearch((double)searParamters.BatteryCapacityHigher);
 
 
         }

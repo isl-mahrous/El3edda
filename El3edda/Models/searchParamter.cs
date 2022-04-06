@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 using El3edda.Data;
 using El3edda.Data.Enums;
+using El3edda.utills;
 using Microsoft.EntityFrameworkCore;
 
 namespace El3edda.Models
@@ -19,11 +20,11 @@ namespace El3edda.Models
         public DateTime? releaseafter { get; set; }
         public ICollection<int>? manufacturerids { get; set; }
         [Range(0, double.MaxValue)]
-        public double? priceHiegher { get; set; }
+        public double? priceHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? priceLower { get; set; }
         [Range(0, double.MaxValue)]
-        public double? warrentyPeriodHiger { get; set; }
+        public double? warrentyPeriodHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? warrentyPeriodLower { get; set; }
         public bool? InStock { get; set; }
@@ -40,19 +41,19 @@ namespace El3edda.Models
         [Range(0, double.MaxValue)]
         public double? HeightLower { get; set; }
         [Range(0, double.MaxValue)]
-        public double? HeightHiger { get; set; }
+        public double? HeightHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? WidthLower { get; set; }
         [Range(0, double.MaxValue)]
-        public double? WidthHiger { get; set; }
+        public double? WidthHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? ThicknessLower { get; set; }
         [Range(0, double.MaxValue)]
-        public double? ThicknessHiger { get; set; }
+        public double? ThicknessHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? CameraMegaPixelsLower { get; set; }
         [Range(0, double.MaxValue)]
-        public double? CameraMegaPixelsHiger { get; set; }
+        public double? CameraMegaPixelsHigher { get; set; }
         [NotMapped]
         public ICollection<Colors> Colors { get; set; }
         [Range(0, double.MaxValue)]
@@ -64,16 +65,17 @@ namespace El3edda.Models
         [Range(0, int.MaxValue)]
         public int? BatteryCapacityLower { get; set; }
         [Range(0, int.MaxValue)]
-        public int? BatteryCapacityHiger { get; set; }
+        public int? BatteryCapacityHigher { get; set; }
 
+        [Compare("RAMHiger")]
         [Range(0, int.MaxValue)]
         public int? RAMLower { get; set; }
         [Range(0, int.MaxValue)]
-        public int? RAMHiger { get; set; }
+        public int? RAMHigher { get; set; }
         [Range(0, int.MaxValue)]
         public int? ROMLower { get; set; }
         [Range(0, int.MaxValue)]
-        public int? ROMHiger { get; set; }
+        public int? ROMHigher { get; set; }
 
 
     }
