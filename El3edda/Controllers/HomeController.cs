@@ -2,6 +2,8 @@
 using El3edda.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
 
 namespace El3edda.Controllers
 {
@@ -41,6 +43,51 @@ namespace El3edda.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Contacts()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contacts(string email, string name)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("TYPE YOUR MAIL HERE", "gmail");
+                    var receiverEmail = new MailAddress(email, "Receiver");
+                    var password = "TYPE YOUR PASSWORD HERE";
+                    var sub = name;
+                    //var body = msg;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = "El-3edda Store",
+                        Body = $"Hey {name}, Don't miss our latest collections of mobiles. El3edda is rocking it!"
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return View();
         }
     }
 }
