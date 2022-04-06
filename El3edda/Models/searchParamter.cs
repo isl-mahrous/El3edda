@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 using El3edda.Data;
@@ -65,12 +65,14 @@ namespace El3edda.Models
         [Range(0, int.MaxValue)]
         public int? BatteryCapacityLower { get; set; }
         [Range(0, int.MaxValue)]
+        [CompareTo("BatteryCapacityLower",ComparisonType.GreaterThanOrEqual)]
         public int? BatteryCapacityHigher { get; set; }
 
         [Compare("RAMHiger")]
         [Range(0, int.MaxValue)]
         public int? RAMLower { get; set; }
         [Range(0, int.MaxValue)]
+        [CompareToAttribute("ROMLower",ComparisonType.GreaterThanOrEqual)]
         public int? RAMHigher { get; set; }
         [Range(0, int.MaxValue)]
         public int? ROMLower { get; set; }
