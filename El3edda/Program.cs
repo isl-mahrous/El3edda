@@ -5,6 +5,7 @@ using El3edda.Data.Services;
 using El3edda.Data.Services.MediaService;
 using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services.OrderServices;
+using El3edda.Data.Services.ReviewService;
 using El3edda.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +23,8 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
 builder.Services.AddScoped<IMobileService, MobileService>();
 builder.Services.AddScoped<IMediaService, MediaService>();
+builder.Services.AddScoped<IReviewService, El3edda.Data.Services.ReviewService.ReviewService>();
+
 
 //Shopping Cart Services
 builder.Services.AddScoped<IOrdersService, OrdersService>();

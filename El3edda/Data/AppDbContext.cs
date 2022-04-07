@@ -11,6 +11,8 @@ namespace El3edda.Data
         public virtual DbSet<Mobile> Mobiles { get; set; } 
         public virtual DbSet<Manufacturer> Manufacturers { get; set; } 
         public virtual DbSet<Media> Media { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+
 
 
         //////////// ORDERS //////////////

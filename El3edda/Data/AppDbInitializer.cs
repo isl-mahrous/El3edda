@@ -464,7 +464,124 @@ namespace El3edda.Data
                                 }
                             }
                         }
-                    ); ; ;
+                    );
+                    context.SaveChanges();
+                }
+
+
+                //Reviews
+                if (!context.Reviews.Any())
+                {
+                    context.Reviews.AddRange(
+                        new List<Review>()
+                        {
+                            //Add Reviews Data
+                            new Review()
+                            {
+                                CustomerName = "Gamal Gamal",
+                                MobileId = 1,
+                                Rate = MobileRate.good,
+                                Feedback = "relatively good for those who search for a practical soultion for mobiles",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Hossam Said",
+                                MobileId = 2,
+                                Rate = MobileRate.moderate,
+                                Feedback = "msh b3raf a2ra 3araby",
+                                Date = DateTime.Now
+
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Ali Mohamed",
+                                MobileId = 3,
+                                Rate = MobileRate.exceptional,
+                                Feedback = "gamed fash5",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Krestinea",
+                                MobileId = 1,
+                                Rate = MobileRate.poor,
+                                Feedback = "zay el zeft",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "حسااااااام",
+                                MobileId = 2,
+                                Rate = MobileRate.excellent,
+                                Feedback = "هو فيه ايييييييييييييه",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "إسلام محروس",
+                                MobileId = 4,
+                                Rate = MobileRate.excellent,
+                                Feedback = "الموبايل ده هيقلب سوهاج كلهاااااااا",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "فتحى",
+                                MobileId = 3,
+                                Rate = MobileRate.excellent,
+                                Feedback = "هى الحياة كدة ليه بقى ليها لون تاااااااااانى",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "عبده هاشم",
+                                MobileId = 4,
+                                Rate = MobileRate.excellent,
+                                Feedback = "لو لم أكن معايا الموبايل ده لوددت أن يكون معايا",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Saleh",
+                                MobileId = 7,
+                                Rate = MobileRate.exceptional,
+                                Feedback = "أقولك إيه واعدلك ايه يا خالد يا بيبو",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Wael mawaweel",
+                                MobileId = 1,
+                                Rate = MobileRate.good,
+                                Feedback = "good good good good but not excellent",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Samy serag",
+                                MobileId = 3,
+                                Rate = MobileRate.exceptional,
+                                Feedback = "I am speechless",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Abo treka",
+                                MobileId = 2,
+                                Rate = MobileRate.exceptional,
+                                Feedback = "Very very good mobile it deserves more than that marketing",
+                                Date = DateTime.Now
+                            },
+                            new Review()
+                            {
+                                CustomerName = "Messi",
+                                MobileId = 6,
+                                Rate = MobileRate.moderate,
+                                Feedback = "not bad but I feel like it might be better than that",
+                                Date = DateTime.Now
+                            }
+                        });
                     context.SaveChanges();
                 }
             }
