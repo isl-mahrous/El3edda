@@ -35,6 +35,7 @@ web based solution for e-commerce website specialized in selling mobile phones u
     - support third party payment using Stripe , paypal 
     - selecting delivery address using google maps
     - view order history
+    - cancel orders
 
 ### cart
 <img src="images/site/cart.png" width="60%" />
@@ -51,6 +52,7 @@ web based solution for e-commerce website specialized in selling mobile phones u
     - admin logout
 ## orders
     - view all orders created by diffrent users
+    - cancel an order for any user
 
 ## products
     - add/edit/delete products
