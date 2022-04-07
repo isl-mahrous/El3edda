@@ -20,6 +20,8 @@
                     {
                         <th>User</th>
                     }
+                    <th>order State</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +48,27 @@
                         {
                             <td class="align-middle">@order.User.FullName</td>
                         }
+                        <td>
+                            @{
+                                var test_color = 
+                                  order.orderState == OrderState.canceled 
+                                ? "darkred"
+                                : order.orderState == OrderState.shipped
+                                ? "forestgreen"
+                                : "black";
+                            }
+                            <span style="color: @test_color">
+                                @order.orderState
+                            </span>
+                        </td>
+                        <td>
+                            <form asp-action=CancelOrder asp-route-orderId=@order.Id>
+                                @{var cannotCancel = order.orderState != OrderState.confirmed;}
+                                    <button  class="btn btn-outline-dark" disabled=@cannotCancel >
+                                        Cancel
+                                    </button>
+                            </form>
+                        </td>
                     </tr>
 
                 }

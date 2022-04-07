@@ -128,7 +128,12 @@ namespace El3edda.Controllers
 
             return View("CompleteOrder");
         }
-
+        [HttpPost]
+        public async Task<IActionResult> CancelOrder(int orderId)
+        {
+            await _ordersService.cancelOrderAsync(orderId);
+            return RedirectToAction(nameof(Index));
+        }
         public async Task<IActionResult> Charge(
             string stripeEmail,
             string stripeToken,

@@ -10,6 +10,7 @@ namespace El3edda.Data.Services.OrderServices
             string email,
             Address ShippingAddress
         );
+        Task cancelOrderAsync(int orderId);
 
         Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole);
     }
