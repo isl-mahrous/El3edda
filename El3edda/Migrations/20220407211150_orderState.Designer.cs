@@ -4,6 +4,7 @@ using El3edda.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace El3edda.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407211150_orderState")]
+    partial class orderState
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,39 +240,6 @@ namespace El3edda.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
-                });
-
-            modelBuilder.Entity("El3edda.Models.Review", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Feedback")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("MobileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MobileId");
-
-                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("El3edda.Models.ShoppingCartItem", b =>
@@ -586,17 +555,6 @@ namespace El3edda.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("El3edda.Models.Review", b =>
-                {
-                    b.HasOne("El3edda.Models.Mobile", "Mobile")
-                        .WithMany("Reviews")
-                        .HasForeignKey("MobileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mobile");
-                });
-
             modelBuilder.Entity("El3edda.Models.ShoppingCartItem", b =>
                 {
                     b.HasOne("El3edda.Models.Mobile", "Mobile")
@@ -665,8 +623,6 @@ namespace El3edda.Migrations
             modelBuilder.Entity("El3edda.Models.Mobile", b =>
                 {
                     b.Navigation("Media");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("El3edda.Models.Order", b =>

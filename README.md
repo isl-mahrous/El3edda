@@ -22,11 +22,11 @@ web based solution for e-commerce website specialized in selling mobile phones u
 ![land](https://media4.giphy.com/media/fI8B0JsLHbEwIE0BpS/giphy.gif)
 
 ### browsing products
-<img src="images/site/view_mobile.png" width="80%" />
+<img src="images/site/view_mobile.png" width="60%" />
 
 
 ### view mobile details
-<img src="images/site/phone_details.png" width="80%" />
+<img src="images/site/phone_details.png" width="60%" />
 
 ### filtering mobiles
 ![filter](images/site/filterView.png)
@@ -35,6 +35,16 @@ web based solution for e-commerce website specialized in selling mobile phones u
     - support third party payment using Stripe , paypal 
     - selecting delivery address using google maps
     - view order history
+    - cancel orders
+
+### cart
+<img src="images/site/cart.png" width="60%" />
+
+### payment
+<img src="images/site/payment.png" width="60%" />
+
+### orders
+<img src="images/site/orders.png" width="60%" />
 
 # admin
 ## accoutnt managment
@@ -42,6 +52,7 @@ web based solution for e-commerce website specialized in selling mobile phones u
     - admin logout
 ## orders
     - view all orders created by diffrent users
+    - cancel an order for any user
 
 ## products
     - add/edit/delete products

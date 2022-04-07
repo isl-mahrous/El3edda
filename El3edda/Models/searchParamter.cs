@@ -20,10 +20,12 @@ namespace El3edda.Models
         public DateTime? releaseafter { get; set; }
         public ICollection<int>? manufacturerids { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("priceLower",ComparisonType.GreaterThanOrEqual)]
         public double? priceHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? priceLower { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("warrentyPeriodLower",ComparisonType.GreaterThanOrEqual)]
         public double? warrentyPeriodHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? warrentyPeriodLower { get; set; }
@@ -41,18 +43,22 @@ namespace El3edda.Models
         [Range(0, double.MaxValue)]
         public double? HeightLower { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("HeightLower",ComparisonType.GreaterThanOrEqual)]
         public double? HeightHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? WidthLower { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("WidthLower",ComparisonType.GreaterThanOrEqual)]
         public double? WidthHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? ThicknessLower { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("ThicknessLower",ComparisonType.GreaterThanOrEqual)]
         public double? ThicknessHigher { get; set; }
         [Range(0, double.MaxValue)]
         public double? CameraMegaPixelsLower { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("CameraMegaPixelsLower",ComparisonType.GreaterThanOrEqual)]
         public double? CameraMegaPixelsHigher { get; set; }
         [NotMapped]
         public ICollection<Colors> Colors { get; set; }
@@ -77,6 +83,7 @@ namespace El3edda.Models
         [Range(0, int.MaxValue)]
         public int? ROMLower { get; set; }
         [Range(0, int.MaxValue)]
+        [CompareTo("ROMLower",ComparisonType.GreaterThanOrEqual)]
         public int? ROMHigher { get; set; }
 
 

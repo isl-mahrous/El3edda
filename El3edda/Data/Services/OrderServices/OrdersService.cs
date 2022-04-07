@@ -1,4 +1,5 @@
-﻿using El3edda.Data.Static;
+﻿using El3edda.Data.Enums;
+using El3edda.Data.Static;
 using El3edda.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,31 @@ namespace El3edda.Data.Services.OrderServices
             }
             return orders;
         }
+        /// <summary>
+        /// cancel an order and update the mobile stock
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public async Task cancelOrderAsync(int orderId)
+        {
 
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(i=>i.Mobile)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+            order.orderState = OrderState.canceled;
+            foreach (var item in order.OrderItems)
+            {
+                //Decrement Units Sold
+                item.Mobile.UnitsSold -= item.Amount;
+
+                //Increment Units in stock
+                item.Mobile.UnitsInStock += item.Amount;
+            }
+
+            await _context.SaveChangesAsync();
+
+        }
         public async Task StoreOrderAsync(
             List<ShoppingCartItem> items,
             string userId,
@@ -56,6 +81,7 @@ namespace El3edda.Data.Services.OrderServices
                 //Increment Units Sold
                 item.Mobile.UnitsSold += item.Amount;
 
+                //TODO handel if units in stock not enough
                 //Decrement Units in stock
                 item.Mobile.UnitsInStock -= item.Amount;
 
