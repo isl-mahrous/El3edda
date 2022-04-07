@@ -48,18 +48,18 @@ namespace El3edda.Controllers
         //    return View(ReviewDetails);
         //}
 
-        // GET: Manufacturers/Create
-        public async Task<IActionResult> Create()
+        // GET: Manufacturers/Create/5
+        public async Task<IActionResult> Create(int id)
         {
-            ViewBag.Mobiles = await _serviceMob.GetAllAsync();
+            ViewBag.Mobile = await _serviceMob.GetByIdAsync(id);
 
-            return View();
+            return View(new Review());
         }
 
         // POST: Reviews/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Review review)
+        public async Task<IActionResult> Create([Bind("Rate", "CustomerName", "Feedback", "MobileId")]Review review)
         {
             review.Date = DateTime.Now;
 

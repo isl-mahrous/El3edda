@@ -3,65 +3,64 @@
 @model IEnumerable<El3edda.Models.Mobile>
 
 @{
-	ViewData["Title"] = "Index";
-	specSearchParamter searchparam = ViewBag.search;
+    ViewData["Title"] = "Index";
+    specSearchParamter searchparam = ViewBag.search;
 
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
-<div class="row mb-5">
-	<div class="col-md-12 bg-dark text-white my-5" style="height:300px">
-		Top Selling
-	</div>
-	<div class="col-md-3 bg-white m-3">
-		@* <partial name="RenderFilter" model=searchparam /> *@
-		@await Component.InvokeAsync("FilterMobile",searchparam)
-	</div>
-	<div class="row col-md-8">
+<div class="row col-12">
+    <div class="row col-12 my-4">
+        <div class="col-md-3 bg-white">
+            @* <partial name="RenderFilter" model=searchparam /> *@
+            @await Component.InvokeAsync("FilterMobile",searchparam)
+        </div>
+        <div class="row col-md-9">
 
-		@foreach (var mobile in Model)
-		{
-			<div class="col-md-3 col-sm-6" style="margin-top:1%;">
-				<div class="product-grid" style="height:500px">
-					<div class="product-image">
-						<a asp-controller="Mobiles" asp-action="Details" asp-route-id="@mobile.Id" class="image">
-							<img src=@mobile.MainPhotoURL>
-						</a>
-						<ul class="product-links">
-							<li><a asp-action="Details" asp-route-id="@mobile.Id"><i class="fa fa-eye"></i></a></li>
-							@if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
-							{
-								<li><a asp-action="Edit" asp-route-id="@mobile.Id"><i class="fa fa-edit"></i></a></li>
-								<li><a asp-action="Delete" asp-route-id="@mobile.Id"><i class="fa fa-trash"></i></a></li>
-							}
-						</ul>
-					</div>
-					<div class="product-content">
-						@{
-							var manfacture_Search = new specSearchParamter() { manufacturerids = new List<int>(){ mobile.Manufacturer.Id } };
-						}
-						<form asp-action="Index" method="get" >
-							<input hidden name="manufacturerids" value=@mobile.Manufacturer.Id />
-							<input type="submit" value=@mobile.Manufacturer.Name class="badge rounded-pill bg-dark" style="display: block"/>
-						</form>
-						
-						
-						<hr />
-						<h3 class="title">@mobile.Name</h3>
-						<div class="price">@mobile.Price EGP</div>
-						@if (mobile.UnitsInStock > 0)
-						{
-							<a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mobile.Id" class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
-						}
-						else
-						{
-							<p style="display: inline-block; float:right;font-size: 18px; width:fit-content" class="text-danger">Out of stock</p>
-						}
-					</div>
-				</div>
-			</div>
-		}
-	</div>
+            @foreach (var mobile in Model)
+            {
+                <div class="col-md-3 col-sm-6" style="margin-top:1%;">
+                    <div class="product-grid" style="height:auto">
+                        <div class="product-image">
+                            <a asp-controller="Mobiles" asp-action="Details" asp-route-id="@mobile.Id" class="image">
+                                <img src=@mobile.MainPhotoURL>
+                            </a>
+                            <ul class="product-links">
+                                <li><a asp-action="Details" asp-route-id="@mobile.Id"><i class="fa fa-eye"></i></a></li>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                                {
+                                    <li><a asp-action="Edit" asp-route-id="@mobile.Id"><i class="fa fa-edit"></i></a></li>
+                                    <li><a asp-action="Delete" asp-route-id="@mobile.Id"><i class="fa fa-trash"></i></a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            @{
+                                var manfacture_Search = new specSearchParamter() { manufacturerids = new List<int>() { mobile.Manufacturer.Id } };
+                            }
+                            <form asp-action="Index" method="get">
+                                <input hidden name="manufacturerids" value=@mobile.Manufacturer.Id />
+                                <input type="submit" value=@mobile.Manufacturer.Name class="badge rounded-pill bg-dark" style="display: block" />
+                            </form>
+
+
+                            <hr />
+                            <h3 class="title">@mobile.Name</h3>
+                            <div class="price">@mobile.Price EGP</div>
+                            @if (mobile.UnitsInStock > 0)
+                            {
+                                <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@mobile.Id" class="add-to-cart"><i class="fas fa-shopping-bag"></i></a>
+                            }
+                            else
+                            {
+                                <p style="display: inline-block; float:right;font-size: 18px; width:fit-content" class="text-danger">Out of stock</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 
 
