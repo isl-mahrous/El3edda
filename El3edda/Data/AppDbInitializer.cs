@@ -165,17 +165,17 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -211,7 +211,7 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://www.mytrendyphone.eu/images/Original-Clear-Case-for-Huawei-P40-51993731-Transparent-6901443365999-10042020-01-p.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -221,7 +221,7 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -260,12 +260,12 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://ae01.alicdn.com/kf/H2372e66c58084287a991b066b386cec1I/For-Huawei-P40-Pro-Case-2020-Release-SUPCASE-UB-Style-Slim-Anti-knock-Premium-Hybrid-Protective.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -300,7 +300,7 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -310,7 +310,7 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://img01.huaweifile.com/eu/uk/huawei/pms/product/6901443366064/428_428_C2C21356D98ACE0827A3C55CD8AA66DE122A11ED9BCE073Cmp.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -345,12 +345,12 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://ae01.alicdn.com/kf/H2372e66c58084287a991b066b386cec1I/For-Huawei-P40-Pro-Case-2020-Release-SUPCASE-UB-Style-Slim-Anti-knock-Premium-Hybrid-Protective.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://spigen.ph/sites/default/files/images/products/p1.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -395,12 +395,12 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://www.mytrendyphone.ie/images/Original-Silicone-Case-for-Huawei-P40-Pro-51993797-Black-6901443366095-08042020-01-p.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -435,17 +435,17 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL = "https://cdn.shopify.com/s/files/1/1126/0898/products/p40-pro-black_650x650.jpg?v=1637573053",
                                         Type = MediaType.Photo
                                     }
                                 },
