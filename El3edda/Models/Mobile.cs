@@ -58,6 +58,10 @@ namespace El3edda.Models
 
         public virtual ICollection<Media> Media { get; set; }
 
+        public virtual ICollection<Review> Reviews { get; set; }
+
+
+
 
     }
 }

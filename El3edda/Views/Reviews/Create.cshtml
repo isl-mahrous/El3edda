@@ -1,0 +1,64 @@
+﻿@model El3edda.Models.Review
+
+@{
+    ViewData["Title"] = "Create";
+    IEnumerable<El3edda.Models.Mobile> mobiles = new List<Mobile>();
+    mobiles = (List<El3edda.Models.Mobile>)ViewBag.Mobiles;
+}
+
+<h1 style="margin-left:3%;">Create</h1>
+
+<h4 style="margin-left:3%;">Review</h4>
+<hr />
+<div class="row" style="margin-left:3%;">
+    <div class="col-md-4">
+        <form asp-action="Create" class="m-10">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" asp-for="MobileId" />
+
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <select class="form-select mb-3 mt-3" name="MobileId">
+
+                    @foreach (var mob in mobiles)
+                    {
+                        <option value="@mob.Id">@mob.Name</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rate" class="control-label"></label>
+                <select asp-for="Rate" asp-items="Html.GetEnumSelectList(typeof(MobileRate))" class="form-control"></select>
+                <span asp-validation-for="Rate" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Feedback" class="control-label"></label>
+                <textarea asp-for="Feedback" class="form-control" ></textarea>
+                <span asp-validation-for="Feedback" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-dark my-2">Back To List</a>
+                <input type="submit" value="Create Review" class="btn btn-primary" />
+            </div>
+        </form>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

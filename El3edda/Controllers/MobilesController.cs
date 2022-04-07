@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Hosting;
 using El3edda.Data.Enums;
 using El3edda.Data.Services.MediaService;
+using El3edda.Data.Services.ReviewService;
 
 namespace El3edda.Controllers
 {
@@ -27,14 +28,16 @@ namespace El3edda.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IMediaService _serviceMed;
+        private readonly IReviewService _serviceRev;
         public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context
-                                    , IWebHostEnvironment hostingEnvironment, IMediaService serviceMed)
+                                    , IWebHostEnvironment hostingEnvironment, IMediaService serviceMed, IReviewService serviceRev)
         {
             _service = service;
             _serviceMan = serviceMan;
             _context = context;
             _hostEnvironment = hostingEnvironment;
             _serviceMed = serviceMed;
+            _serviceRev = serviceRev;
         }
 
         // GET: Mobiles
@@ -49,7 +52,7 @@ namespace El3edda.Controllers
         public async Task<IActionResult> Details(int id)
         {
 
-            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Where(m => m.Id == id).FirstOrDefault();
+            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Include(m => m.Reviews).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {

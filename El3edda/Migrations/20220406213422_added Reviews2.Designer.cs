@@ -4,6 +4,7 @@ using El3edda.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace El3edda.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406213422_added Reviews2")]
+    partial class addedReviews2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,9 +250,6 @@ namespace El3edda.Migrations
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Feedback")
                         .IsRequired()
@@ -586,7 +585,7 @@ namespace El3edda.Migrations
             modelBuilder.Entity("El3edda.Models.Review", b =>
                 {
                     b.HasOne("El3edda.Models.Mobile", "Mobile")
-                        .WithMany("Reviews")
+                        .WithMany("Revies")
                         .HasForeignKey("MobileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -663,7 +662,7 @@ namespace El3edda.Migrations
                 {
                     b.Navigation("Media");
 
-                    b.Navigation("Reviews");
+                    b.Navigation("Revies");
                 });
 
             modelBuilder.Entity("El3edda.Models.Order", b =>

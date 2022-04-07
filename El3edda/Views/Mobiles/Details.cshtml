@@ -1,11 +1,43 @@
-﻿
-
-@model El3edda.Models.Mobile
+﻿@model El3edda.Models.Mobile
 
 @{
     ViewData["Title"] = "Details";
     var medias = (List<Media>)ViewBag.Media;
     Queue<String> mobimgs = new Queue<String>();
+    double RateSum = 0;
+    int total = 0;
+
+    foreach(var rate in Model.Reviews)
+    {
+        total++;
+        switch(rate.Rate)
+        {
+            case MobileRate.poor:
+                RateSum += 1;
+                break;
+
+            case MobileRate.moderate:
+                RateSum += 2;
+                break;
+
+            case MobileRate.good:
+                RateSum += 3;
+                break;
+
+            case MobileRate.excellent:
+                RateSum += 4;
+                break;
+
+            case MobileRate.exceptional:
+                RateSum += 5;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    int AvgRate = (int)Math.Round(RateSum / total);
 }
 
 
@@ -92,14 +124,21 @@
                     <div class="col-lg-8">
                         <div class="product__details__text">
                             <h4>@Model.Name</h4>
+                            
                             <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span> - 5 Reviews</span>
-                            </div>
+                            
+                            @for(int x = 1; x <= AvgRate; x++)
+                            {
+                                <i class="fa fa-star"></i>    
+                            }
+                           
+                            @for(int x = AvgRate + 1; x <= 5; x++)
+                            {
+                                <i class="far fa-star" aria-hidden></i>
+                            }
+
+                        @*<span> - @AvgRate out of 5 </span>*@                            
+                        </div>
                            
                             <h3>$@Model.Price <span></span></h3>
                             <p>@Model.Description</p>
@@ -126,7 +165,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
-                                    Previews(5)</a>
+                                    Previews</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
@@ -172,51 +211,28 @@
                                         
                                         <div class="product__details__tab__content__item mb-5">
 
-                                             <div class="card p-3 mb-2">
-                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40" class="rounded-circle">
-                                                    <div class="d-flex flex-column ms-2">
-                                                        <h6 class="mb-1 text-primary m-1">Emma</h6>
-                                                        <p class="comment-text m-1">This is the first time to buy from el 3edda store and it was such a great experience the I really need to do it so soon. I bought xaomi phone last year and it still works well since then.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="d-flex flex-row gap-3 align-items-center">
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span> </div>
-                                                </div>
-                                            </div>
-                                            <div class="card p-3 mb-2">
-                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/hczKIze.jpg" height="40" width="40" class="rounded-circle">
-                                                    <div class="d-flex flex-column ms-2">
-                                                        <h6 class="mb-1 text-primary m-1">Morne Micheal</h6>
-                                                        <p class="comment-text m-1">One of my friends recommended me buying my daughter birthday gift from El-3edda store and can't express my sincere advice to me. It was such a great experiece and the warranty wouldn't be more longer than that. Thanl you all</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="d-flex flex-row gap-3 align-items-center">
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 21,2020 1:10 PM</span> </div>
-                                                </div>
-                                            </div>
+                                            @foreach(var review in @Model.Reviews)
+                                            {
 
-                                            <div class="card p-3 mb-2">
-                                                <div class="d-flex flex-row"> <img src="https://i.imgur.com/C4egmYM.jpg" height="40" width="40" class="rounded-circle">
-                                                    <div class="d-flex flex-column ms-2">
-                                                        <h6 class="mb-1 text-primary m-1">إسلام محروس</h6>
-                                                        <p class="comment-text m-1">الحقيقة انبسطت جدا بالتعامل مع تيم عظيم زى تيم العدة ستور. الموبايلات جودتها حلوة جدا والأسعار تنافسية جدا بالمقارنة بباقى الأسعار فى السوق . خدمة ما بعد البيع رائعة. شكرا ليكوا وان شاء الله مش هتكون اخر تجربة</p>
+                                                <div class="card p-3 mb-2">
+                                                    <div class="d-flex flex-row"> <img src="https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" height="40" width="40" class="rounded-circle">
+                                                        <div class="d-flex flex-column ms-2">
+                                                            <h6 class="mb-1 text-primary m-1">@review.CustomerName    <span class="text-muted fw-normal fs-10" style="font-size:75%"> (@review.Rate) </span></h6>
+                                                            <p class="comment-text m-1">@review.Feedback</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row gap-3 align-items-center">
+                                                            <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
+                                                            <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row">  <span class="text-muted fw-normal fs-10">@review.Date</span> </div>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="d-flex flex-row gap-3 align-items-center">
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
-                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 12,2020 12:10 PM</span> </div>
-                                                </div>
+                                            }
+                                            
+                                            <div class="col-12 text-right">
+                                                <a asp-action="Create" asp-controller="Reviews" class="btn btn-success btn-lg">Add Review</a>
                                             </div>
 
                                         </div>
