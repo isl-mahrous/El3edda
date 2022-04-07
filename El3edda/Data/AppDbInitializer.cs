@@ -249,13 +249,13 @@ namespace El3edda.Data
                                 WarrantyPeriod = 12 * 3,
                                 UnitsInStock = 20,
                                 MainPhotoURL =
-                                    "https://www.theiphonewiki.com/w/images/6/60/IPhone_SE_%283rd_generation%29.png",
+                                    "https://oxygendigitalshop.com/media/cache/375x0/catalog/product/s/a/sad_1_1622666312.webp",
                                 ManufacturerId = 2,
                                 Media = new List<Media>()
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -390,7 +390,7 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
