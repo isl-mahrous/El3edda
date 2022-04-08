@@ -37,18 +37,6 @@ namespace El3edda.Controllers
             return View(_context.Reviews.Include(r => r.Mobile).ToList());
         }
 
-
-        //GET: Reviews/Details/5
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    var ReviewDetails = await _service.GetByIdAsync(id);
-        //    if (ReviewDetails == null)
-        //        return NotFound();
-
-        //    return View(ReviewDetails);
-        //}
-
-        // GET: Manufacturers/Create/5
         public async Task<IActionResult> Create(int id)
         {
             ViewBag.Mobile = await _serviceMob.GetByIdAsync(id);
@@ -69,7 +57,7 @@ namespace El3edda.Controllers
                 return RedirectToAction("Details", "Mobiles", new { area = "", id = review.MobileId});
             }
 
-            ViewBag.Mobiles = await _serviceMob.GetAllAsync();
+            ViewBag.Mobile = await _serviceMob.GetByIdAsync(review.MobileId);
 
             return View(review);
         }
@@ -77,9 +65,12 @@ namespace El3edda.Controllers
         // GET: Reviews/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            ViewBag.Mobiles = await _serviceMob.GetAllAsync();
 
             var ReviewDetails = await _service.GetByIdAsync(id);
+
+            ViewBag.Mobile = await _serviceMob.GetByIdAsync(ReviewDetails.MobileId);
+
+
             if (ReviewDetails == null)
                 return NotFound();
 
@@ -95,7 +86,7 @@ namespace El3edda.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Mobiles = await _serviceMob.GetAllAsync();
+                ViewBag.Mobile = await _serviceMob.GetByIdAsync(review.MobileId);
                 return View(review);
             }
 
