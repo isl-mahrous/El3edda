@@ -145,7 +145,9 @@ namespace El3edda.Data
                                     Color = Colors.Black,
                                     Weight = 150,
                                     OS = OSEnum.Android,
-                                    BatteryCapacity = 4000
+                                    BatteryCapacity = 4000,
+                                    RAM = 12,
+                                    Storage = 128
                                 }
                             },
                             new Mobile()
@@ -190,7 +192,9 @@ namespace El3edda.Data
                                     Color = Colors.Black,
                                     Weight = 150,
                                     OS = OSEnum.Android,
-                                    BatteryCapacity = 4000
+                                    BatteryCapacity = 4000,
+                                    RAM = 12,
+                                    Storage = 128
                                 }
                             },
                             // Apple Mobiles
@@ -236,7 +240,9 @@ namespace El3edda.Data
                                     Color = Colors.Red,
                                     Weight = 150,
                                     OS = OSEnum.Android,
-                                    BatteryCapacity = 4000
+                                    BatteryCapacity = 4000,
+                                    RAM = 4,
+                                    Storage = 64
                                 }
                             },
                             new Mobile()
@@ -280,7 +286,9 @@ namespace El3edda.Data
                                     Color = Colors.Black,
                                     Weight = 144,
                                     OS = OSEnum.IOS,
-                                    BatteryCapacity = 2018
+                                    BatteryCapacity = 2018,
+                                    RAM = 6,
+                                    Storage = 128
                                 }
                             },
                             new Mobile()
@@ -325,7 +333,9 @@ namespace El3edda.Data
                                     Color = Colors.Black,
                                     Weight = 240,
                                     OS = OSEnum.IOS,
-                                    BatteryCapacity = 4352
+                                    BatteryCapacity = 4352,
+                                    RAM = 12,
+                                    Storage = 128
                                 }
                             },
                             new Mobile()
@@ -370,7 +380,9 @@ namespace El3edda.Data
                                     Color = Colors.Blue,
                                     Weight = 204,
                                     OS = OSEnum.IOS,
-                                    BatteryCapacity = 4352
+                                    BatteryCapacity = 4352,
+                                    RAM = 12,
+                                    Storage = 512
                                 }
                             },
                             new Mobile()
@@ -415,7 +427,9 @@ namespace El3edda.Data
                                     Color = Colors.Blue,
                                     Weight = 174,
                                     OS = OSEnum.IOS,
-                                    BatteryCapacity = 3227
+                                    BatteryCapacity = 3227,
+                                    RAM = 16,
+                                    Storage = 64
                                 }
                             },
                             new Mobile()
@@ -460,7 +474,9 @@ namespace El3edda.Data
                                     Color = Colors.Fuchsia,
                                     Weight = 174,
                                     OS = OSEnum.IOS,
-                                    BatteryCapacity = 2406
+                                    BatteryCapacity = 2406,
+                                    RAM = 8,
+                                    Storage = 256
                                 }
                             }
                         }

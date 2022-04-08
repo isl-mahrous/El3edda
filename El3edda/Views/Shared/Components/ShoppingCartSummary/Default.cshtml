@@ -1,7 +1,7 @@
 ﻿@model int;
 @if (Model > 0)
 {
-    @*<li class="nav-item">*@
-        <a asp-controller="Orders" asp-action="NewShoppingCart"><img src="~/Template/img/icon/cart.png" alt=""> <span>@Model</span></a>
-    @*</li>*@
+        <a asp-controller="Orders" asp-action="NewShoppingCart">
+            <i class="bi bi-cart4"></i> @Model
+        </a>
 }

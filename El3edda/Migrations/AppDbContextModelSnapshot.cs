@@ -503,7 +503,13 @@ namespace El3edda.Migrations
                             b1.Property<byte>("OS")
                                 .HasColumnType("tinyint");
 
+                            b1.Property<int>("RAM")
+                                .HasColumnType("int");
+
                             b1.Property<int>("Screen")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Storage")
                                 .HasColumnType("int");
 
                             b1.Property<double>("Thickness")

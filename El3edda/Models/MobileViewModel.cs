@@ -37,7 +37,6 @@ namespace El3edda.Models
         public int UnitsInStock { get; set; }
 
         [Display(Name = "Main Photo")]
-        [Required]
         public IFormFile MainPhotoURL { get; set; }
 
         [Required]
