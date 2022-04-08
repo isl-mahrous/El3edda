@@ -51,15 +51,15 @@ namespace El3edda.Controllers
         
         public async Task<IActionResult> Details(int id)
         {
-
-            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Include(m => m.Reviews).Where(m => m.Id == id).FirstOrDefault();
+            
+            var mobile = _context.Mobiles.Include(m=>m.Media).Include(m => m.Manufacturer).Include(m => m.Reviews).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Media = _context.Media.Where(m => m.MobileId == id).ToList();
+            ViewBag.Media = await _context.Media.Where(m => m.MobileId == id).ToListAsync();
 
             return View(mobile);
         }

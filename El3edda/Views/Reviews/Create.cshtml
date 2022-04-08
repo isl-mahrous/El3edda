@@ -2,8 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    IEnumerable<El3edda.Models.Mobile> mobiles = new List<Mobile>();
-    mobiles = (List<El3edda.Models.Mobile>)ViewBag.Mobiles;
+    El3edda.Models.Mobile mobile = (El3edda.Models.Mobile)ViewBag.Mobile;
 }
 
 <h1 style="margin-left:3%;">Create</h1>
@@ -13,9 +12,16 @@
 <div class="row" style="margin-left:3%;">
     <div class="col-md-4">
         <form asp-action="Create" class="m-10">
+            <div>
+                <p>
+                    <h3>@mobile.Name Review</h3>
+                </p>
+            </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <input type="hidden" asp-for="MobileId" />
+
+            <div class="form-group">
+                <input name="MobileId" id="MobileId" type="text" value="@mobile.Id" hidden />
+            </div>
 
             <div class="form-group">
                 <label asp-for="CustomerName" class="control-label"></label>
@@ -23,16 +29,6 @@
                 <span asp-validation-for="CustomerName" class="text-danger"></span>
             </div>
 
-             <div class="form-group">
-                <select class="form-select mb-3 mt-3" name="MobileId">
-
-                    @foreach (var mob in mobiles)
-                    {
-                        <option value="@mob.Id">@mob.Name</option>
-                    }
-
-                </select>
-            </div>
 
             <div class="form-group">
                 <label asp-for="Rate" class="control-label"></label>
@@ -43,7 +39,7 @@
 
             <div class="form-group">
                 <label asp-for="Feedback" class="control-label"></label>
-                <textarea asp-for="Feedback" class="form-control" ></textarea>
+                <textarea asp-for="Feedback" class="form-control"></textarea>
                 <span asp-validation-for="Feedback" class="text-danger"></span>
             </div>
 
@@ -60,5 +56,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

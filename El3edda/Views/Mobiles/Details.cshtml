@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
     var medias = (List<Media>)ViewBag.Media;
-    //Queue<String> mobimgs = new Queue<String>();
+    
     double RateSum = 0;
     int total = 0;
 
@@ -36,8 +36,16 @@
                 break;
         }
     }
+    int AvgRate;
+    if (total != 0)
+    {
+        AvgRate = (int)Math.Round(RateSum / total);
 
-    int AvgRate = (int)Math.Round(RateSum / total);
+    }
+    else
+    {
+        AvgRate = 0;
+    }
 }
 
 
@@ -232,7 +240,7 @@
                                             }
                                             
                                             <div class="col-12 text-right">
-                                                <a asp-action="Create" asp-controller="Reviews" class="btn btn-success btn-lg">Add Review</a>
+                                                <a asp-action="Create" asp-controller="Reviews" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Add Review</a>
                                             </div>
 
                                         </div>
@@ -360,8 +368,9 @@
                 
 
                 $('.product__thumb__pic').each(function(i, obj) {
-
+                    
                     mobimgs[i++] = $(this).data("setbg");
+                    console.log(mobimgs[i]);
                     len++;
 
                 });

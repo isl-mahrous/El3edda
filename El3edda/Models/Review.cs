@@ -26,6 +26,7 @@ namespace El3edda.Models
         [Display(Name = "Your Review")]
         public string Feedback { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Required]
