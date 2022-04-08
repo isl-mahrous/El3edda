@@ -1,16 +1,6 @@
 @startuml components_diagram
-package Controllers {
-    class AccountController
-    class FilterController
-    class HomeController
-    class ManufacturersController
-    class MediaController
-    class MobilesController
-    class OrdersController
-}
 
 package Data {
-    class ShopingCart
     package Payment {
         class PayPalSettings
         class stripeSettings
@@ -21,7 +11,30 @@ package Data {
         class MobileService
         class OrderServices
     }
+    package Base {
+        interface IEntityBaseRepository
+        class EntityBaseRepository
+        interface EntityBase
+    }
+    Base --> Services
 }
+
+package Controllers {
+    class AccountController
+    class FilterController
+    class HomeController
+    class ManufacturersController
+    class MediaController
+    class MobilesController
+    class OrdersController
+}
+
+
+
+Controllers -[#Green]-> Services
+Controllers -[#Blue]-> Models
+Controllers -[#Purple]-> Payment
+MobilesController --> Utils
 
 Package Models {
     class Address
