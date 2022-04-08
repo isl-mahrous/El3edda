@@ -63,6 +63,17 @@ builder.Services
         }
     );
 
+//Google Login
+builder.Services
+    .AddAuthentication()
+    .AddGoogle(
+        googleOptions =>
+        {
+            googleOptions.ClientId = builder.Configuration["Google:ClientId"];
+            googleOptions.ClientSecret = builder.Configuration["Google:ClientSecret"];
+        }
+    );
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

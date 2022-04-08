@@ -25,13 +25,12 @@
             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
             <form method="post" asp-action="ExternalLogin" asp-route-returnUrl=@Model.ReturnUrl>
                 <div>
-                    @foreach(var provider in Model.ExternalLogins)
-                    {
-                        <button type="submit" class="btn btn-primary btn-floating mx-1" name = "provider" value="@provider.Name" >
-                          <i class="fab fa-facebook-f"></i>
-                        </button>           
-                    }
-                     
+                    <button type="submit" class="btn btn-primary btn-floating mx-1" name = "provider" value="@Model.ExternalLogins[0].Name" >
+                        <i class="fab fa-facebook-f"></i>
+                    </button>           
+                    <button type="submit" class="btn btn-primary btn-floating mx-1" name = "provider" value="@Model.ExternalLogins[1].Name" >
+                        <i class="fa-brands fa-google"></i>
+                    </button>           
                 </div>
             </form>
           </div>
