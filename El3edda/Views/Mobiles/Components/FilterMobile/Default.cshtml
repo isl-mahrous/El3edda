@@ -1,6 +1,6 @@
 @model specSearchParamter;
 @{
-	IEnumerable<Tuple<bool,Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Tuple<bool, Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
 }
 
 
@@ -64,7 +64,6 @@
 		overflow: auto;
 		margin-bottom: 1rem;
 		padding: 0.5rem;
-		
 	}
 
 		.check_box_scroll::-webkit-scrollbar {
@@ -303,25 +302,33 @@
 								<span asp-validation-for="BatteryCapacityHigher" class="text-danger"></span>
 							</div>
 						</div>
-						@* <div class="form-group mb-0">
-							<input asp-for="RAMLower" class="form-control" />
-							<span asp-validation-for="RAMLower" class="text-danger"></span>
+
+						<div class="input-group flex-nowrap mb-2">
+							<span class="input-group-text">
+								<i class="fa-solid"></i>
+							</span>
+							<div class="form-group mb-0">
+								<input asp-for=RAMLower class="form-control" placeholder="ram from"/>
+								<span asp-validation-for="RAMLower" class="text-danger"></span>
 							</div>
 							<div class="form-group mb-0">
-
-							<input asp-for="RAMHiger" class="form-control" />
-							<span asp-validation-for="RAMHiger" class="text-danger"></span>
+								<input asp-for=RAMHigher class="form-control" placeholder="to"/>
+								<span asp-validation-for=RAMHigher class="text-danger"></span>
+							</div>
+						</div>
+						<div class="input-group flex-nowrap mb-2">
+							<span class="input-group-text">
+								<i class="fa-solid "></i>
+							</span>
+							<div class="form-group mb-0">
+								<input asp-for=ROMLower class="form-control" placeholder="storage from"/>
+								<span asp-validation-for=ROMLower class="text-danger"></span>
 							</div>
 							<div class="form-group mb-0">
-
-							<input asp-for="ROMLower" class="form-control" />
-							<span asp-validation-for="ROMLower" class="text-danger"></span>
+								<input asp-for=ROMHigher class="form-control" placeholder="to"/>
+								<span asp-validation-for=ROMHigher class="text-danger"></span>
 							</div>
-							<div class="form-group mb-0">
-
-							<input asp-for="ROMHiger" class="form-control" />
-							<span asp-validation-for="ROMHiger" class="text-danger"></span>
-							</div> *@
+						</div>
 
 					</div>
 				</div>

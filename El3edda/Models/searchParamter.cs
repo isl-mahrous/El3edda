@@ -77,7 +77,6 @@ namespace El3edda.Models
         [CompareTo("BatteryCapacityLower",ComparisonType.GreaterThanOrEqual)]
         public int? BatteryCapacityHigher { get; set; }
 
-        [Compare("RAMHiger")]
         [Range(0, int.MaxValue)]
         public int? RAMLower { get; set; }
         [Range(0, int.MaxValue)]

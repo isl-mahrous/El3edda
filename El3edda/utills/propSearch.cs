@@ -130,26 +130,26 @@ namespace El3edda.utills
             return this;
         }
         //TODO add ram and rom to specs
-        // public PropSearch RAMLowerSearch(double target)
-        // {
-        //     andCondition(m => m.Specs.RAM < target);
-        //     return this;
-        // }
-        // public PropSearch RAMHigerSearch(double target)
-        // {
-        //     andCondition(m => m.Specs.RAM > target);
-        //     return this;
-        // }
-        // public PropSearch StorageLowerSearch(double target)
-        // {
-        //     andCondition(m => m.Specs.ROM < target);
-        //     return this;
-        // }
-        // public PropSearch StorageHigerSearch(double target)
-        // {
-        //     andCondition(m => m.Specs.ROM > target);
-        //     return this;
-        // }
+        public PropSearch RAMLowerSearch(int target)
+        {
+            andCondition(m => m.Specs.RAM < target);
+            return this;
+        }
+        public PropSearch RAMHigerSearch(int target)
+        {
+            andCondition(m => m.Specs.RAM > target);
+            return this;
+        }
+        public PropSearch StorageLowerSearch(int target)
+        {
+            andCondition(m => m.Specs.Storage < target);
+            return this;
+        }
+        public PropSearch StorageHigerSearch(int target)
+        {
+            andCondition(m => m.Specs.Storage > target);
+            return this;
+        }
         public PropSearch BatteryCapacityLowerSearch(double target)
         {
             andCondition(m => m.Specs.BatteryCapacity < target);
@@ -222,14 +222,14 @@ namespace El3edda.utills
                 this.WeightHigerSearch((double)searParamters.WeightHiger);
             if (valid(searParamters.OS))
                 this.OSSearch(searParamters.OS);
-            // if(validDouble(searParamters.RAMLower))
-            //     this.RAMLowerSearch(searParamters.RAMLower);
-            // if(validDouble(searParamters.RAMHiger))
-            //     this.RAMHigerSearch(searParamters.RAMHiger);
-            // if(validDouble(searParamters.StorageLower))
-            //     this.StorageLowerSearch(searParamters.StorageLower);
-            // if(validDouble(searParamters.StorageHiger))
-            //     this.StorageHigerSearch(searParamters.StorageHiger);
+            if (valid(searParamters.RAMLower))
+                this.RAMLowerSearch((int)searParamters.RAMLower);
+            if (valid(searParamters.RAMHigher))
+                this.RAMHigerSearch((int)searParamters.RAMHigher);
+            if (valid(searParamters.ROMLower))
+                this.StorageLowerSearch((int)searParamters.ROMLower);
+            if (valid(searParamters.ROMHigher))
+                this.StorageHigerSearch((int)searParamters.ROMHigher);
             if (valid((double?)searParamters.BatteryCapacityLower))
                 this.BatteryCapacityLowerSearch((double)searParamters.BatteryCapacityLower);
             if (valid((double?)searParamters.BatteryCapacityHigher))
