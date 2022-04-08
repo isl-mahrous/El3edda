@@ -5,45 +5,6 @@
     ViewData["Title"] = "Login";
 }
 
-@*<div class="row">
-    <div class="col-md-6 offset-3">
-        <p>
-            <h4>
-                Login to your account
-            </h4>
-        </p>
-
-        @if (TempData["Error"] != null)
-        {
-            <div class="col-md-12 alert alert-danger">
-                <span><b>Sorry</b> - @TempData["Error"]</span>
-            </div>
-        }
-
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <form asp-action="Login">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-outline-success float-right" value="Login" />
-                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>*@
-
 @if(User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
 {
    
@@ -55,7 +16,7 @@
   <div class="container-fluid ">
     <div class="row d-flex justify-content-center align-items-center ">
       <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+        <img src="https://blogs.iadb.org/conocimiento-abierto/wp-content/uploads/sites/10/2021/03/3-5-21-Innovacio%CC%81n-pedago%CC%81gica-en-cursos-MOOC.jpg" class="img-fluid"
           alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
