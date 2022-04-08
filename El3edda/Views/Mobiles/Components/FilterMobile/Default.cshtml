@@ -1,6 +1,6 @@
 @model specSearchParamter;
 @{
-	IEnumerable<Manufacturer> all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Tuple<bool,Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
 }
 
 
@@ -123,8 +123,8 @@
 								@foreach (var company in all_manufacturers)
 								{
 									<label class="checkLabel">
-										<input type="checkbox" name="manufacturerids" value=@company.Id>
-										<span>@company.Name  <span style="color:gray">(@company.Mobiles.Count())</span></span>
+										<input type="checkbox" name="manufacturerids" value=@company.Item2.Id checked=@company.Item1>
+										<span>@company.Item2.Name  <span style="color:gray">(@company.Item2.Mobiles.Count())</span></span>
 									</label>
 								}
 							</div>
