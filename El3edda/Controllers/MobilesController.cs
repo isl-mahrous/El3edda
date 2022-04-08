@@ -25,19 +25,21 @@ namespace El3edda.Controllers
 
         private readonly IMobileService _service;
         private readonly IManufacturerService _serviceMan;
-        private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IMediaService _serviceMed;
         private readonly IReviewService _serviceRev;
-        public MobilesController(IMobileService service, IManufacturerService serviceMan,AppDbContext context
-                                    , IWebHostEnvironment hostingEnvironment, IMediaService serviceMed, IReviewService serviceRev)
+        private readonly AppDbContext _context;
+
+        public MobilesController(IMobileService service, IManufacturerService serviceMan,
+                                 IWebHostEnvironment hostingEnvironment, IMediaService serviceMed, IReviewService serviceRev, AppDbContext context)
         {
             _service = service;
             _serviceMan = serviceMan;
-            _context = context;
             _hostEnvironment = hostingEnvironment;
             _serviceMed = serviceMed;
             _serviceRev = serviceRev;
+            _context = context;
+
         }
 
         // GET: Mobiles
@@ -51,31 +53,33 @@ namespace El3edda.Controllers
         
         public async Task<IActionResult> Details(int id)
         {
-            
-            var mobile = _context.Mobiles.Include(m=>m.Media).Include(m => m.Manufacturer).Include(m => m.Reviews).Where(m => m.Id == id).FirstOrDefault();
+
+            var mobile = _service.GetByIdAsync(id, m => m.Media, m => m.Manufacturer, m => m.Reviews).Result;
+
+            //var mobile = _context.Mobiles.Include(m=>m.Media).Include(m => m.Manufacturer).Include(m => m.Reviews).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Media = await _context.Media.Where(m => m.MobileId == id).ToListAsync();
+            //ViewBag.Media = await _context.Media.Where(m => m.MobileId == id).ToListAsync();
 
             return View(mobile);
         }
 
-        public async Task<IActionResult> ViewSpecs(int id)
-        {
+        //public async Task<IActionResult> ViewSpecs(int id)
+        //{
 
-            var mobile = await _service.GetByIdAsync(id);
+        //    var mobile = await _service.GetByIdAsync(id);
             
-            if(mobile == null)
-            {
-                return NotFound();
-            }
+        //    if(mobile == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(mobile);
-        }
+        //    return View(mobile);
+        //}
 
         // GET: Mobiles/Create
         public async Task<IActionResult> Create()
@@ -345,8 +349,9 @@ namespace El3edda.Controllers
         public async Task<IActionResult> Delete(int id)
         {
 
+            var mobile = _service.GetByIdAsync(id, m => m.Media, m => m.Manufacturer, m => m.Reviews).Result;
 
-            var mobile = _context.Mobiles.Include(m => m.Manufacturer).Where(m => m.Id == id).FirstOrDefault();
+            //var mobile = _context.Mobiles.Include(m => m.Manufacturer).Where(m => m.Id == id).FirstOrDefault();
 
             if (mobile == null)
             {

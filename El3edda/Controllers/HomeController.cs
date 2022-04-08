@@ -74,7 +74,7 @@ namespace El3edda.Controllers
                     };
                     using (var mess = new MailMessage(senderEmail, receiverEmail)
                     {
-                        Subject = "El-3edda Store",
+                        Subject = "New Year's Sale",
                         Body = $"Hey {name}, Don't miss our latest collections of mobiles. El3edda is rocking it!"
                     })
                     {

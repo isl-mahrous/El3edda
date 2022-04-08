@@ -20,13 +20,11 @@ namespace El3edda.Controllers
 
         private readonly IMobileService _serviceMob;
 
-        private readonly AppDbContext _context;
 
-        public ReviewsController(IReviewService service, IMobileService serviceMob, AppDbContext context)
+        public ReviewsController(IReviewService service, IMobileService serviceMob)
         {
             _service = service;
             _serviceMob = serviceMob;
-            _context = context;
         }
 
         // GET: Reviews
@@ -34,7 +32,10 @@ namespace El3edda.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Reviews.Include(r => r.Mobile).ToList());
+            var AllReviews = _service.GetAllAsync(r => r.Mobile).Result;
+            
+            return View(AllReviews);
+
         }
 
         public async Task<IActionResult> Create(int id)
@@ -66,7 +67,7 @@ namespace El3edda.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
-            var ReviewDetails = await _service.GetByIdAsync(id);
+            var ReviewDetails = await _service.GetByIdAsync(id, r => r.Mobile);
 
             ViewBag.Mobile = await _serviceMob.GetByIdAsync(ReviewDetails.MobileId);
 
@@ -114,7 +115,7 @@ namespace El3edda.Controllers
                 return NotFound();
 
             await _service.DeleteAsync(id);
-            return RedirectToAction("Index", "Mobiles", new { area = "" });
+            return RedirectToAction("Index", "Reviews", new { area = "" });
         }
     }
 }

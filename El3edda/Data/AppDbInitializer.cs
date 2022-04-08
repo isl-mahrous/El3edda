@@ -120,12 +120,12 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://mywallpapers.net/wp-content/uploads/2021/08/Spiderman-Wallpaper.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -216,7 +216,7 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -305,7 +305,7 @@ namespace El3edda.Data
                                     },
                                     new Media()
                                     {
-                                        URL = "https://data.whicdn.com/images/334614638/original.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
@@ -345,12 +345,12 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://ae01.alicdn.com/kf/H2372e66c58084287a991b066b386cec1I/For-Huawei-P40-Pro-Case-2020-Release-SUPCASE-UB-Style-Slim-Anti-knock-Premium-Hybrid-Protective.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://spigen.ph/sites/default/files/images/products/p1.jpg",
+                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()

@@ -8,7 +8,14 @@ namespace El3edda.Data.Base
         
         //Overload to implement Load() for navigational properties
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
+        
+      
         Task<T> GetByIdAsync(int id);
+
+
+        Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includeProperties);
+
+
         Task AddAsync(T entity);
         Task UpdateAsync(int id, T newEntity);
         Task DeleteAsync(int id);

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    var medias = (List<Media>)ViewBag.Media;
+    //var medias = (List<Media>)ViewBag.Media;
     
     double RateSum = 0;
     int total = 0;
@@ -96,7 +96,7 @@
                                 int i = 2;
                              }
 
-                            @foreach(var med in medias)
+                            @foreach(var med in @Model.Media)
                             {
                                   <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#tabs-@i" role="tab">
