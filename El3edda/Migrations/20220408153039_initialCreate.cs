@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace El3edda.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -184,7 +184,8 @@ namespace El3edda.Migrations
                     ShippingAddress_Neighbourhood = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShippingAddress_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShippingAddress_State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShippingAddress_Street = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ShippingAddress_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    orderState = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,6 +222,8 @@ namespace El3edda.Migrations
                     Specs_Weight = table.Column<double>(type: "float", nullable: false),
                     Specs_OS = table.Column<byte>(type: "tinyint", nullable: false),
                     Specs_BatteryCapacity = table.Column<int>(type: "int", nullable: false),
+                    Specs_RAM = table.Column<int>(type: "int", nullable: false),
+                    Specs_Storage = table.Column<int>(type: "int", nullable: false),
                     ManufacturerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -279,6 +282,29 @@ namespace El3edda.Migrations
                         name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rate = table.Column<int>(type: "int", nullable: false),
+                    Feedback = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MobileId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Mobiles_MobileId",
+                        column: x => x.MobileId,
+                        principalTable: "Mobiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -368,6 +394,11 @@ namespace El3edda.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reviews_MobileId",
+                table: "Reviews",
+                column: "MobileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_MobileId",
                 table: "ShoppingCartItems",
                 column: "MobileId");
@@ -395,6 +426,9 @@ namespace El3edda.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCartItems");

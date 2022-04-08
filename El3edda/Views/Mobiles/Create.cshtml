@@ -9,21 +9,20 @@
 }
 <link href="~/css/MobileIndex.css" rel="stylesheet" />
 
-<h1 style="margin-left:3%">Create New Mobile</h1>
 
 <hr />
-<div class="row col-12">
+<div class="row col-10 offset-1">
     <div class="col-md-12">
 
         <form class="row m-10" asp-action="Create" enctype="multipart/form-data">
-            <div class="row col-md-9">
+            <div class="row col-md-8">
                 <p>
                     <h3 style="margin-left:3%">
                         Technical Details
                     </h3>
                 </p>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="col-md-5" style="margin-left:3%">
+                <div class="col-md-6">
 
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
@@ -77,12 +76,19 @@
                         <span asp-validation-for="Specs.Thickness" class="text-danger"></span>
                     </div>
 
+                    <div class="form-group">
+                        <label asp-for="Specs.Storage" class="control-label"></label>
+                        <input asp-for="Specs.Storage" class="form-control" />
+                        <span asp-validation-for="Specs.Storage" class="text-danger"></span>
+                    </div>
+
 
                     <div class="form-group">
                         <label asp-for="Specs.Screen" class="control-label"></label>
                         <select asp-for="Specs.Screen" asp-items="Html.GetEnumSelectList(typeof(ScreenEnum))" class="form-control"></select>
                         <span asp-validation-for="Specs.Screen" class="text-danger"></span>
                     </div>
+
 
                 </div>
                 <div class="col-md-6">
@@ -92,14 +98,16 @@
                     <div class="form-group">
                         <div class="custom-file">
                             <label asp-for="MainPhotoURL" class="control-label custom-file-label"></label>
-                            <input asp-for="MainPhotoURL" class="form-control custom-file-input" type="file" accept="image/png, image/jpeg, image/jpg" onchange="loadFile(event)" />
+                            <input asp-for="MainPhotoURL" class="form-control custom-file-input" type="file" accept="image/png, image/jpeg, image/jpg" onchange="loadFile(event)" required/>
+                            <span asp-validation-for="MainPhotoURL" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="custom-file">
                             <label asp-for="Media" class="control-label custom-file-label"></label>
-                            <input asp-for="Media" class="form-control custom-file-input multiple" type="file" accept="image/png, image/jpeg, image/jpg, video/mp4" />
+                            <input asp-for="Media" multiple class="form-control custom-file-input multiple" type="file" accept="image/png, image/jpeg, image/jpg, video/mp4" />
+                            <span asp-validation-for="Media" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -138,13 +146,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label asp-for="Specs.RAM" class="control-label"></label>
+                        <input asp-for="Specs.RAM" class="form-control" />
+                        <span asp-validation-for="Specs.RAM" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
                         <label asp-for="Specs.Weight" class="control-label"></label>
                         <input asp-for="Specs.Weight" class="form-control" />
                         <span asp-validation-for="Specs.Weight" class="text-danger"></span>
                     </div>
 
                 </div>
-                <div class="col-md-11" style="margin-left:3%">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
                         <textarea asp-for="Description" class="form-control"></textarea>
@@ -152,11 +166,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+
+            @*Mobile Preview*@
+            <div class="col-md-4 ">
                 <div class="text-center">
-                    <h3>Mobile Preview</h3>
+                    <p>
+                        <h3>
+                            Card Preview
+                        </h3>
+                    </p>
+
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 my-3">
                     <div class="product-grid">
                         <div class="product-image">
                             <a class="image">
@@ -185,9 +206,6 @@
                     <a asp-action="Index" class="btn btn-dark btn-lg btn-block my-2">Back</a>
                 </div>
             </div>
-
-
-
         </form>
     </div>
 </div>

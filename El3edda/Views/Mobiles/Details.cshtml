@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Details";
     //var medias = (List<Media>)ViewBag.Media;
-    
+
     double RateSum = 0;
     int total = 0;
 
-    foreach(var rate in Model.Reviews)
+    foreach (var rate in Model.Reviews)
     {
         total++;
-        switch(rate.Rate)
+        switch (rate.Rate)
         {
             case MobileRate.poor:
                 RateSum += 1;
@@ -69,281 +69,298 @@
 
 </style>
 
-    <!-- Shop Details Section Begin -->
-    <section class="shop-details">
-        <div class="product__details__pic">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__details__breadcrumb">
-                            <a asp-controller="Home" asp-action="Index">Home</a>
-                            <a asp-controller="Mobiles" asp-action="Index">Shop</a>
-                            <span>Mobile Details</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                        <ul class="nav nav-tabs" role="tablist">
-                            
-                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="@Model.MainPhotoURL"></div>
-                                </a>
-                             </li>
-                            
-                            @{
-                                int i = 2;
-                             }
-
-                            @foreach(var med in @Model.Media)
-                            {
-                                  <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#tabs-@i" role="tab">
-                                            <div class="product__thumb__pic set-bg" data-setbg="@med.URL"></div>
-                                        </a>
-                                  </li>
-
-                                i++;
-                            }
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-md-9">
-
-                        <div class="tab-content">
-                              
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="@Model.MainPhotoURL" alt="" id="slideshow">
-                                </div>
-                            </div>
-
-                        </div>
-
+<!-- Shop Details Section Begin -->
+<section class="shop-details">
+    <div class="product__details__pic">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__details__breadcrumb">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Mobiles" asp-action="Index">Shop</a>
+                        <span>Mobile Details</span>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <ul class="nav nav-tabs" role="tablist">
 
-        <div class="product__details__content">
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="product__details__text">
-                            <h4>@Model.Name</h4>
-                            
-                            <div class="rating">
-                            
-                            @for(int x = 1; x <= AvgRate; x++)
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                <div class="product__thumb__pic set-bg" data-setbg="@Model.MainPhotoURL"></div>
+                            </a>
+                        </li>
+
+                        @{
+                            int i = 2;
+                        }
+
+                        @foreach (var med in @Model.Media)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-@i" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="@med.URL"></div>
+                                </a>
+                            </li>
+
+                            i++;
+                        }
+
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-9">
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__pic__item">
+                                <img src="@Model.MainPhotoURL" alt="" id="slideshow">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product__details__content">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="product__details__text">
+                        <h4>@Model.Name</h4>
+
+                        <div class="rating">
+
+                            @for (int x = 1; x <= AvgRate; x++)
                             {
-                                <i class="fa fa-star"></i>    
+                                <i class="fa fa-star"></i>
                             }
-                           
-                            @for(int x = AvgRate + 1; x <= 5; x++)
+
+                            @for (int x = AvgRate + 1; x <= 5; x++)
                             {
                                 <i class="far fa-star" aria-hidden></i>
                             }
 
-                        @*<span> - @AvgRate out of 5 </span>*@                            
+                            @*<span> - @AvgRate out of 5 </span>*@
                         </div>
-                           
-                            <h3>$@Model.Price <span></span></h3>
-                            <p>@Model.Description</p>
 
-                        
-                            <div class="product__details__cart__option">
+                        <h3>$@Model.Price <span></span></h3>
+                        <p>@Model.Description</p>
 
-                                <a asp-controller="Orders" asp-action="AddItemToShoppingCart" 
-                                 asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white 
+
+                        <div class="product__details__cart__option">
+
+                            <a asp-controller="Orders" asp-action="AddItemToShoppingCart"
+                               asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white
                                                @((Model.UnitsInStock < 0) ? "disabled" : "")">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c")) </a>
-                            </div>
+                                <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__details__tab">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5"
-                                    role="tab">Description</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
-                                    Previews</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
-                                    information</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="tabs-5" role="tabpanel">
-                                    <div class="product__details__tab__content">
-                                        <p class="note">@Model.Description</p>
-                                        
-                                        <div class="product__details__tab__content__item">
-                                            
-                                            <h5>Mobile Infomation</h5>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-5"
+                                   role="tab">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
+                                    Customer
+                                    Previews
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">
+                                    Additional
+                                    information
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                                <div class="product__details__tab__content">
+                                    <p class="note">@Model.Description</p>
 
-                                            <p>The mobile above is of type @Model.Manufacturer.Name, made in @Model.Manufacturer.Origin, named @Model.Name, 
-                                                which features many of the same capabilities as a modern smart mobile phone. These handy little devices allow
-                                                individuals to retrieve and store e-mail messages, create a contact file, coordinate appointments, 
-                                                surf the internet, exchange text messages and more. Our product is released in @Model.ReleaseDate with warranty period up 
-                                                to @Model.WarrantyPeriod. With a competitive price of @Model.Price our mobile suit well ot your need. 
-                                                @Model.UnitsSold peices have beeen sold till now since the first release of the phone 
-                                                Every mobile must be accompanied with specific software to operate the unit and must feature
-                                                a touchscreen and touchpad.</p>
+                                    <div class="product__details__tab__content__item">
 
+                                        <h5>Mobile Infomation</h5>
 
-                                        </div>
+                                        <p>
+                                            The mobile above is of type @Model.Manufacturer.Name, made in @Model.Manufacturer.Origin, named @Model.Name,
+                                            which features many of the same capabilities as a modern smart mobile phone. These handy little devices allow
+                                            individuals to retrieve and store e-mail messages, create a contact file, coordinate appointments,
+                                            surf the internet, exchange text messages and more. Our product is released in @Model.ReleaseDate with warranty period up
+                                            to @Model.WarrantyPeriod. With a competitive price of @Model.Price our mobile suit well ot your need.
+                                            @Model.UnitsSold peices have beeen sold till now since the first release of the phone
+                                            Every mobile must be accompanied with specific software to operate the unit and must feature
+                                            a touchscreen and touchpad.
+                                        </p>
 
-                                        <div class="product__details__tab__content__item mb-5">
-                                            
-                                            <h5>Material used</h5>
-                                            
-                                            <p> The metal Body is made mainly of aluminum alloy, which is mixed with a small amount of magnesium or other metal materials
-                                                to enhance its strength. Magnesium-aluminum alloy and titanium-aluminum alloy are now commonly used as the body of mobile
-                                                phones. Currently, aluminum is the most versatile and cost-effective smartphone body material, and it is more recyclable
-                                                than titanium and magnesium. </p>
-                                        
-                                        </div>
 
                                     </div>
+
+                                    <div class="product__details__tab__content__item mb-5">
+
+                                        <h5>Material used</h5>
+
+                                        <p>
+                                            The metal Body is made mainly of aluminum alloy, which is mixed with a small amount of magnesium or other metal materials
+                                            to enhance its strength. Magnesium-aluminum alloy and titanium-aluminum alloy are now commonly used as the body of mobile
+                                            phones. Currently, aluminum is the most versatile and cost-effective smartphone body material, and it is more recyclable
+                                            than titanium and magnesium.
+                                        </p>
+
+                                    </div>
+
                                 </div>
-                                <div class="tab-pane" id="tabs-6" role="tabpanel">
-                                    <div class="product__details__tab__content">
-                                        
-                                        <div class="product__details__tab__content__item mb-5">
+                            </div>
+                            <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                <div class="product__details__tab__content">
 
-                                            @foreach(var review in @Model.Reviews)
-                                            {
+                                    <div class="product__details__tab__content__item mb-5">
 
-                                                <div class="card p-3 mb-2">
-                                                    <div class="d-flex flex-row"> <img src="https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" height="40" width="40" class="rounded-circle">
-                                                        <div class="d-flex flex-column ms-2">
-                                                            <h6 class="mb-1 text-primary m-1">@review.CustomerName    <span class="text-muted fw-normal fs-10" style="font-size:75%"> (@review.Rate) </span></h6>
-                                                            <p class="comment-text m-1">@review.Feedback</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row gap-3 align-items-center">
-                                                            <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
-                                                            <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
-                                                        </div>
-                                                        <div class="d-flex flex-row">  <span class="text-muted fw-normal fs-10">@review.Date</span> </div>
+                                        @foreach (var review in @Model.Reviews)
+                                        {
+
+                                            <div class="card p-3 mb-2">
+                                                <div class="d-flex flex-row">
+                                                    <img src="https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" height="40" width="40" class="rounded-circle">
+                                                    <div class="d-flex flex-column ms-2">
+                                                        <h6 class="mb-1 text-primary m-1">@review.CustomerName    <span class="text-muted fw-normal fs-10" style="font-size:75%"> (@review.Rate) </span></h6>
+                                                        <p class="comment-text m-1">@review.Feedback</p>
                                                     </div>
                                                 </div>
-                                            }
-                                            
-                                            <div class="col-12 text-right">
-                                                <a asp-action="Create" asp-controller="Reviews" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Add Review</a>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-heart-o m-1"></i> <span class="ms-1 fs-10">Like</span> </div>
+                                                        <div class="d-flex align-items-center m-1"> <i class="fa fa-comment-o m-1"></i> <span class="ms-1 fs-10">Comments</span> </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row">  <span class="text-muted fw-normal fs-10">@review.Date</span> </div>
+                                                </div>
                                             </div>
+                                        }
 
+                                        <div class="col-12 text-right">
+                                            <a asp-action="Create" asp-controller="Reviews" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Add Review</a>
                                         </div>
 
                                     </div>
+
                                 </div>
-                                <div class="tab-pane" id="tabs-7" role="tabpanel">
-                                    <div class="product__details__tab__content">
-                                        
-                                        <p class="note">@Model.Name</p>
-                                        
-                                        <div class="product__details__tab__content__item row">
-                                            
-                                         <div class="col-6">
-                                           <table class="table caption-top">
-                                              <caption>Specifications</caption>
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">Feature</th>
-                                                  <th scope="col">information</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
+                            </div>
+                            <div class="tab-pane" id="tabs-7" role="tabpanel">
+                                <div class="product__details__tab__content">
 
-                                                 <tr>
-                                                  <td scope="row">Manufaturer</td>
-                                                  <td>@Model.Manufacturer.Name</td>
-                                                </tr>
+                                    <p class="note">@Model.Name</p>
 
-                                                 <tr>
-                                                  <td scope="row">Release Date</td>
-                                                  <td>@Model.ReleaseDate</td>
-                                                </tr>
+                                    <div class="product__details__tab__content__item row">
 
-                                                 <tr>
-                                                  <td scope="row">CPU</td>
-                                                  <td>@Model.Specs.CPU</td>
-                                                </tr>
+                                        <div class="col-6">
+                                            <table class="table caption-top">
+                                                <caption>Specifications</caption>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Feature</th>
+                                                        <th scope="col">Information</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                 <tr>
-                                                  <td scope="row">Color</td>
-                                                  <td>@Model.Specs.Color</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Manufaturer</td>
+                                                        <td>@Model.Manufacturer.Name</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Battery Capacity</td>
-                                                  <td>@Model.Specs.BatteryCapacity</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Release Date</td>
+                                                        <td>@Model.ReleaseDate</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Camera</td>
-                                                  <td>@Model.Specs.CameraMegaPixels</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">CPU</td>
+                                                        <td>@Model.Specs.CPU</td>
+                                                    </tr>
 
-                                              </tbody>
-                                           </table>
+                                                    <tr>
+                                                        <td scope="row">Color</td>
+                                                        <td>@Model.Specs.Color</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td scope="row">Battery Capacity</td>
+                                                        <td>@Model.Specs.BatteryCapacity</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td scope="row">Camera</td>
+                                                        <td>@Model.Specs.CameraMegaPixels</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">RAM</td>
+                                                        <td>@Model.Specs.RAM</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                         <div class="col-6">
                                             <table class="table caption-top">
 
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">Feature</th>
-                                                  <th scope="col">information</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Feature</th>
+                                                        <th scope="col">Information</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                <tr>
-                                                  <td scope="row">Operating System</td>
-                                                  <td>@Model.Specs.OS</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Operating System</td>
+                                                        <td>@Model.Specs.OS</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Screen</td>
-                                                  <td>@Model.Specs.Screen</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Screen</td>
+                                                        <td>@Model.Specs.Screen</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Height</td>
-                                                  <td>@Model.Specs.Height</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Height</td>
+                                                        <td>@Model.Specs.Height</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Width</td>
-                                                  <td>@Model.Specs.Width</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Width</td>
+                                                        <td>@Model.Specs.Width</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Thickness</td>
-                                                  <td>@Model.Specs.Thickness</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Thickness</td>
+                                                        <td>@Model.Specs.Thickness</td>
+                                                    </tr>
 
-                                                 <tr>
-                                                  <td scope="row">Weight</td>
-                                                  <td>@Model.Specs.Weight</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td scope="row">Weight</td>
+                                                        <td>@Model.Specs.Weight</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">Storage</td>
+                                                        <td>@Model.Specs.Storage</td>
+                                                    </tr>
 
-                                              </tbody>
-                                           </table>
-                                         </div>
-                                       </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -352,50 +369,48 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Shop Details Section End -->
+    </div>
+</section>
+<!-- Shop Details Section End -->
+@section scripts{
 
- 
-    @section scripts{
+<script>
 
-           <script>
+    $(function()
+    {
+        var mobimgs = [];
+        var i = 0;
+        var len = 0;
 
-            $(function()
+
+        $('.product__thumb__pic').each(function(i, obj) {
+
+            mobimgs[i++] = $(this).data("setbg");
+            console.log(mobimgs[i]);
+            len++;
+
+        });
+
+        var interval = setInterval(function(){
+
+            if(i >= len)
             {
-                var mobimgs = [];
-                var i = 0;
-                var len = 0;
-                
+                i = 0;
+            }
 
-                $('.product__thumb__pic').each(function(i, obj) {
-                    
-                    mobimgs[i++] = $(this).data("setbg");
-                    console.log(mobimgs[i]);
-                    len++;
+            $("#slideshow").attr("src", mobimgs[i++]);
 
-                });
-
-                var interval = setInterval(function(){
-
-                    if(i >= len)
-                    {
-                        i = 0;
-                    }
-
-                    $("#slideshow").attr("src", mobimgs[i++]);
-
-                }, 3000);
-            });
+        }, 3000);
+    });
 
 
-            $(".product__thumb__pic").on("click", function()
-                {
-                    
-                    $("#slideshow").attr("src", $(this).attr("data-setbg"));
+    $(".product__thumb__pic").on("click", function()
+        {
 
-                })
+            $("#slideshow").attr("src", $(this).attr("data-setbg"));
 
-         </script>
+        })
+
+</script>
     }
-    
- 
+
