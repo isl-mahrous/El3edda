@@ -1,6 +1,7 @@
 @model specSearchParamter;
 @{
 	IEnumerable<Tuple<bool, Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Tuple<bool, ScreenEnum>> all_screens = ViewBag.screens;
 }
 
 
@@ -328,7 +329,18 @@
 								<span asp-validation-for=ROMHigher class="text-danger"></span>
 							</div>
 						</div>
-
+						<div class="input-group d-flex flex-column">
+							<h4> screen </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_screens)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="Screens" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  <span style="color:gray">(@company.Item2)</span></span>
+									</label>
+								}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

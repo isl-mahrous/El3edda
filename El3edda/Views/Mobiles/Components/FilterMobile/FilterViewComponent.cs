@@ -3,6 +3,7 @@ using El3edda.Data;
 using El3edda.Models;
 using El3edda.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using El3edda.Data.Enums;
 
 namespace El3edda.Views.Mobiles.Components.FilterMobile
 {
@@ -31,7 +32,15 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
                     searchParamter?.manufacturerids?.Contains(m.Id) ?? false,
                     m));
 
+
+            var screens = Enum.GetNames(typeof(ScreenEnum));
+            var screens_checks = screens
+                .Select(s => new Tuple<bool, ScreenEnum>(
+                    searchParamter?.Screens?.Contains(Enum.Parse<ScreenEnum>(s)) ?? false,
+                    Enum.Parse<ScreenEnum>(s)
+                    ));
             
+            ViewBag.screens = screens_checks;
 			ViewBag.Manufacturers = manufacrer_checks;
 
 
