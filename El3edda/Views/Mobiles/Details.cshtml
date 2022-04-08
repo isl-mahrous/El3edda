@@ -67,6 +67,10 @@
         font-size: 12px
     }
 
+	a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: gray;}
+
 </style>
 
 <!-- Shop Details Section Begin -->
@@ -155,7 +159,7 @@
                         <div class="product__details__cart__option">
 
                             <a asp-controller="Orders" asp-action="AddItemToShoppingCart"
-                               asp-route-id="@Model.Id" class="mt-3 btn btn-success text-white
+                               asp-route-id="@Model.Id" class="primary-btn
                                                @((Model.UnitsInStock < 0) ? "disabled" : "")">
                                 <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
                             </a>
