@@ -1,17 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication;
+using System.ComponentModel.DataAnnotations;
 
 namespace El3edda.Data.ViewModels
 {
     public class LoginVM
     {
-        [Display(Name ="Email")]
+        [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
-
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public string ReturnUrl { get; set; }
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
     }
 }

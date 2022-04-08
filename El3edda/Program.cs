@@ -25,7 +25,6 @@ builder.Services.AddScoped<IMobileService, MobileService>();
 builder.Services.AddScoped<IMediaService, MediaService>();
 builder.Services.AddScoped<IReviewService, El3edda.Data.Services.ReviewService.ReviewService>();
 
-
 //Shopping Cart Services
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -50,6 +49,17 @@ builder.Services.AddAuthentication(
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     }
 );
+
+//Facebook Login
+builder.Services
+    .AddAuthentication()
+    .AddFacebook(
+        facebookOptions =>
+        {
+            facebookOptions.AppId = "1014936052466046";
+            facebookOptions.AppSecret = "ba04c1dc40fae3dd801629c60f29eddf";
+        }
+    );
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
