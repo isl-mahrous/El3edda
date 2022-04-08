@@ -13,22 +13,25 @@ namespace El3edda.Models
         /// <summary>
         /// search text from the bar 
         /// </summary>
+        /// 
+        // TODO (Low Priority)
+        //Naming Convention
         public string text_search { get; set; }
         [DataType(DataType.Date)]
-        public DateTime? releasebefore { get; set; }
+        public DateTime? releasebefore { get; set; } //ReleasedBefore
         [DataType(DataType.Date)]
-        public DateTime? releaseafter { get; set; }
+        public DateTime? releaseafter { get; set; } //ReleasedAfter
         public ICollection<int>? manufacturerids { get; set; }
         [Range(0, double.MaxValue)]
         [CompareTo("priceLower",ComparisonType.GreaterThanOrEqual)]
-        public double? priceHigher { get; set; }
+        public double? priceHigher { get; set; } //MaxPrice
         [Range(0, double.MaxValue)]
-        public double? priceLower { get; set; }
+        public double? priceLower { get; set; } //MinPrice
         [Range(0, double.MaxValue)]
         [CompareTo("warrentyPeriodLower",ComparisonType.GreaterThanOrEqual)]
-        public double? warrentyPeriodHigher { get; set; }
+        public double? warrentyPeriodHigher { get; set; } //WarrantyTo
         [Range(0, double.MaxValue)]
-        public double? warrentyPeriodLower { get; set; }
+        public double? warrentyPeriodLower { get; set; } ////WarrantyFrom
         public bool? InStock { get; set; }
     }
 

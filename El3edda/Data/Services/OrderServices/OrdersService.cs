@@ -39,7 +39,7 @@ namespace El3edda.Data.Services.OrderServices
                 .Include(o => o.OrderItems)
                 .ThenInclude(i=>i.Mobile)
                 .FirstOrDefaultAsync(o => o.Id == orderId);
-            order.orderState = OrderState.canceled;
+            order.orderState = OrderState.cancelled;
             foreach (var item in order.OrderItems)
             {
                 //Decrement Units Sold

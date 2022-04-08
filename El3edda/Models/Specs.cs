@@ -35,8 +35,15 @@ namespace El3edda.Models
         public OSEnum OS { get; set; }
         [Display(Name = "Battery Capacity")]
         public int BatteryCapacity { get; set; }
-        // public int RAM { get; set; }
-        // public int ROM { get; set; }
+        
+        
+        [Display(Name = "RAM"), Required]
+        public int RAM { get; set; }
+        [Display(Name = "Storage"), Required]
+        public int Storage { get; set; }
+
+        //TODO
+        //Mobile RAM and ROM views and Model
 
     }
 }
