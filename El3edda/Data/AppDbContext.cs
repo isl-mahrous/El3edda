@@ -8,20 +8,15 @@ namespace El3edda.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public virtual DbSet<Mobile> Mobiles { get; set; } 
-        public virtual DbSet<Manufacturer> Manufacturers { get; set; } 
+        public virtual DbSet<Mobile> Mobiles { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Media> Media { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
-
-
 
         //////////// ORDERS //////////////
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
-
-
-
     }
 }

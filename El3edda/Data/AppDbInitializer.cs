@@ -120,17 +120,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL =
+                                            "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -167,17 +170,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
+                                        URL =
+                                            "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
+                                        URL =
+                                            "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
+                                        URL =
+                                            "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -215,17 +221,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.mytrendyphone.eu/images/Original-Clear-Case-for-Huawei-P40-51993731-Transparent-6901443365999-10042020-01-p.jpg",
+                                        URL =
+                                            "https://www.mytrendyphone.eu/images/Original-Clear-Case-for-Huawei-P40-51993731-Transparent-6901443365999-10042020-01-p.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
+                                        URL =
+                                            "https://www.pricenow.com.pk/templates/yootheme/cache/Vivo_V21e-a-e37a8098.jpeg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -261,17 +270,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
+                                        URL =
+                                            "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
+                                        URL =
+                                            "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://ae01.alicdn.com/kf/H2372e66c58084287a991b066b386cec1I/For-Huawei-P40-Pro-Case-2020-Release-SUPCASE-UB-Style-Slim-Anti-knock-Premium-Hybrid-Protective.jpg",
+                                        URL =
+                                            "https://ae01.alicdn.com/kf/H2372e66c58084287a991b066b386cec1I/For-Huawei-P40-Pro-Case-2020-Release-SUPCASE-UB-Style-Slim-Anti-knock-Premium-Hybrid-Protective.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -308,17 +320,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
+                                        URL =
+                                            "https://itstechprice.com/wp-content/uploads/2020/10/vivo-phones.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://img01.huaweifile.com/eu/uk/huawei/pms/product/6901443366064/428_428_C2C21356D98ACE0827A3C55CD8AA66DE122A11ED9BCE073Cmp.jpg",
+                                        URL =
+                                            "https://img01.huaweifile.com/eu/uk/huawei/pms/product/6901443366064/428_428_C2C21356D98ACE0827A3C55CD8AA66DE122A11ED9BCE073Cmp.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -355,17 +370,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
+                                        URL =
+                                            "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                        URL =
+                                            "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -402,17 +420,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
+                                        URL =
+                                            "https://oxygendigitalshop.com/media/cache/2500x0/catalog/product/1/2/12blue_1622666078.webp",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
+                                        URL =
+                                            "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://www.mytrendyphone.ie/images/Original-Silicone-Case-for-Huawei-P40-Pro-51993797-Black-6901443366095-08042020-01-p.jpg",
+                                        URL =
+                                            "https://www.mytrendyphone.ie/images/Original-Silicone-Case-for-Huawei-P40-Pro-51993797-Black-6901443366095-08042020-01-p.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -441,7 +462,7 @@ namespace El3edda.Data
                                     "The iPhone 13 Mini is the successor to Apple's first super mini flagship in recent years, the iPhone 12 Mini. It retains the same 5.4 screen size and the one-handed use friendly form factor, while at the same time bringing a faster Apple A15 Bionic processor. On the camera front, the 13 Mini keeps a wide and an ultra - wide setup, and it does not have a dedicated telephoto zoom camera.",
                                 WarrantyPeriod = 12 * 2,
                                 UnitsInStock = 18,
-                                UnitsSold = 800, 
+                                UnitsSold = 800,
                                 MainPhotoURL =
                                     "https://www.theiphonewiki.com/w/images/1/17/IPhone_13_mini.png",
                                 ManufacturerId = 2,
@@ -449,17 +470,20 @@ namespace El3edda.Data
                                 {
                                     new Media()
                                     {
-                                        URL = "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
+                                        URL =
+                                            "https://www.mobiletech.ie/user/products/mobiletech-p40-silicon-clear1.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
+                                        URL =
+                                            "https://mobiles.dailypakistan.com.pk/wp-content/uploads/2022/03/oppoa16e.jpg",
                                         Type = MediaType.Photo
                                     },
                                     new Media()
                                     {
-                                        URL = "https://cdn.shopify.com/s/files/1/1126/0898/products/p40-pro-black_650x650.jpg?v=1637573053",
+                                        URL =
+                                            "https://cdn.shopify.com/s/files/1/1126/0898/products/p40-pro-black_650x650.jpg?v=1637573053",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -484,7 +508,6 @@ namespace El3edda.Data
                     context.SaveChanges();
                 }
 
-
                 //Reviews
                 if (!context.Reviews.Any())
                 {
@@ -497,7 +520,8 @@ namespace El3edda.Data
                                 CustomerName = "Gamal Gamal",
                                 MobileId = 1,
                                 Rate = MobileRate.good,
-                                Feedback = "relatively good for those who search for a practical soultion for mobiles",
+                                Feedback =
+                                    "relatively good for those who search for a practical soultion for mobiles",
                                 Date = DateTime.Now
                             },
                             new Review()
@@ -507,7 +531,6 @@ namespace El3edda.Data
                                 Rate = MobileRate.moderate,
                                 Feedback = "msh b3raf a2ra 3araby",
                                 Date = DateTime.Now
-
                             },
                             new Review()
                             {
@@ -586,7 +609,8 @@ namespace El3edda.Data
                                 CustomerName = "Abo treka",
                                 MobileId = 2,
                                 Rate = MobileRate.exceptional,
-                                Feedback = "Very very good mobile it deserves more than that marketing",
+                                Feedback =
+                                    "Very very good mobile it deserves more than that marketing",
                                 Date = DateTime.Now
                             },
                             new Review()
@@ -597,7 +621,8 @@ namespace El3edda.Data
                                 Feedback = "not bad but I feel like it might be better than that",
                                 Date = DateTime.Now
                             }
-                        });
+                        }
+                    );
                     context.SaveChanges();
                 }
             }

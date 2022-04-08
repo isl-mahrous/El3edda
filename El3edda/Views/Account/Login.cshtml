@@ -59,15 +59,23 @@
           alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
+            <form method="post" asp-action="ExternalLogin" asp-route-returnUrl=@Model.ReturnUrl>
+                <div>
+                    @foreach(var provider in Model.ExternalLogins)
+                    {
+                        <button type="submit" class="btn btn-primary btn-floating mx-1" name = "provider" value="@provider.Name" >
+                          <i class="fab fa-facebook-f"></i>
+                        </button>           
+                    }
+                     
+                </div>
+            </form>
           </div>
 
+        <form asp-action="Login">
           <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0">Or</p>
           </div>

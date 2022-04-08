@@ -46,8 +46,14 @@ namespace El3edda.Controllers
         // GET: Mobiles
         public async Task<IActionResult> Index(specSearchParamter searchParam)
         {
-            PropSearch searchCriteria = new PropSearch(searchParam);
+            // prepare paramters for filter in ui
+            ViewBag.search = searchParam;
+            
+            // build predicate
+            PropSearch searchCriteria = new PropSearch(searchParam);            
+            
             var data = await _context.Mobiles.Include(m => m.Manufacturer).Where(searchCriteria.searchPredicate).ToListAsync();
+            
             return View(data);
         }
 

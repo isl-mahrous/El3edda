@@ -130,10 +130,10 @@
                     <div class="footer__widget">
                         <h6>Shopping</h6>
                         <ul>
-                            <li><a href="#">Mobiles Store</a></li>
-                            <li><a href="#">Trending Mobiles</a></li>
-                            <li><a href="#">Top Selling</a></li>
-                            <li><a href="#">Sale</a></li>
+                            <li><a asp-controller="Mobiles" asp-action="Index">Mobiles Store</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" asp-fragment="filter-controls">Trending Mobiles</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" asp-fragment="filter-controls">Top Selling</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" asp-fragment="sale" >Sale</a></li>
                         </ul>
                     </div>
                 </div>
@@ -141,10 +141,9 @@
                     <div class="footer__widget">
                         <h6>Shopping</h6>
                         <ul>
-                            <li><a asp-controller="Mobiles" asp-action="Index">Contact Us</a></li>
+                            <li><a asp-controller="Home" asp-action="Contacts">Contact Us</a></li>
                             <li><a href="">Payment Methods</a></li>
                             <li><a href="">Delivery</a></li>
-                            <li><a href="">Return & Exchanges</a></li>
                         </ul>
                     </div>
                 </div>
