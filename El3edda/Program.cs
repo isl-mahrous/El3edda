@@ -50,14 +50,16 @@ builder.Services.AddAuthentication(
     }
 );
 
+var a = builder.Configuration["Facebook:AppSecret"];
+
 //Facebook Login
 builder.Services
     .AddAuthentication()
     .AddFacebook(
         facebookOptions =>
         {
-            facebookOptions.AppId = "1014936052466046";
-            facebookOptions.AppSecret = "ba04c1dc40fae3dd801629c60f29eddf";
+            facebookOptions.AppId = builder.Configuration["Facebook:AppId"];
+            facebookOptions.AppSecret = builder.Configuration["Facebook:AppSecret"];
         }
     );
 
