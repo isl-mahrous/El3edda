@@ -45,7 +45,7 @@
 
 	.checkLabel {
 		font-family: system-ui, sans-serif;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: bold;
 		line-height: 1.1;
 		display: grid;
@@ -57,9 +57,29 @@
 		color: black;
 		background-color: white;
 	}
-	.accordion-button:focus {
-		border-color:grey;
+
+	.check_box_scroll {
+		display: flex;
+		flex-direction: column;
+		height: 6rem;
+		overflow: auto;
+		margin-bottom: 1rem;
+		padding: 0.5rem;
+		
 	}
+
+		.check_box_scroll::-webkit-scrollbar {
+			width: 1rem;
+		}
+
+		.check_box_scroll::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+
+		.check_box_scroll::-webkit-scrollbar-thumb {
+			background-color: darkgrey;
+			outline: 1px solid slategrey;
+		}
 </style>
 
 <form asp-action="Index" method="get" class="row">
@@ -98,22 +118,17 @@
 					 aria-labelledby="panelsStayOpen-infoHeading">
 					<div class="accordion-body">
 						<div class="input-group d-flex flex-column">
-							<h3> company </h3>
-							@foreach (var company in ViewBag.Manufacturers)
-							{
-								
+							<h4> company </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in ViewBag.Manufacturers)
+								{
 									<label class="checkLabel">
 										<input type="checkbox" name="manufacturerids" value=@company.Value>
 										@company.Text
 									</label>
-
-								
-
-								@*<br />*@
-							}
+								}
+							</div>
 						</div>
-						@*<select asp-for="manufacturerids" asp-items=ViewBag.Manufacturers class="form-select"></select>*@
-						@*<span asp-validation-for="manufacturerids" class="text-danger"></span>*@
 						<div class="input-group flex-nowrap mb-2">
 							<span class="input-group-text ">
 								<i class="fa-solid fa-dollar"></i>
