@@ -2,6 +2,6 @@
 {
     public enum OrderState
     {
-        confirmed, shipping, shipped, canceled
+        confirmed, shipping, shipped, cancelled
     }
 }

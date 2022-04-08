@@ -2,6 +2,13 @@
 @{
     SelectList all_manufacturers = ViewBag.Manufacturers;
 }
+
+
+@*//TODO
+// UnitsInStock checkbox
+// RAM and ROM
+// Mobile Specs Category (RAM and ROM, Battery, CameraSpecs, CPU, Screen, )*@
+
 <form asp-action="Index" method="get" class="row">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="col-12">
@@ -31,7 +38,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#panelsStayOpen-info" aria-expanded="false"
                             aria-controls="panelsStayOpen-info">
-                        selling info
+                        Selling Information
                     </button>
                 </h2>
                 <div id="panelsStayOpen-info" class="accordion-collapse collapse"
@@ -109,7 +116,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#panelsStayOpen-dimesion" aria-expanded="false"
                             aria-controls="panelsStayOpen-dimesion">
-                        mobile dimentions
+                        Dimensions
                     </button>
                 </h2>
                 <div id="panelsStayOpen-dimesion" class="accordion-collapse collapse"
@@ -178,7 +185,7 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#panelsStayOpen-camera" aria-expanded="false" aria-controls="panelsStayOpen-camera">
-                        camera props
+                        Camera Specifications
                     </button>
                 </h2>
                 <div id="panelsStayOpen-camera" class="accordion-collapse collapse"
