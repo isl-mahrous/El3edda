@@ -2,6 +2,8 @@
 @{
 	IEnumerable<Tuple<bool, Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
 	IEnumerable<Tuple<bool, ScreenEnum>> all_screens = ViewBag.screens;
+	IEnumerable<Tuple<bool, OSEnum>> all_os = ViewBag.os_es;
+	IEnumerable<Tuple<bool, Colors>> all_colors = ViewBag.colors;
 }
 
 
@@ -172,6 +174,19 @@
 
 						</div>
 
+						<div class="input-group d-flex flex-column">
+							<h4> Color </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_colors)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="Screens" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  <i style="color: @company.Item2" class="fa-solid fa-square"></i></span>
+									</label>
+								}
+							</div>
+						</div>
+
 						<div class="input-group flex-nowrap mb-2">
 							<div class="form-group form-check">
 								<label class="form-check-label">
@@ -336,11 +351,25 @@
 								{
 									<label class="checkLabel">
 										<input type="checkbox" name="Screens" value=@company.Item2 checked=@company.Item1>
-										<span>@company.Item2  <span style="color:gray">(@company.Item2)</span></span>
+										<span>@company.Item2  </span>
 									</label>
 								}
 							</div>
 						</div>
+						<div class="input-group d-flex flex-column">
+							<h4> OS </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_os)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="Screens" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  </span>
+									</label>
+								}
+							</div>
+						</div>
+						
+
 					</div>
 				</div>
 			</div>

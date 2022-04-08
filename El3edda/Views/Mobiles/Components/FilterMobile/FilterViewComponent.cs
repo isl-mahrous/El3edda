@@ -32,7 +32,7 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
                     searchParamter?.manufacturerids?.Contains(m.Id) ?? false,
                     m));
 
-
+            #region enums
             var screens = Enum.GetNames(typeof(ScreenEnum));
             var screens_checks = screens
                 .Select(s => new Tuple<bool, ScreenEnum>(
@@ -40,6 +40,28 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
                     Enum.Parse<ScreenEnum>(s)
                     ));
             
+
+
+            var os_es = Enum.GetNames(typeof(OSEnum));
+            var os_checks = os_es
+                .Select(s => new Tuple<bool, OSEnum>(
+                    searchParamter?.OS?.Contains(Enum.Parse<OSEnum>(s)) ?? false,
+                    Enum.Parse<OSEnum>(s)
+                    ));
+
+
+            var colors = Enum.GetNames(typeof(Colors));
+            var colors_checks = colors
+                .Select(s => new Tuple<bool, Colors>(
+                    searchParamter?.Colors?.Contains(Enum.Parse<Colors>(s)) ?? false,
+                    Enum.Parse<Colors>(s)
+                    ));
+
+            // TODO add cpu 
+
+            #endregion
+            ViewBag.colors = colors_checks;
+            ViewBag.os_es = os_checks;
             ViewBag.screens = screens_checks;
 			ViewBag.Manufacturers = manufacrer_checks;
 
