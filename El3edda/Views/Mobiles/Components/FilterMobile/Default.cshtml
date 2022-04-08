@@ -1,6 +1,6 @@
 @model specSearchParamter;
 @{
-	SelectList all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Manufacturer> all_manufacturers = ViewBag.Manufacturers;
 }
 
 
@@ -120,11 +120,11 @@
 						<div class="input-group d-flex flex-column">
 							<h4> company </h4>
 							<div class="check_box_scroll border">
-								@foreach (var company in ViewBag.Manufacturers)
+								@foreach (var company in all_manufacturers)
 								{
 									<label class="checkLabel">
-										<input type="checkbox" name="manufacturerids" value=@company.Value>
-										@company.Text
+										<input type="checkbox" name="manufacturerids" value=@company.Id>
+										<span>@company.Name  <span style="color:gray">(@company.Mobiles.Count())</span></span>
 									</label>
 								}
 							</div>

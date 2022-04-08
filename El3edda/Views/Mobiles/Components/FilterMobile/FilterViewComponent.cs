@@ -23,20 +23,19 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
         {
             //var items = await GetItemsAsync(maxPriority, isDone);
 
-            var manufacturers_list = new SelectList(
-                await ManufacturerService.GetAllAsync(),
-                "Id", "Name");
+            var manufacturers_list =
+                await ManufacturerService.GetAllAsync(o => o.Mobiles);
 
-            if (searchParamter != null)
-            {
-                foreach (var manfcture in manufacturers_list)
-                {
-                    if (searchParamter.manufacturerids.Contains(int.Parse(manfcture.Value)))
-                    {
-                        manfcture.Selected = true;
-                    }
-                }
-            }
+            //if (searchParamter != null)
+            //{
+            //    foreach (var manfcture in manufacturers_list)
+            //    {
+            //        if (searchParamter.manufacturerids.Contains(int.Parse(manfcture.Value)))
+            //        {
+            //            manfcture.Selected = true;
+            //        }
+            //    }
+            //}
             ViewBag.Manufacturers = manufacturers_list;
 
 
