@@ -5,6 +5,7 @@
 @model CheckoutVM
 
 @{ 
+    ViewData["Title"] = "Checkout";
     var itemCount = 1;
     Layout = "_TemplateLayout";
     var stripeTotalAmount = (@Model.ShoppingCartTotal * 100).ToString();
@@ -113,10 +114,10 @@
                 <h4 class="order__title">Your order</h4>
                 <div class="checkout__order__products"> Product <span>Total</span>
                 </div>
-                <ul class="checkout__total__products"> @foreach (var item in Model.ShoppingCart.ShoppingCartItems) { <li> @(itemCount++). @item.Mobile.Name <span>$ @(item.Mobile.Price*item.Amount)</span>
+                <ul class="checkout__total__products"> @foreach (var item in Model.ShoppingCart.ShoppingCartItems) { <li> @(itemCount++). @item.Mobile.Name <span>@(item.Mobile.Price*item.Amount) EGP</span>
                     </li> } </ul>
                 <ul class="checkout__total__all">
-                    <li>Total <span>$@Model.ShoppingCartTotal</span>
+                    <li>Total <span>@Model.ShoppingCartTotal EGP</span>
                     </li>
                 </ul>
                 <div class="checkout__Buttons__all" id="paypal-button"></div>

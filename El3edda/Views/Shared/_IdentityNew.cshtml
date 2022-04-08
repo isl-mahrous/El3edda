@@ -1,12 +1,11 @@
-﻿
-@inject UserManager<ApplicationUser> UserManager;
+﻿@inject UserManager<ApplicationUser> UserManager;
 
 @if (!User.Identity.IsAuthenticated)
 {
-@*    <a  asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
-    <a  asp-area="" asp-controller="Account" asp-action="Register">Register</a>*@
+    @*    <a  asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
+        <a  asp-area="" asp-controller="Account" asp-action="Register">Register</a>*@
     @*Login & Signup Section*@
-    <a  asp-controller="Account" asp-action="Login">
+    <a asp-controller="Account" asp-action="Login">
         <i class="bi bi-box-arrow-in-right"></i> Login
     </a>
 
@@ -19,13 +18,17 @@
 else
 {
     @*User Profile Section*@
-    <a asp-controller="Reviews" asp-action="Index">Mobiles Reviews</a>
+    @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+    {
+
+        <a asp-controller="Reviews" asp-action="Index">Mobiles Reviews</a>
+    }
 
     <a asp-controller="Orders" asp-action="Index">Orders</a>
- @*   @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
-    {
+    @*   @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+        {
         <a asp-controller="Account" asp-action="Users">Users</a>
-    }*@
+        }*@
 
     <span style="padding:5px"></span>
 

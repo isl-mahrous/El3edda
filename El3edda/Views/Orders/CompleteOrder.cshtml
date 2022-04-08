@@ -1,32 +1,33 @@
 ﻿@{
-    Layout = null;
+	Layout = null;
+	ViewData["Title"] = "Order Completed";
 }
 
 <head>
-    <link rel="stylesheet" href="~/Template/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Template/css/style.css" type="text/css">
-    <link rel="shortcut icon" href="https://img.icons8.com/ios-filled/50/000000/iphone-x.png" />
+	<link rel="stylesheet" href="~/Template/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="~/Template/css/style.css" type="text/css">
+	<link rel="shortcut icon" href="https://img.icons8.com/ios-filled/50/000000/iphone-x.png" />
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <div class="search-model" id="orderCompleted">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <span style="font-size: 30px; color: #999">Your Order Placed Successfully 🎉🎉</span>    
-    </div>
+	<div class="h-100 d-flex align-items-center justify-content-center">
+		<span style="font-size: 30px; color: #999">Your Order Placed Successfully 🎉🎉</span>    
+	</div>
 </div>
 
 <script>
-	    $('#orderCompleted').fadeIn(400);
-        window.setTimeout(function(){
-           window.location.href='@Url.Action("Index", "Mobiles", new { })';
-        }, 3000);
+		$('#orderCompleted').fadeIn(400);
+		window.setTimeout(function(){
+		   window.location.href='@Url.Action("Index", "Mobiles", new { })';
+		}, 3000);
 </script>
 
 

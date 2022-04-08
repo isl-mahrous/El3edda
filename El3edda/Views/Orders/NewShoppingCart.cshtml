@@ -2,110 +2,111 @@
 @model ShoppingCartVM
 
 @{
-    Layout = "_TemplateLayout";
+	Layout = "_TemplateLayout";
+	ViewData["Title"] = "Shopping Cart";
 }
 
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Male_Fashion Template" />
-    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Shopping Cart</title>
-    <style>
-        a, a:hover, a:focus, a:active {
-	    text-decoration: none;
-	    color: black;
-    </style>  
+	<meta charset="UTF-8" />
+	<meta name="description" content="Male_Fashion Template" />
+	<meta name="keywords" content="Male_Fashion, unica, creative, html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Shopping Cart</title>
+	<style>
+		a, a:hover, a:focus, a:active {
+		text-decoration: none;
+		color: darkgreen;}
+	</style>  
 </head>
 
   <body>
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="breadcrumb__text">
-              <h4>Shopping Cart</h4>
-              <div class="breadcrumb__links">
-                <a asp-controller="Mobiles" asp-action="Index">Home</a>
-                <a asp-controller="Mobiles" asp-action="Index">Shop</a>
-                <span>Shopping Cart</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-12">
+			<div class="breadcrumb__text">
+			  <h4>Shopping Cart</h4>
+			  <div class="breadcrumb__links">
+				<a asp-controller="Mobiles" asp-action="Index">Home</a>
+				<a asp-controller="Mobiles" asp-action="Index">Shop</a>
+				<span>Shopping Cart</span>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+	<!-- Breadcrumb Section End -->
 
-    <!-- Shopping Cart Section Begin -->
-    <section class="shopping-cart spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="shopping__cart__table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                 @foreach (var item in Model.ShoppingCart.ShoppingCartItems){
-                  <tr>
-                    <td class="product__cart__item">
-                      <div class="product__cart__item__pic">
-                        <img src="@item.Mobile.MainPhotoURL" width="90px" alt="" />
-                      </div>
-                      <div class="product__cart__item__text">
-                        <a asp-controller = "Mobiles" asp-action="Details" asp-route-id=@item.Mobile.Id>
-                            <h6>@item.Mobile.Name</h6>
-                        </a>
-                        <h5>@item.Mobile.Price</h5>
-                      </div>
-                    </td>
-                    <td class="quantity__item">
-                      <div class="quantity">
-                        <div>
-                         <a asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Mobile.Id" style="background:none;border:none;margin:0;padding:0;cursor: pointer;" class="fa fa-angle-left dec qtybtn"></a>
-                         &nbsp; &nbsp; <span>@item.Amount</span> &nbsp; &nbsp;
-                         <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Mobile.Id" style="background:none;border:none;margin:0;padding:0;cursor: pointer;" class="fa fa-angle-right inc qtybtn"></a>                     
-                     </div>
-                      </div>
-                    </td>
-                    <td class="cart__price">$ @(item.Mobile.Price*item.Amount)</td>
-                    <td class="cart__close"><a asp-controller="Orders" asp-action="RemoveAllItemFromShoppingCart" asp-route-id="@item.Mobile.Id"><i class="fa fa-close"></i></a></td>
-                  </tr>
-                  }
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="continue__btn">
-                  <a asp-controller="Mobiles" asp-action="Index">Continue Shopping</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="cart__total">
-              <h6>Cart total</h6>
-              <ul>
-                <li>Total <span>$ @Model.ShoppingCartTotal</span></li>
-              </ul>
-              <a asp-action="Checkout" class="primary-btn">Proceed to checkout</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Shopping Cart Section End -->
+	<!-- Shopping Cart Section Begin -->
+	<section class="shopping-cart spad">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-8">
+			<div class="shopping__cart__table">
+			  <table>
+				<thead>
+				  <tr>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th></th>
+				  </tr>
+				</thead>
+				<tbody>
+				 @foreach (var item in Model.ShoppingCart.ShoppingCartItems){
+				  <tr>
+					<td class="product__cart__item">
+					  <div class="product__cart__item__pic">
+						<img src="@item.Mobile.MainPhotoURL" width="90px" alt="" />
+					  </div>
+					  <div class="product__cart__item__text">
+						<a asp-controller = "Mobiles" asp-action="Details" asp-route-id=@item.Mobile.Id>
+							<h6>@item.Mobile.Name</h6>
+						</a>
+						<h5>@item.Mobile.Price EGP</h5>
+					  </div>
+					</td>
+					<td class="quantity__item">
+					  <div class="quantity">
+						<div>
+						 <a asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Mobile.Id" style="background:none;border:none;margin:0;padding:0;cursor: pointer;" class="fa fa-angle-left dec qtybtn"></a>
+						 &nbsp; &nbsp; <span>@item.Amount</span> &nbsp; &nbsp;
+						 <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Mobile.Id" style="background:none;border:none;margin:0;padding:0;cursor: pointer;" class="fa fa-angle-right inc qtybtn"></a>                     
+					 </div>
+					  </div>
+					</td>
+					<td class="cart__price">@(item.Mobile.Price*item.Amount) EGP</td>
+					<td class="cart__close"><a asp-controller="Orders" asp-action="RemoveAllItemFromShoppingCart" asp-route-id="@item.Mobile.Id"><i class="fa fa-close"></i></a></td>
+				  </tr>
+				  }
+				</tbody>
+			  </table>
+			</div>
+			<div class="row">
+			  <div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="continue__btn">
+				  <a asp-controller="Mobiles" asp-action="Index">Continue Shopping</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="col-lg-4">
+			<div class="cart__total">
+			  <h6>Cart total</h6>
+			  <ul>
+				<li>Total <span>@Model.ShoppingCartTotal EGP</span></li>
+			  </ul>
+			  <a asp-action="Checkout" class="primary-btn">Proceed to checkout</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+	<!-- Shopping Cart Section End -->
   </body>
 </html>

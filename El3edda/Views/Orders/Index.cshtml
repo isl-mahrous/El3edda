@@ -3,7 +3,7 @@
     ViewData["Title"] = "Orders";
 }
 
-<div class="row">
+<div class="row col-12 my-4">
     <div class="col-md-8 offset-2">
         <p>
             <h3>
@@ -20,8 +20,8 @@
                     {
                         <th>User</th>
                     }
-                    <th>order State</th>
-                    <th>actions</th>
+                    <th>Order State</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,14 +41,14 @@
                                 }
                             </ul>
                         </td>
-                        <td>
+                        <td class="align-middle">
                             @order.OrderItems.Select(o=>o.Mobile.Price * o.Amount).Sum().ToString("c")
                         </td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                         {
                             <td class="align-middle">@order.User.FullName</td>
                         }
-                        <td>
+                        <td class="align-middle">
                             @{
                                 var test_color = 
                                   order.orderState == OrderState.canceled 
@@ -61,7 +61,7 @@
                                 @order.orderState
                             </span>
                         </td>
-                        <td>
+                        <td class="align-middle">
                             <form asp-action=CancelOrder asp-route-orderId=@order.Id>
                                 @{var cannotCancel = order.orderState != OrderState.confirmed;}
                                     <button  class="btn btn-outline-dark" disabled=@cannotCancel >
