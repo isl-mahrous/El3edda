@@ -232,6 +232,7 @@ namespace El3edda.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, MobileViewModel mobileVM)
         {
+            var mobile = await _service.GetByIdAsync(id, m => m.Media);
             if (id != mobileVM.Id)
             {
                 return NotFound();
@@ -240,6 +241,8 @@ namespace El3edda.Controllers
             if (!ModelState.IsValid) 
             {
                 ViewBag.Manufactures = await _serviceMan.GetAllAsync();
+                ViewBag.Media = mobile.Media.ToList();
+                ViewBag.MainPhotoURL = mobile.MainPhotoURL;
                 return View(mobileVM); 
             }
 
@@ -345,6 +348,8 @@ namespace El3edda.Controllers
                 else
                 {
                     ViewBag.Manufactures = await _serviceMan.GetAllAsync();
+                    ViewBag.Media = mobile.Media.ToList();
+                    ViewBag.MainPhotoURL = mobile.MainPhotoURL;
                     return View(mobileVM);
                 }
             }

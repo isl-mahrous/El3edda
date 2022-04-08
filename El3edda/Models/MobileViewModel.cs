@@ -25,7 +25,7 @@ namespace El3edda.Models
         public double Price { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 500, ErrorMessage = "Description is too long.")]
+        [StringLength(maximumLength: 500, ErrorMessage = "Description is too long."), MinLength(20, ErrorMessage ="Minimum Length is 20 characters")]
         public string Description { get; set; }
 
 
