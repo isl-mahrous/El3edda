@@ -509,61 +509,61 @@ namespace El3edda.Data
                 }
 
                 //Reviews
-                if (!context.Reviews.Any())
-                {
-                    context.Reviews.AddRange(
-                        new List<Review>()
-                        {
-                            //Add Reviews Data
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 1,
-                                Rate = MobileRate.good,
-                                Feedback =
-                                    "relatively good for those who search for a practical soultion for mobiles",
-                                Date = DateTime.Now
-                            },
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 2,
-                                Rate = MobileRate.moderate,
-                                Feedback = "msh b3raf a2ra 3araby",
-                                Date = DateTime.Now
-                            },
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 3,
-                                Rate = MobileRate.exceptional,
-                                Feedback = "gamed fash5",
-                                Date = DateTime.Now
-                            },
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 1,
-                                Rate = MobileRate.poor,
-                                Feedback = "zay el zeft",
-                                Date = DateTime.Now
-                            },
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 2,
-                                Rate = MobileRate.excellent,
-                                Feedback = "هو فيه ايييييييييييييه",
-                                Date = DateTime.Now
-                            },
-                            new Review()
-                            {
-                                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
-                                MobileId = 4,
-                                Rate = MobileRate.excellent,
-                                Feedback = "الموبايل ده هيقلب سوهاج كلهاااااااا",
-                                Date = DateTime.Now
-                            },
+                //if (!context.Reviews.Any())
+                //{
+                //    context.Reviews.AddRange(
+                //        new List<Review>()
+                //        {
+                //            //Add Reviews Data
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 1,
+                //                Rate = MobileRate.good,
+                //                Feedback =
+                //                    "relatively good for those who search for a practical soultion for mobiles",
+                //                Date = DateTime.Now
+                //            },
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 2,
+                //                Rate = MobileRate.moderate,
+                //                Feedback = "msh b3raf a2ra 3araby",
+                //                Date = DateTime.Now
+                //            },
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 3,
+                //                Rate = MobileRate.exceptional,
+                //                Feedback = "gamed fash5",
+                //                Date = DateTime.Now
+                //            },
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 1,
+                //                Rate = MobileRate.poor,
+                //                Feedback = "zay el zeft",
+                //                Date = DateTime.Now
+                //            },
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 2,
+                //                Rate = MobileRate.excellent,
+                //                Feedback = "هو فيه ايييييييييييييه",
+                //                Date = DateTime.Now
+                //            },
+                //            new Review()
+                //            {
+                //                UserId = "5037b077-356d-41db-8cfe-e2d38ffc75f3",
+                //                MobileId = 4,
+                //                Rate = MobileRate.excellent,
+                //                Feedback = "الموبايل ده هيقلب سوهاج كلهاااااااا",
+                //                Date = DateTime.Now
+                //            },
                             //new Review()
                             //{
                             //    CustomerName = "فتحى",
@@ -620,10 +620,10 @@ namespace El3edda.Data
                             //    Feedback = "not bad but I feel like it might be better than that",
                             //    Date = DateTime.Now
                             //}
-                        });
-                    context.SaveChanges();
+                        //});
+                   // context.SaveChanges();
                 }
             }
         }
     }
-}
+
