@@ -19,13 +19,14 @@ namespace El3edda.Controllers
             service = _service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var mobiles = service.GetAllAsync().Result;
-            ViewBag.BestDealMobile = mobiles.OrderBy(p => p.Price).First();
-            ViewBag.TopSellers = mobiles.OrderByDescending(p => p.UnitsSold).Take(8);
-            ViewBag.NewArrivals = mobiles.OrderByDescending(p => p.ReleaseDate).Take(4);
-            ViewBag.HotSales = mobiles.OrderBy(p => p.Price).Take(4);
+            var mobiles = await service.GetAllAsync();
+            var MobilesInStock = mobiles.Where(m => m.UnitsInStock > 0);
+            ViewBag.BestDealMobile = MobilesInStock.OrderBy(p => p.Price).First();
+            ViewBag.TopSellers = MobilesInStock.OrderByDescending(p => p.UnitsSold).Take(8);
+            ViewBag.NewArrivals = MobilesInStock.OrderByDescending(p => p.ReleaseDate).Take(4);
+            ViewBag.HotSales = MobilesInStock.OrderBy(p => p.Price).Take(4);
             return View();
         }
 
