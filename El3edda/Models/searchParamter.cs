@@ -32,7 +32,8 @@ namespace El3edda.Models
         public double? warrentyPeriodHigher { get; set; } //WarrantyTo
         [Range(0, double.MaxValue)]
         public double? warrentyPeriodLower { get; set; } ////WarrantyFrom
-        public bool? InStock { get; set; }
+        public bool InStock { get; set; }
+        
     }
 
     
@@ -87,7 +88,6 @@ namespace El3edda.Models
         [Range(0, int.MaxValue)]
         [CompareTo("ROMLower",ComparisonType.GreaterThanOrEqual)]
         public int? ROMHigher { get; set; }
-
 
     }
 }
