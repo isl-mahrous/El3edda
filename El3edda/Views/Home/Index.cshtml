@@ -65,8 +65,10 @@
 			{
 				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-sellers">
 					<div class="product__item">
-						<div class="product__item__pic set-bg" data-setbg="@TopSellersList[i].MainPhotoURL" style="background-size:200px">
-						</div>
+						<a asp-action="Details" asp-controller="Mobiles" asp-route-id="@TopSellersList[i].Id">
+							<div class="product__item__pic set-bg" data-setbg="@TopSellersList[i].MainPhotoURL" style="background-size:200px">
+							</div>
+						</a>
 						<div class="product__item__text">
 							<h6>@TopSellersList[i].Name</h6>
 							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @TopSellersList[i].Id})" class="add-cart">+ Add To Cart</a>
@@ -76,14 +78,15 @@
 				</div>
 			}
 			<!--Top Sellers end-->
-
 			<!--Hot Sales-->
 			@for (int i = 0; i < HotSalesList.Count; i++)
 			{
 				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" style="display:none;">
 					<div class="product__item">
-						<div class="product__item__pic set-bg" data-setbg="@HotSalesList[i].MainPhotoURL" style="background-size:200px">
-						</div>
+						<a asp-action="Details" asp-controller="Mobiles" asp-route-id="@HotSalesList[i].Id">
+							<div class="product__item__pic set-bg" data-setbg="@HotSalesList[i].MainPhotoURL" style="background-size:200px">
+							</div>
+						</a>
 						<div class="product__item__text">
 							<h6>@HotSalesList[i].Name</h6>
 							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @HotSalesList[i].Id})" class="add-cart">+ Add To Cart</a>
@@ -93,14 +96,15 @@
 				</div>
 			}
 			<!--Hot Sales End-->
-
 			<!--New Arrivals-->
 			@for (int i = 0; i < NewArrivalsList.Count; i++)
 			{
 				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" style="display:none;">
 					<div class="product__item">
-						<div class="product__item__pic set-bg" data-setbg="@NewArrivalsList[i].MainPhotoURL" style="background-size:200px">
-						</div>
+						<a asp-action="Details" asp-controller="Mobiles" asp-route-id="@NewArrivalsList[i].Id">
+							<div class="product__item__pic set-bg" data-setbg="@NewArrivalsList[i].MainPhotoURL" style="background-size:200px">
+							</div>
+						</a>
 						<div class="product__item__text">
 							<h6>@NewArrivalsList[i].Name</h6>
 							<a href="@Url.Action("AddItemToShoppingCart", "Orders", new {Id= @NewArrivalsList[i].Id})" class="add-cart">+ Add To Cart</a>
@@ -115,31 +119,29 @@
 	</div>
 </section>
 <!-- Product Section End -->
-
-   <!-- Categories Section Begin -->
-    <section class="categories spad">
-        <div class="container" id="sale">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="categories__hot__deal">
-                        <img src="@BestDealMobile.MainPhotoURL" alt="">
-                        <div class="hot__deal__sticker">
-                            <span>Sale Of</span>
-                            <h5>@BestDealMobile.Price EGP</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-
-                </div>
-                <div class="col-lg-4 offset-lg-1">
-                    <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>@BestDealMobile.Name</h2>
-                        <a href="@Url.Action("AddItemToShoppingCart", "Orders", new{Id = @BestDealMobile.Id})" class="primary-btn">Shop now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
+<!-- Categories Section Begin -->
+<section class="categories spad">
+	<div class="container" id="sale">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="categories__hot__deal">
+					<img src="@BestDealMobile.MainPhotoURL" alt="">
+					<div class="hot__deal__sticker">
+						<span>Sale Of</span>
+						<h5>@BestDealMobile.Price EGP</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-4 offset-lg-1">
+				<div class="categories__deal__countdown">
+					<span>Deal Of The Week</span>
+					<h2>@BestDealMobile.Name</h2>
+					<a href="@Url.Action("AddItemToShoppingCart", "Orders", new{Id = @BestDealMobile.Id})" class="primary-btn">Shop now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Categories Section End -->
