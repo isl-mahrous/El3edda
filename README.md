@@ -3,7 +3,12 @@
 web based solution for e-commerce website specialized in selling mobile phones using .Net core .
 
 > project is part of an ITI 9-month program course MVC
-
+# team members
+- islam mahrouse
+- Ahmed Saleh
+- Mohamed Fathey
+- Hossam Saied
+- Abdelrahman Ragab
 
 # Site main features:
 # client 
@@ -60,6 +65,11 @@ web based solution for e-commerce website specialized in selling mobile phones u
 
 
 # Development Guide
+
+## use case 
+![usecase](documentation/useCase.png)
+
+
 ## packages overview
 ![packages](documentation/packageDiagrams.png)
 
