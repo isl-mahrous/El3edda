@@ -1,5 +1,7 @@
 @startuml components_diagram
 
+left to right direction
+
 package Data {
     package Payment {
         class PayPalSettings
