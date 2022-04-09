@@ -60,6 +60,11 @@ web based solution for e-commerce website specialized in selling mobile phones u
 
 
 # Development Guide
+
+## use case 
+![usecase](documentation/useCase.png)
+
+
 ## packages overview
 ![packages](documentation/packageDiagrams.png)
 

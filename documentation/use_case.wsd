@@ -1,0 +1,89 @@
+@startuml use_case
+
+
+left to right direction
+rectangle "mobile" {
+    usecase "view all mobiles" as ViewMobile
+    usecase "view detials" as ViewDetails
+    usecase "add mobile" as AddMobile
+    usecase "update mobile" as UpdateMobile
+    usecase "delete mobile" as DeleteMobile
+    usecase "manage mobile" as ManageMobile
+    
+}
+
+
+rectangle "mobile review"{
+    usecase "add review" as AddReview
+    usecase "view reviews" as ViewReviews
+    usecase "remove review" as RemoveReview
+    usecase "manage review" as ManageReview
+}
+
+
+rectangle "orders" {
+    usecase "view orders" as ViewOrders
+    usecase "add order" as AddOrder
+    usecase "update order" as UpdateOrder
+    usecase "cancel order" as DeleteOrder
+    usecase "manage order" as ManageOrder
+}
+
+rectangle "cart" {
+    usecase "add to cart" as AddToCart
+    usecase "remove from cart" as RemoveFromCart
+    usecase "view cart" as ViewCart
+    usecase "checkout" as CheckoutCart
+    usecase "manage cart" as ManageCart
+}
+
+
+actor admin as "Admin"
+
+actor client as "Client"
+
+
+client -[#blue]-> ViewMobile
+client -[#blue]-> ViewDetails
+
+client -[#blue]-> ViewOrders
+
+client -[#blue]-> ManageCart
+
+client -[#blue]-> ManageReview : only by him
+
+ManageReview --> AddReview
+ManageReview --> ViewReviews
+ManageReview --> RemoveReview
+
+
+
+
+ManageCart --> AddToCart
+ManageCart --> RemoveFromCart
+ManageCart --> ViewCart
+ManageCart --> CheckoutCart
+
+
+
+
+admin --> ManageReview : all reviews
+
+admin --> ManageMobile
+
+ManageMobile --> ViewMobile
+ManageMobile --> ViewDetails
+ManageMobile --> AddMobile
+ManageMobile --> UpdateMobile
+ManageMobile --> DeleteMobile
+
+admin --> ManageOrder
+
+ManageOrder --> ViewOrders
+ManageOrder --> AddOrder
+ManageOrder --> UpdateOrder
+ManageOrder --> DeleteOrder
+
+
+
+@enduml
