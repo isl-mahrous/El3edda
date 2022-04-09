@@ -49,7 +49,7 @@
 
 <!-- Product Section Begin -->
 <section class="product spad">
-	<div class="container">
+	<div class="container" id="filter-controls">
 		<div class="row">
 			<div class="col-lg-12">
 				<ul class="filter__controls">
@@ -118,7 +118,7 @@
 
    <!-- Categories Section Begin -->
     <section class="categories spad">
-        <div class="container">
+        <div class="container" id="sale">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
@@ -136,7 +136,6 @@
                     <div class="categories__deal__countdown">
                         <span>Deal Of The Week</span>
                         <h2>@BestDealMobile.Name</h2>
- 
                         <a href="@Url.Action("AddItemToShoppingCart", "Orders", new{Id = @BestDealMobile.Id})" class="primary-btn">Shop now</a>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ using El3edda.Data;
 using El3edda.Models;
 using El3edda.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using El3edda.Data.Enums;
 
 namespace El3edda.Views.Mobiles.Components.FilterMobile
 {
@@ -23,21 +24,46 @@ namespace El3edda.Views.Mobiles.Components.FilterMobile
         {
             //var items = await GetItemsAsync(maxPriority, isDone);
 
-            var manufacturers_list = new SelectList(
-                await ManufacturerService.GetAllAsync(),
-                "Id", "Name");
+            var manufacturers_list =
+                await ManufacturerService.GetAllAsync(o => o.Mobiles);
 
-            if (searchParamter != null)
-            {
-                foreach (var manfcture in manufacturers_list)
-                {
-                    if (searchParamter.manufacturerids.Contains(int.Parse(manfcture.Value)))
-                    {
-                        manfcture.Selected = true;
-                    }
-                }
-            }
-            ViewBag.Manufacturers = manufacturers_list;
+            var manufacrer_checks = manufacturers_list
+                .Select(m => new Tuple<bool, Manufacturer>(
+                    searchParamter?.manufacturerids?.Contains(m.Id) ?? false,
+                    m));
+
+            #region enums
+            var screens = Enum.GetNames(typeof(ScreenEnum));
+            var screens_checks = screens
+                .Select(s => new Tuple<bool, ScreenEnum>(
+                    searchParamter?.Screens?.Contains(Enum.Parse<ScreenEnum>(s)) ?? false,
+                    Enum.Parse<ScreenEnum>(s)
+                    ));
+            
+
+
+            var os_es = Enum.GetNames(typeof(OSEnum));
+            var os_checks = os_es
+                .Select(s => new Tuple<bool, OSEnum>(
+                    searchParamter?.OS?.Contains(Enum.Parse<OSEnum>(s)) ?? false,
+                    Enum.Parse<OSEnum>(s)
+                    ));
+
+
+            var colors = Enum.GetNames(typeof(Colors));
+            var colors_checks = colors
+                .Select(s => new Tuple<bool, Colors>(
+                    searchParamter?.Colors?.Contains(Enum.Parse<Colors>(s)) ?? false,
+                    Enum.Parse<Colors>(s)
+                    ));
+
+            // TODO add cpu 
+
+            #endregion
+            ViewBag.colors = colors_checks;
+            ViewBag.os_es = os_checks;
+            ViewBag.screens = screens_checks;
+			ViewBag.Manufacturers = manufacrer_checks;
 
 
             return View(searchParamter);

@@ -1,12 +1,13 @@
 @model specSearchParamter;
 @{
-	SelectList all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Tuple<bool, Manufacturer>> all_manufacturers = ViewBag.Manufacturers;
+	IEnumerable<Tuple<bool, ScreenEnum>> all_screens = ViewBag.screens;
+	IEnumerable<Tuple<bool, OSEnum>> all_os = ViewBag.os_es;
+	IEnumerable<Tuple<bool, Colors>> all_colors = ViewBag.colors;
 }
 
 
 @*//TODO
-	// UnitsInStock checkbox
-	// RAM and ROM
 	// Mobile Specs Category (RAM and ROM, Battery, CameraSpecs, CPU, Screen, )*@
 
 <style>
@@ -45,7 +46,7 @@
 
 	.checkLabel {
 		font-family: system-ui, sans-serif;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: bold;
 		line-height: 1.1;
 		display: grid;
@@ -57,9 +58,28 @@
 		color: black;
 		background-color: white;
 	}
-	.accordion-button:focus {
-		border-color:grey;
+
+	.check_box_scroll {
+		display: flex;
+		flex-direction: column;
+		height: 6rem;
+		overflow: auto;
+		margin-bottom: 1rem;
+		padding: 0.5rem;
 	}
+
+		.check_box_scroll::-webkit-scrollbar {
+			width: 1rem;
+		}
+
+		.check_box_scroll::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+
+		.check_box_scroll::-webkit-scrollbar-thumb {
+			background-color: darkgrey;
+			outline: 1px solid slategrey;
+		}
 </style>
 
 <form asp-action="Index" method="get" class="row">
@@ -98,22 +118,17 @@
 					 aria-labelledby="panelsStayOpen-infoHeading">
 					<div class="accordion-body">
 						<div class="input-group d-flex flex-column">
-							<h3> company </h3>
-							@foreach (var company in ViewBag.Manufacturers)
-							{
-								
+							<h4> company </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_manufacturers)
+								{
 									<label class="checkLabel">
-										<input type="checkbox" name="manufacturerids" value=@company.Value>
-										@company.Text
+										<input type="checkbox" name="manufacturerids" value=@company.Item2.Id checked=@company.Item1>
+										<span>@company.Item2.Name  <span style="color:gray">(@company.Item2.Mobiles.Count())</span></span>
 									</label>
-
-								
-
-								@*<br />*@
-							}
+								}
+							</div>
 						</div>
-						@*<select asp-for="manufacturerids" asp-items=ViewBag.Manufacturers class="form-select"></select>*@
-						@*<span asp-validation-for="manufacturerids" class="text-danger"></span>*@
 						<div class="input-group flex-nowrap mb-2">
 							<span class="input-group-text ">
 								<i class="fa-solid fa-dollar"></i>
@@ -157,6 +172,19 @@
 								<span asp-validation-for="releaseafter" class="text-danger"></span>
 							</div>
 
+						</div>
+
+						<div class="input-group d-flex flex-column">
+							<h4> Color </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_colors)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="Colors" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  <i style="color: @company.Item2" class="fa-solid fa-square"></i></span>
+									</label>
+								}
+							</div>
 						</div>
 
 						<div class="input-group flex-nowrap mb-2">
@@ -289,25 +317,58 @@
 								<span asp-validation-for="BatteryCapacityHigher" class="text-danger"></span>
 							</div>
 						</div>
-						@* <div class="form-group mb-0">
-							<input asp-for="RAMLower" class="form-control" />
-							<span asp-validation-for="RAMLower" class="text-danger"></span>
+
+						<div class="input-group flex-nowrap mb-2">
+							<span class="input-group-text">
+								<i class="fa-solid"></i>
+							</span>
+							<div class="form-group mb-0">
+								<input asp-for=RAMLower class="form-control" placeholder="ram from"/>
+								<span asp-validation-for="RAMLower" class="text-danger"></span>
 							</div>
 							<div class="form-group mb-0">
-
-							<input asp-for="RAMHiger" class="form-control" />
-							<span asp-validation-for="RAMHiger" class="text-danger"></span>
+								<input asp-for=RAMHigher class="form-control" placeholder="to"/>
+								<span asp-validation-for=RAMHigher class="text-danger"></span>
+							</div>
+						</div>
+						<div class="input-group flex-nowrap mb-2">
+							<span class="input-group-text">
+								<i class="fa-solid "></i>
+							</span>
+							<div class="form-group mb-0">
+								<input asp-for=ROMLower class="form-control" placeholder="storage from"/>
+								<span asp-validation-for=ROMLower class="text-danger"></span>
 							</div>
 							<div class="form-group mb-0">
-
-							<input asp-for="ROMLower" class="form-control" />
-							<span asp-validation-for="ROMLower" class="text-danger"></span>
+								<input asp-for=ROMHigher class="form-control" placeholder="to"/>
+								<span asp-validation-for=ROMHigher class="text-danger"></span>
 							</div>
-							<div class="form-group mb-0">
-
-							<input asp-for="ROMHiger" class="form-control" />
-							<span asp-validation-for="ROMHiger" class="text-danger"></span>
-							</div> *@
+						</div>
+						<div class="input-group d-flex flex-column">
+							<h4> screen </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_screens)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="Screens" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  </span>
+									</label>
+								}
+							</div>
+						</div>
+						<div class="input-group d-flex flex-column">
+							<h4> OS </h4>
+							<div class="check_box_scroll border">
+								@foreach (var company in all_os)
+								{
+									<label class="checkLabel">
+										<input type="checkbox" name="OS" value=@company.Item2 checked=@company.Item1>
+										<span>@company.Item2  </span>
+									</label>
+								}
+							</div>
+						</div>
+						
 
 					</div>
 				</div>

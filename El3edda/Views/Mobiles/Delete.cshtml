@@ -4,102 +4,112 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1 style="margin-left:3%; margin-bottom:3% margin-top:3%;">Delete</h1>
+<h1 style="margin-left:3%; margin-bottom:3% ;margin-top:3%;">Delete</h1>
 
 <h3 style="margin-left:3%; margin-top:1%">Are you sure you want to delete this?</h3>
 <div>
     <h4 style="margin-left:3%">Mobile @Model.Name (@Model.Price EGP)</h4>
     <hr />
     <div class="row product__details__tab__content__item" style="margin-left:2.5%; margin-right:2.5% ; margin-top:5%">
-                                            
+
         <div class="col-md-4 col-sm-12">
             <table class="table caption-top">
                 <caption>Specifications</caption>
                 <thead>
-                <tr>
-                    <th scope="col">Feature</th>
-                    <th scope="col">information</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Feature</th>
+                        <th scope="col">Information</th>
+                    </tr>
                 </thead>
                 <tbody>
 
                     <tr>
-                    <td scope="row">Manufaturer</td>
-                    <td>@Model.Manufacturer.Name</td>
-                </tr>
+                        <td scope="row">Manufaturer</td>
+                        <td>@Model.Manufacturer.Name</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Release Date</td>
-                    <td>@Model.ReleaseDate</td>
-                </tr>
+                        <td scope="row">Release Date</td>
+                        <td>@Model.ReleaseDate</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">CPU</td>
-                    <td>@Model.Specs.CPU</td>
-                </tr>
+                        <td scope="row">CPU</td>
+                        <td>@Model.Specs.CPU</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Color</td>
-                    <td>@Model.Specs.Color</td>
-                </tr>
+                        <td scope="row">Color</td>
+                        <td>@Model.Specs.Color</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Battery Capacity</td>
-                    <td>@Model.Specs.BatteryCapacity</td>
-                </tr>
+                        <td scope="row">Battery Capacity</td>
+                        <td>@Model.Specs.BatteryCapacity</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Camera</td>
-                    <td>@Model.Specs.CameraMegaPixels</td>
-                </tr>
+                        <td scope="row">Camera</td>
+                        <td>@Model.Specs.CameraMegaPixels</td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">RAM</td>
+                        <td>@Model.Specs.RAM</td>
+                    </tr>
 
                 </tbody>
             </table>
-    </div>
+        </div>
 
-    <div class="col-md-4 col-sm-12">
-        <table class="table caption-top">
-            <thead>
-                <tr>
-                    <th scope="col">Feature</th>
-                    <th scope="col">information</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td scope="row">Operating System</td>
-                    <td>@Model.Specs.OS</td>
-                </tr>
+        <div class="col-md-4 col-sm-12">
+            <table class="table caption-top">
+                <thead>
+                    <tr>
+                        <th scope="col">Feature</th>
+                        <th scope="col">Information</th>
+                    </tr>
+                </thead>
+                <tbody>
 
                     <tr>
-                    <td scope="row">Screen</td>
-                    <td>@Model.Specs.Screen</td>
-                </tr>
+                        <td scope="row">Operating System</td>
+                        <td>@Model.Specs.OS</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Height</td>
-                    <td>@Model.Specs.Height</td>
-                </tr>
+                        <td scope="row">Screen</td>
+                        <td>@Model.Specs.Screen</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Width</td>
-                    <td>@Model.Specs.Width</td>
-                </tr>
+                        <td scope="row">Height</td>
+                        <td>@Model.Specs.Height</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Thickness</td>
-                    <td>@Model.Specs.Thickness</td>
-                </tr>
+                        <td scope="row">Width</td>
+                        <td>@Model.Specs.Width</td>
+                    </tr>
 
                     <tr>
-                    <td scope="row">Weight</td>
-                    <td>@Model.Specs.Weight</td>
-                </tr>
-            </tbody>
-        </table>
-     </div>
-               
+                        <td scope="row">Thickness</td>
+                        <td>@Model.Specs.Thickness</td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">Weight</td>
+                        <td>@Model.Specs.Weight</td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">Storage</td>
+                        <td>@Model.Specs.Storage</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
 
         <div class="col-md-4 text-center">
             <div class="col-md-12">
@@ -110,12 +120,12 @@
                         </a>
                     </div>
                 </div>
-             </div>
-         </div>
-      </div>
+            </div>
+        </div>
+    </div>
 
 
-    
+
     <form asp-action="Delete" style="margin-bottom:5%" class="text-center">
         <input type="hidden" asp-for="Id" />
         <a asp-action="Index" class="btn btn-dark mt-3">Back to List</a> |

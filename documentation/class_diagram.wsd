@@ -136,20 +136,15 @@ interface PaymentMethod{
     bool pay()
 }
 
-class CreditCard implements PaymentMethod{
-    string cardNumber
-    string cardHolderName
-    string expiryDate
-    string cvv
+class StripeSettings implements PaymentMethod{
+    string PublishableKey
+    string SecretKey
 }
 
-class Paybal implements PaymentMethod{
-    string paypalEmail
+class PaypalSettings implements PaymentMethod{
+    string ClientID
 }
 
-class Cash implements PaymentMethod{
-    Address billingAddress
-}
 
 class Address {
     string street

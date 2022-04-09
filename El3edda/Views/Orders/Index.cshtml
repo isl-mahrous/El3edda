@@ -3,76 +3,83 @@
     ViewData["Title"] = "Orders";
 }
 
-<div class="row col-12 my-4">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h3>
-                List of all orders
-            </h3>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Items</th>
-                    <th>Total</th>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
-                    {
-                        <th>User</th>
-                    }
-                    <th>Order State</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var order in Model)
-                {
+<div class="row col-md-12">
+    <div class="row col-12 my-5">
+        <div class="col-md-8 offset-2">
+            <p>
+                <h3>
+                    List of all orders
+                </h3>
+            </p>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td class="align-middle">@order.Id</td>
-                        <td class="align-middle">
-                            <ul style="list-style-type:none">
-                                @foreach (var item in order.OrderItems)
-                                {
-                                    <li>
-                                        <div class="alert alert-info" role="alert">
-                                            <span class="badge bg-success text-white">@item.Amount</span> [@item.Price.ToString("c")] - @item.Mobile.Name
-                                        </div>
-                                    </li>
-                                }
-                            </ul>
-                        </td>
-                        <td class="align-middle">
-                            @order.OrderItems.Select(o=>o.Mobile.Price * o.Amount).Sum().ToString("c")
-                        </td>
+                        <th>Order ID</th>
+                        <th>Items</th>
+                        <th>Total</th>
                         @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                         {
-                            <td class="align-middle">@order.User.FullName</td>
+                            <th>User</th>
                         }
-                        <td class="align-middle">
-                            @{
-                                var test_color = 
-                                  order.orderState == OrderState.cancelled 
-                                ? "darkred"
-                                : order.orderState == OrderState.shipped
-                                ? "forestgreen"
-                                : "black";
+                        <th>Order State</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@order.Id</td>
+                            <td class="align-middle">
+                                <ul style="list-style-type:none">
+                                    @foreach (var item in order.OrderItems)
+                                    {
+                                        <li>
+                                            <div class="alert alert-info" role="alert">
+                                                <span class="badge bg-success text-white">@item.Amount</span> [@item.Price.ToString("c")] - @item.Mobile.Name
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                            <td class="align-middle">
+                                @order.OrderItems.Select(o=>o.Mobile.Price * o.Amount).Sum().ToString("c")
+                            </td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                            {
+                                <td class="align-middle">@order.User.FullName</td>
                             }
-                            <span style="color: @test_color">
-                                @order.orderState
-                            </span>
-                        </td>
-                        <td class="align-middle">
-                            <form asp-action=CancelOrder asp-route-orderId=@order.Id>
-                                @{var cannotCancel = order.orderState != OrderState.confirmed;}
-                                    <button  class="btn btn-outline-dark" disabled=@cannotCancel >
+                            <td class="align-middle">
+                                @{
+                                    var test_color =
+                                    order.orderState == OrderState.cancelled
+                                    ? "darkred"
+                                    : order.orderState == OrderState.shipped
+                                    ? "forestgreen"
+                                    : "black";
+                                }
+                                <span style="color: @test_color">
+                                    @order.orderState
+                                </span>
+                            </td>
+                            <td class="align-middle">
+                                <form asp-action=CancelOrder asp-route-orderId=@order.Id>
+                                    @{
+                                        var cannotCancel = order.orderState != OrderState.confirmed;
+                                    }
+                                    <button class="btn btn-outline-dark" disabled=@cannotCancel>
                                         Cancel
                                     </button>
-                            </form>
-                        </td>
-                    </tr>
+                                </form>
+                            </td>
+                        </tr>
 
-                }
-            </tbody>
-        </table>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="my-5">
     </div>
 </div>
+

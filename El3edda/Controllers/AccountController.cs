@@ -5,6 +5,7 @@ using El3edda.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace El3edda.Controllers
 {
@@ -25,9 +26,15 @@ namespace El3edda.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> Login(string returnUrl)
         {
-            var response = new LoginVM();
+            var response = new LoginVM()
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (
+                    await _signInManager.GetExternalAuthenticationSchemesAsync()
+                ).ToList()
+            };
             return View(response);
         }
 
@@ -61,6 +68,99 @@ namespace El3edda.Controllers
 
             TempData["Error"] = "Wrong credentials. Please try again!";
             return View(loginVM);
+        }
+
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider, string returnUrl)
+        {
+            var redirectUrl = Url.Action(
+                "ExternalLoginCallback",
+                "Account",
+                new { ReturnUrl = returnUrl }
+            );
+
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(
+                provider,
+                redirectUrl
+            );
+
+            return new ChallengeResult(provider, properties);
+        }
+
+        public async Task<IActionResult> ExternalLoginCallback(
+            string returnUrl = null,
+            string remoteError = null
+        )
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            LoginVM loginViewModel = new LoginVM
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (
+                    await _signInManager.GetExternalAuthenticationSchemesAsync()
+                ).ToList()
+            };
+
+            if (remoteError != null)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    $"Error from external provider: {remoteError}"
+                );
+
+                return View("Login", loginViewModel);
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                ModelState.AddModelError(string.Empty, "Error loading external login information.");
+
+                return View("Login", loginViewModel);
+            }
+
+            var signInResult = await _signInManager.ExternalLoginSignInAsync(
+                info.LoginProvider,
+                info.ProviderKey,
+                isPersistent: false,
+                bypassTwoFactor: true
+            );
+
+            if (signInResult.Succeeded)
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+                if (email != null)
+                {
+                    var user = await _userManager.FindByEmailAsync(email);
+
+                    if (user == null)
+                    {
+                        user = new ApplicationUser
+                        {
+                            UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        };
+
+                        await _userManager.CreateAsync(user);
+                    }
+
+                    await _userManager.AddLoginAsync(user, info);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    return LocalRedirect(returnUrl);
+                }
+
+                ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
+                ViewBag.ErrorMessage = "Please contact support on Pragim@PragimTech.com";
+
+                return View("Error");
+            }
         }
 
         ///Register
