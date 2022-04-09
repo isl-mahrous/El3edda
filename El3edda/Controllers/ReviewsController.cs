@@ -12,6 +12,7 @@ using El3edda.Data.Services.MobileService;
 using El3edda.Data.Services.ReviewService;
 using Microsoft.AspNetCore.Identity;
 using El3edda.Data.Enums;
+using El3edda.Data.Static;
 
 namespace El3edda.Controllers
 {
@@ -32,8 +33,7 @@ namespace El3edda.Controllers
         }
 
         // GET: Reviews
-        [Authorize]
-
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> Index()
         {
             var AllReviews = await _service.GetAllAsync(r => r.Mobile, r => r.User);
