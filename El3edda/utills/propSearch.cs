@@ -50,12 +50,20 @@ namespace El3edda.utills
         }
         public PropSearch InStockSearch(bool isInStock)
         {
-            // isInStock              unitsinstock == 0
-            // true(instock)       true                  false
-            // true(instock)       false                 true
-            // false               true                  true
-            // false               false                 false
-            andCondition(m => isInStock ^ m.UnitsInStock > 0);
+            //                   isInStock            unitsinstock > 0
+            // true                true                  true
+            // true                false                 true  !!
+            // false               true                  false
+            // true                false                 false
+
+            // true                true                  true
+            // false               true                  false
+
+
+            // !instock ? true : ((unitsinstock > 0))
+            // 
+
+            andCondition(m => !isInStock ? true : ((m.UnitsInStock > 0)));
             return this;
         }
         public PropSearch CPUSearch(ICollection<string> target)
