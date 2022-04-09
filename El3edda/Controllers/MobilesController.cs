@@ -374,7 +374,7 @@ namespace El3edda.Controllers
         // GET: Mobiles/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var mobile = await _service.GetByIdAsync(id, m => m.Media, m => m.Manufacturer, m => m.Reviews);
+            var mobile = await _service.GetByIdAsync(id, m => m.Media, m => m.Manufacturer);
 
             if (mobile == null)
             {
