@@ -114,19 +114,5 @@ namespace El3edda.Controllers
             return RedirectToAction("Details", "Mobiles", new { area = "", id = mobid });
         }
 
-        // POST: Reviews/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var ReviewDetails = await _service.GetByIdAsync(id);
-
-        //    if (ReviewDetails == null)
-        //        return NotFound();
-
-        //    await _service.DeleteAsync(id);
-
-        //    return RedirectToAction("Details", "Mobiles", new { area = "", id });
-        //}
     }
 }
