@@ -59,11 +59,11 @@ namespace El3edda.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("TYPE YOUR MAIL HERE", "EL-3edda Store");
+                    var senderEmail = new MailAddress("el3edda@gmail.com", "EL-3edda Store");
                     var receiverEmail = new MailAddress(email, "Receiver");
-                    var password = "TYPE YOUR PASSWORD HERE";
+                    var password = "El3edda123";
                     var sub = name;
-                    //var body = msg;
+
                     var smtp = new SmtpClient
                     {
                         Host = "smtp.gmail.com",
