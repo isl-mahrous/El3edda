@@ -16,22 +16,25 @@
 
             <div>
                 <p>
-                    <h3>@mobile.Name Review</h3>
+                    <h3>@Model.Mobile.Name Review</h3>
                 </p>
             </div>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <input name="MobileId" id="MobileId" type="text" value="@mobile.Id" hidden />
+                <input name="MobileId" id="MobileId" type="text" value="@Model.MobileId" hidden />
+            </div>
+
+            <div class="form-group">
+                <input name="UserId" id="UserId" type="text" value="@Model.UserId" hidden />
             </div>
 
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" />
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                <label for="CustomerId" class="control-label"></label>
+                <input name="CustomerId" id="CustomerId" class="form-control" value="@Model.User.FullName" readonly/>
             </div>
 
             <div class="form-group">
