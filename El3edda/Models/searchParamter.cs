@@ -23,7 +23,7 @@ namespace El3edda.Models
         public DateTime? releaseafter { get; set; } //ReleasedAfter
         public ICollection<int>? manufacturerids { get; set; }
         [Range(0, double.MaxValue)]
-        [CompareTo("priceLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? priceHigher { get; set; } //MaxPrice
         [Range(0, double.MaxValue)]
         public double? priceLower { get; set; } //MinPrice
