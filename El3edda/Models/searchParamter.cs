@@ -26,11 +26,13 @@ namespace El3edda.Models
         
         public double? priceHigher { get; set; } //MaxPrice
         [Range(0, double.MaxValue)]
+        [CompareTo("priceHigher", ComparisonType.GreaterThanOrEqual)]
         public double? priceLower { get; set; } //MinPrice
         [Range(0, double.MaxValue)]
-        [CompareTo("warrentyPeriodLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? warrentyPeriodHigher { get; set; } //WarrantyTo
         [Range(0, double.MaxValue)]
+        [CompareTo("warrentyPeriodHigher", ComparisonType.GreaterThanOrEqual)]
         public double? warrentyPeriodLower { get; set; } ////WarrantyFrom
         public bool InStock { get; set; }
         
@@ -45,24 +47,28 @@ namespace El3edda.Models
         [NotMapped]
         public ICollection<ScreenEnum> Screens { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("HeightHigher", ComparisonType.GreaterThanOrEqual)]
         public double? HeightLower { get; set; }
         [Range(0, double.MaxValue)]
-        [CompareTo("HeightLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? HeightHigher { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("WidthHigher", ComparisonType.GreaterThanOrEqual)]
         public double? WidthLower { get; set; }
         [Range(0, double.MaxValue)]
-        [CompareTo("WidthLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? WidthHigher { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("ThicknessHigher", ComparisonType.GreaterThanOrEqual)]
         public double? ThicknessLower { get; set; }
         [Range(0, double.MaxValue)]
-        [CompareTo("ThicknessLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? ThicknessHigher { get; set; }
         [Range(0, double.MaxValue)]
+        [CompareTo("CameraMegaPixelsHigher", ComparisonType.GreaterThanOrEqual)]
         public double? CameraMegaPixelsLower { get; set; }
         [Range(0, double.MaxValue)]
-        [CompareTo("CameraMegaPixelsLower",ComparisonType.GreaterThanOrEqual)]
+        
         public double? CameraMegaPixelsHigher { get; set; }
         [NotMapped]
         public ICollection<Colors> Colors { get; set; }
@@ -73,20 +79,22 @@ namespace El3edda.Models
         [NotMapped]
         public ICollection<OSEnum> OS { get; set; }
         [Range(0, int.MaxValue)]
+        [CompareTo("BatteryCapacityHigher", ComparisonType.GreaterThanOrEqual)]
         public int? BatteryCapacityLower { get; set; }
         [Range(0, int.MaxValue)]
-        [CompareTo("BatteryCapacityLower",ComparisonType.GreaterThanOrEqual)]
+        
         public int? BatteryCapacityHigher { get; set; }
 
         [Range(0, int.MaxValue)]
+        [CompareToAttribute("RAMHigher", ComparisonType.GreaterThanOrEqual)]
         public int? RAMLower { get; set; }
         [Range(0, int.MaxValue)]
-        [CompareToAttribute("ROMLower",ComparisonType.GreaterThanOrEqual)]
         public int? RAMHigher { get; set; }
         [Range(0, int.MaxValue)]
+        [CompareTo("ROMHigher", ComparisonType.GreaterThanOrEqual)]
         public int? ROMLower { get; set; }
         [Range(0, int.MaxValue)]
-        [CompareTo("ROMLower",ComparisonType.GreaterThanOrEqual)]
+
         public int? ROMHigher { get; set; }
 
     }
