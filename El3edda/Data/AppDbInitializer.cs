@@ -133,7 +133,7 @@ namespace El3edda.Data
                                     new Media()
                                     {
                                         URL =
-                                            "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                            "https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
@@ -383,7 +383,7 @@ namespace El3edda.Data
                                     new Media()
                                     {
                                         URL =
-                                            "https://m.media-amazon.com/images/M/MV5BYTM2MTFhZGEtOTEwMC00YTVkLWI5N2YtZjQwODIzMzgwZjUyXkEyXkFqcGdeQXVyMTI2MjMyMzAx._V1_.jpg",
+                                            "https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg",
                                         Type = MediaType.Photo
                                     }
                                 },
