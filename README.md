@@ -2,7 +2,7 @@
 
 A web based solution for an e-commerce website specialized in selling mobile phones using .Net core .
 
-> Project is part of an ITI 9-month program course MVC
+> This project is a part of an ITI 9-month program course MVC
 # Team Members
 - Islam Mahrous
 - Ahmed Saleh
